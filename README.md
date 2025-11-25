@@ -84,5 +84,5 @@ Keep only the valid and necessary files inside.
 # Summary
 
 Vivado uses **references**, not copies.  
-Always keep the real working files inside `UnderTale.srcs/`, and re-add them after pulling updates.  
-This keeps the project clean, predictable, and easy for everyone to work with.
+Always keep the real working files inside `UnderTale.srcs/`, and clean them before pushing updates.  
+This keeps the project clean, predictable, and easy for implementation.
