@@ -44,19 +44,19 @@ The actual file on disk still exists.
 
 ---
 
-## 3. After pulling updates: you must re-add files
+## 3. After pulling updates: you may have to re-add files
 
 When you pull the latest commit, updated files appear in `UnderTale.srcs/`.  
-Vivado will not automatically re-import them.
+Vivado will not automatically re-import them sometime.
 
-**You must manually re-add:**
+**You may have to manually re-add:**
 
 - Source files (HDL)
 - Constraint files (only if updated)
 - Simulation files (only if needed)
 
 Suggestion:  
-Just re-add "source" files unless constraints or simulation changed.
+Just re-add "source" files unless constraints or simulation changed. And if it's error when use `git pull`, you may have to close vivado program first.
 
 ---
 
