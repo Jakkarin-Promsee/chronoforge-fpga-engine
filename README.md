@@ -2,13 +2,13 @@
 
 ```bash
 Project/
-├── UnderTale.cache/             # Ignored (Vivado cache)
-├── UnderTale.hw/                # Ignored (Vivado hardware config)
-├── UnderTale.ip_user_files/     # Ignored (Vivado IP files)
-├── UnderTale.runs/              # Ignored (build output: synth, impl, bitstream)
-├── UnderTale.sim/               # Ignored (simulation output)
+├── UpperTale.cache/             # Ignored (Vivado cache)
+├── UpperTale.hw/                # Ignored (Vivado hardware config)
+├── UpperTale.ip_user_files/     # Ignored (Vivado IP files)
+├── UpperTale.runs/              # Ignored (build output: synth, impl, bitstream)
+├── UpperTale.sim/               # Ignored (simulation output)
 │
-├── UnderTale.srcs/              # IMPORTANT: actual project files used by Vivado
+├── UpperTale.srcs/              # IMPORTANT: actual project files used by Vivado
 │   ├── constrs/                 # Constraint files (.xdc)
 │   ├── sim/                     # Simulation files
 │   └── source/                  # HDL source files (.v, .sv, .vhd)
@@ -27,7 +27,7 @@ When you use "Add Sources / Add Constraints / Add Simulation Files",
 Vivado only **references** the file — it does NOT make a new copy.
 
 **Recommended workflow:**  
-Move your file into `UnderTale.srcs/` first, then add it to Vivado.  
+Move your file into `UpperTale.srcs/` first, then add it to Vivado.  
 This keeps all paths consistent and prevents broken references.
 
 ---
@@ -40,7 +40,7 @@ The actual file still remains on disk.
 **If you really want to delete a file:**
 
 - Delete it inside Vivado
-- Also delete the actual file in `UnderTale.srcs/`
+- Also delete the actual file in `UpperTale.srcs/`
 
 ---
 
@@ -52,23 +52,23 @@ If you don’t care about your current progress and want to reset to the latest 
 - `git reset --hard HEAD`
 - `git clean -fdx`
 
-After pulling, the updated files will appear in `UnderTale.srcs/`.  
+After pulling, the updated files will appear in `UpperTale.srcs/`.  
 However, Vivado does **not always re-import** them automatically.
 
 **If some file missing**
 
 using `add file` for all items in these folder. It will add only files referenct that you have no import in vivado project yet.
 
-- Add source files: `UnderTale.srcs/sources_1/new/`
-- Add constrain files: `UnderTale.srcs/constrs_1/new/`
-- Add simulation files: `UnderTale.srcs/sim_1/new/`
+- Add source files: `UpperTale.srcs/sources_1/new/`
+- Add constrain files: `UpperTale.srcs/constrs_1/new/`
+- Add simulation files: `UpperTale.srcs/sim_1/new/`
 
 **Tip:**  
 If `git pull` still gives errors, try closing Vivado first.
 
 ---
 
-## 4. Before committing, clean the `UnderTale.srcs/` folder
+## 4. Before committing, clean the `UpperTale.srcs/` folder
 
 Because teammates must re-add files after pulling, a messy folder makes the project harder to use.  
 Keep only the valid and necessary files inside.
@@ -84,5 +84,5 @@ Keep only the valid and necessary files inside.
 # Summary
 
 Vivado uses **references**, not copies.  
-Always keep the real working files inside `UnderTale.srcs/`, and clean them before pushing updates.  
+Always keep the real working files inside `UpperTale.srcs/`, and clean them before pushing updates.  
 This keeps the project clean, predictable, and easy for implementation.
