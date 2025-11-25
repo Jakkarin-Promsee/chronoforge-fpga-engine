@@ -204,3 +204,131 @@ WARNING: [filemgmt 56-12] File 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/U
 WARNING: [filemgmt 56-12] File 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/clk_div_control_system.v' cannot be added to the project because it already exists in the project, skipping this file
 WARNING: [filemgmt 56-12] File 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/render_areas_color.v' cannot be added to the project because it already exists in the project, skipping this file
 update_compile_order -fileset sources_1
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_project
+open_project C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [filemgmt 56-1] IPStaticSourceDir: Directory not found as 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.ip_user_files/ipstatic'; using path 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.ip_user_files/ipstatic' instead.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.4/data/ip'.
+update_compile_order -fileset sim_1
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'topSim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.sim/sim_1/behav'
+"xvlog -m64 --relax -prj topSim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module vga
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/render_areas_color.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module render_areas_color
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_colider.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module player_colider
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_areas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module player_areas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_main_system.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_div_main_system
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_display_system.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_div_display_system
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_control_system.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_div_control_system
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/topModule.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module topModule
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sim_1/new/topSim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module topSim
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.sim/sim_1/behav'
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 7cdebaab0f66428fbf30d230adfd99d8 --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot topSim_behav xil_defaultlib.topSim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clk_div_main_system
+Compiling module xil_defaultlib.clk_div_display_system
+Compiling module xil_defaultlib.clk_div_control_system
+Compiling module xil_defaultlib.vga
+Compiling module xil_defaultlib.player_colider
+Compiling module xil_defaultlib.player_areas
+Compiling module xil_defaultlib.render_areas_color
+Compiling module xil_defaultlib.topModule
+Compiling module xil_defaultlib.topSim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot topSim_behav
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "topSim_behav -key {Behavioral:sim_1:Functional:topSim} -tclbatch {topSim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+source topSim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 5000000ns
+ERROR: Could not open vcd file waveform.vcd. A VCD file by name dump.vcd has already been opened. Only one VCD file is allowed to be open.
+run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:37 . Memory (MB): peak = 949.074 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:11 ; elapsed = 00:00:38 . Memory (MB): peak = 949.074 ; gain = 0.000
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'topSim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 5000000ns
+launch_simulation: Time (s): cpu = 00:00:11 ; elapsed = 00:00:40 . Memory (MB): peak = 949.074 ; gain = 0.000
+launch_runs synth_1
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_control_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_control_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_display_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_display_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_main_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_main_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_areas.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_areas.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_colider.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_colider.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/render_areas_color.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/render_areas_color.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/topModule.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/topModule.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v:1]
+WARNING: [filemgmt 20-1318] Duplicate Design Unit 'vga' found in library 'xil_defaultlib'
+	(Active) Duplicate found at line 9 of file C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v
+	Duplicate found at line 9 of file C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v
+[Tue Nov 25 22:34:30 2025] Launched synth_1...
+Run output will be captured here: C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.runs/synth_1/runme.log
+reset_run synth_1 -noclean_dir 
+launch_runs synth_1
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_control_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_control_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_display_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_display_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_main_system.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/clk_div_main_system.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_areas.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_areas.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_colider.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/player_colider.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/render_areas_color.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/render_areas_color.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/topModule.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/topModule.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v" into library work [C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v:1]
+WARNING: [filemgmt 20-1318] Duplicate Design Unit 'vga' found in library 'xil_defaultlib'
+	(Active) Duplicate found at line 9 of file C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga.v
+	Duplicate found at line 9 of file C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.srcs/sources_1/new/vga_test.v
+[Tue Nov 25 22:36:47 2025] Launched synth_1...
+Run output will be captured here: C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.runs/synth_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_project
+open_project C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.4/data/ip'.
+update_compile_order -fileset sim_1
+remove_files C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/vga_test.v

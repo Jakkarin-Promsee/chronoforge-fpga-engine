@@ -40,3 +40,19 @@ update_compile_order -fileset sim_1
 remove_files -fileset sim_1 C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/vga_test.v
 add_files -norecurse {C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/player_colider.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/clk_div_display_system.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/player_areas.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/vga_test.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/clk_div_main_system.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/topModule.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/vga.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/clk_div_control_system.v C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/render_areas_color.v}
 update_compile_order -fileset sources_1
+close_sim
+close_project
+open_project C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/TestGit/UpperTale.xpr
+update_compile_order -fileset sim_1
+launch_simulation
+source topSim.tcl
+launch_runs synth_1
+wait_on_run synth_1
+reset_run synth_1 -noclean_dir 
+launch_runs synth_1
+wait_on_run synth_1
+close_sim
+close_project
+open_project C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.xpr
+update_compile_order -fileset sim_1
+remove_files C:/Users/BTCOM/Desktop/1_Uni/vivado/Final-Repo/UpperTale/UpperTale.srcs/sources_1/new/vga_test.v
