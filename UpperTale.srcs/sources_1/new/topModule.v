@@ -96,7 +96,7 @@ module topModule(
         .blank(blank)
     );
     
-    //----------------------------------------- Collider -----------------------------------------
+    //----------------------------------------- game display -----------------------------------------
     wire [9:0] game_display_x0;
     wire [9:0] game_display_y0;
     wire [9:0] game_display_x1;
@@ -119,7 +119,7 @@ module topModule(
     );
     
     game_display_renderer #(
-        .BORDER(7)
+        .BORDER(6)
    ) game_display_render (
        .x(x),
        .y(y),
@@ -130,6 +130,8 @@ module topModule(
        
        .render(game_display_border_signal)
    );
+   
+    //----------------------------------------- Collider -----------------------------------------
     
     //----------------------------------------- Trigger -----------------------------------------
     
