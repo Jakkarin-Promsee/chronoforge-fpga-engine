@@ -1,0 +1,19 @@
+{
+    "decimal_data": [
+        {
+            "stage": 0,
+            "attack_combo": 100,
+            "ground_type": 0,
+            "wait_time": 5,
+            "free(unused)": 0
+        },
+
+        {
+            "stage": 1,
+            "attack_combo": 30,
+            "ground_type": 1,
+            "wait_time": 5,
+            "free(unused)": 0
+        }
+    ]
+}

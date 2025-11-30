@@ -148,10 +148,12 @@ module topModule(
         .PLAYER_W(17),
         .PLAYER_H(17),
         .SPEED(3),
-        .GRAVITY(2)
+        .GRAVITY(1)
         
     ) player_position(
-        .clk_control(clk_player_control),
+        .clk_player_control(clk_player_control),
+        .clk_update_position(clk_update_position),
+        .clk_calculation(clk_calculation),
         .reset(reset),
         .switch_up(switch_up),
         .switch_down(switch_down),
