@@ -75,7 +75,7 @@ def build_mem(input_json_path, output_mem_path, encoder, hex_output=False):
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    isHex = True
+    isHex = 0
 
     # Build Game Manager .mem (binary)
     build_mem(

@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/22/2025 03:01:44 PM
-// Design Name: 
-// Module Name: topModule
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module topModule(
     // Setting Inputs
@@ -112,6 +92,7 @@ module topModule(
     ) game_display_control (
         .clk_update_position(clk_update_position),
         .reset(reset),
+        
         .game_display_x0(game_display_x0),
         .game_display_y0(game_display_y0),
         .game_display_x1(game_display_x1),
@@ -146,14 +127,10 @@ module topModule(
         .PLAYER_POS_X(316),
         .PLAYER_POS_Y(314),
         .PLAYER_W(17),
-        .PLAYER_H(17),
-        .SPEED(3),
-        .GRAVITY(1)
+        .PLAYER_H(17)
         
     ) player_position(
         .clk_player_control(clk_player_control),
-        .clk_update_position(clk_update_position),
-        .clk_calculation(clk_calculation),
         .reset(reset),
         .switch_up(switch_up),
         .switch_down(switch_down),

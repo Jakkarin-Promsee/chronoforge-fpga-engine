@@ -24,19 +24,6 @@
             "h": 53, 
             "time": 2,
             "free(unused)": 0
-        }, 
-
-        {
-            "type": 0, 
-            "colider_type": 0, 
-            "movement_direction": 2, 
-            "speed": 2, 
-            "pos_x": 0, 
-            "pos_y": 391, 
-            "w": 7, 
-            "h": 53, 
-            "time": 2,
-            "free(unused)": 0
         }
     ]
 }
