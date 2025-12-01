@@ -2,41 +2,65 @@ import json
 import os
 
 # ----------------------------
-# Bit pack helper
+# Bit pack helper with overflow check
 # ----------------------------
-def pack_bits(value, width):
-    """Convert integer `value` into a binary string with fixed bit width."""
-    return format(value, '0{}b'.format(width))
+def pack_bits(value, width, entry_index=None, field_name=None):
+    """
+    Force integer `value` into exactly `width` bits.
+    If value exceeds width, print debug info.
+    """
+    if value >= (1 << width):
+        if entry_index is not None and field_name is not None:
+            print(f"[OVERFLOW] Entry #{entry_index}, Field '{field_name}': "
+                  f"value={value}, width={width}, needs {value.bit_length()} bits")
+    # Force fixed width (truncate higher bits)
+    masked = value & ((1 << width) - 1)
+    return format(masked, f'0{width}b')
 
 
 # ----------------------------
 # Encode Game Manager Data
 # ----------------------------
-def encode_game_manager(entry):
+def encode_game_manager(entry, index=None):
     bits = ""
-    bits += pack_bits(entry["stage"], 8)
-    bits += pack_bits(entry["attack_combo"], 10)
-    bits += pack_bits(entry["ground_type"], 4)
-    bits += pack_bits(entry["wait_time"], 8)
-    bits += pack_bits(entry["free(unused)"], 2)
+    bits += pack_bits(entry["stage"], 8, index, "stage")
+    bits += pack_bits(entry["attack_amount"], 10, index, "attack_amount")
+    bits += pack_bits(entry["platform_amount"], 10, index, "platform_amount")
+    bits += pack_bits(entry["free(unused)"], 4, index, "free(unused)")
+    bits += pack_bits(entry["wait_time"], 8, index, "wait_time")
     return bits
 
 
 # ----------------------------
 # Encode Attack Object Data
 # ----------------------------
-def encode_attack(entry):
+def encode_attack(entry, index=None):
     bits = ""
-    bits += pack_bits(entry["type"], 5)
-    bits += pack_bits(entry["colider_type"], 2)
-    bits += pack_bits(entry["movement_direction"], 3)
-    bits += pack_bits(entry["speed"], 2)
-    bits += pack_bits(entry["pos_x"], 8)
-    bits += pack_bits(entry["pos_y"], 8)
-    bits += pack_bits(entry["w"], 8)
-    bits += pack_bits(entry["h"], 8)
-    bits += pack_bits(entry["time"], 8)
-    bits += pack_bits(entry["free(unused)"], 3)
+    bits += pack_bits(entry["type"], 5, index, "type")
+    bits += pack_bits(entry["colider_type"], 2, index, "colider_type")
+    bits += pack_bits(entry["movement_direction"], 3, index, "movement_direction")
+    bits += pack_bits(entry["speed"], 5, index, "speed")
+    bits += pack_bits(entry["free(unused)"], 1, index, "free(unused)")
+    bits += pack_bits(entry["pos_x"], 8, index, "pos_x")
+    bits += pack_bits(entry["pos_y"], 8, index, "pos_y")
+    bits += pack_bits(entry["w"], 8, index, "w")
+    bits += pack_bits(entry["h"], 8, index, "h")
+    bits += pack_bits(entry["time"], 8, index, "time")
+    return bits
+
+
+# ----------------------------
+# Encode Platform Object Data
+# ----------------------------
+def encode_platform(entry, index=None):
+    bits = ""
+    bits += pack_bits(entry["movement_direction"], 3, index, "movement_direction")
+    bits += pack_bits(entry["speed"], 5, index, "speed")
+    bits += pack_bits(entry["pos_x"], 8, index, "pos_x")
+    bits += pack_bits(entry["pos_y"], 8, index, "pos_y")
+    bits += pack_bits(entry["w"], 8, index, "w")
+    bits += pack_bits(entry["h"], 8, index, "h")
+    bits += pack_bits(entry["time"], 8, index, "time")
     return bits
 
 
@@ -55,14 +79,12 @@ def build_mem(input_json_path, output_mem_path, encoder, hex_output=False):
         data = json.load(f)["decimal_data"]
 
     lines = []
-    for entry in data:
-        bitstring = encoder(entry)
-        if hex_output:
-            line = bin_to_hex(bitstring)
-        else:
-            line = bitstring
+    for idx, entry in enumerate(data):
+        bitstring = encoder(entry, idx)
+        line = bin_to_hex(bitstring) if hex_output else bitstring
         lines.append(line)
 
+    os.makedirs(os.path.dirname(output_mem_path), exist_ok=True)
     with open(output_mem_path, "w") as f:
         f.write("\n".join(lines))
 
@@ -75,9 +97,9 @@ def build_mem(input_json_path, output_mem_path, encoder, hex_output=False):
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    isHex = 0
+    isHex = 0  # 0 = binary output, 1 = hex output
 
-    # Build Game Manager .mem (binary)
+    # Build Game Manager .mem
     build_mem(
         os.path.join(BASE_DIR, "data", "game_manager.json"),
         os.path.join(BASE_DIR, "output", "game_manager.mem"),
@@ -85,10 +107,18 @@ if __name__ == "__main__":
         hex_output=isHex
     )
 
-    # Build Attack Objects .mem (binary)
+    # Build Attack Objects .mem
     build_mem(
         os.path.join(BASE_DIR, "data", "attack_object.json"),
         os.path.join(BASE_DIR, "output", "attack_object.mem"),
         encode_attack,
+        hex_output=isHex
+    )
+
+    # Build Platform Objects .mem
+    build_mem(
+        os.path.join(BASE_DIR, "data", "platform_object.json"),
+        os.path.join(BASE_DIR, "output", "platform_object.mem"),
+        encode_platform,
         hex_output=isHex
     )
