@@ -99,7 +99,7 @@ if __name__ == "__main__":
     base_Uppertale = os.path.dirname(base_python_lab)
 
     isPushingVerilog = True
-    isHex = 0  # 0 = binary output, 1 = hex output
+    isHex = True  # 0 = binary output, 1 = hex output
 
     base_game_manager_path = os.path.join(base_python_lab, "output","game_manager.mem")
     verilog_game_manager_path = os.path.join(base_Uppertale, "UpperTale.srcs", "sources_1", "new","game_manager.mem")
