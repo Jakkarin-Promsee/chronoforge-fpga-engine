@@ -41,10 +41,10 @@ def encode_attack(entry, index=None):
     bits += pack_bits(entry["movement_direction"], 3, index, "movement_direction")
     bits += pack_bits(entry["speed"], 5, index, "speed")
     bits += pack_bits(entry["free(unused)"], 1, index, "free(unused)")
-    bits += pack_bits(entry["pos_x"], 8, index, "pos_x")
-    bits += pack_bits(entry["pos_y"], 8, index, "pos_y")
-    bits += pack_bits(entry["w"], 8, index, "w")
-    bits += pack_bits(entry["h"], 8, index, "h")
+    bits += pack_bits(int(entry["pos_x"]/4), 8, index, "pos_x")
+    bits += pack_bits(int(entry["pos_y"]/4), 8, index, "pos_y")
+    bits += pack_bits(int(entry["w"]/4), 8, index, "w")
+    bits += pack_bits(int(entry["h"]/4), 8, index, "h")
     bits += pack_bits(entry["time"], 8, index, "time")
     return bits
 
@@ -56,10 +56,10 @@ def encode_platform(entry, index=None):
     bits = ""
     bits += pack_bits(entry["movement_direction"], 3, index, "movement_direction")
     bits += pack_bits(entry["speed"], 5, index, "speed")
-    bits += pack_bits(entry["pos_x"], 8, index, "pos_x")
-    bits += pack_bits(entry["pos_y"], 8, index, "pos_y")
-    bits += pack_bits(entry["w"], 8, index, "w")
-    bits += pack_bits(entry["h"], 8, index, "h")
+    bits += pack_bits(int(entry["pos_x"]/4), 8, index, "pos_x")
+    bits += pack_bits(int(entry["pos_y"]/4), 8, index, "pos_y")
+    bits += pack_bits(int(entry["w"]/4), 8, index, "w")
+    bits += pack_bits(int(entry["h"]/4), 8, index, "h")
     bits += pack_bits(entry["time"], 8, index, "time")
     return bits
 
@@ -95,30 +95,41 @@ def build_mem(input_json_path, output_mem_path, encoder, hex_output=False):
 # Usage
 # ----------------------------
 if __name__ == "__main__":
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    base_python_lab = os.path.dirname(os.path.abspath(__file__))
+    base_Uppertale = os.path.dirname(base_python_lab)
 
+    isPushingVerilog = True
     isHex = 0  # 0 = binary output, 1 = hex output
+
+    base_game_manager_path = os.path.join(base_python_lab, "output","game_manager.mem")
+    verilog_game_manager_path = os.path.join(base_Uppertale, "UpperTale.srcs", "sources_1", "new","game_manager.mem")
+
+    base_attack_object_path = os.path.join(base_python_lab, "output","attack_object.mem")
+    verilog_attack_object_path = os.path.join(base_Uppertale, "UpperTale.srcs", "sources_1", "new","attack_object.mem")
+
+    base_platform_object_path = os.path.join(base_python_lab, "output","platform_object.mem")
+    verilog_platform_object_path = os.path.join(base_Uppertale, "UpperTale.srcs", "sources_1", "new","platform_object.mem")
 
     # Build Game Manager .mem
     build_mem(
-        os.path.join(BASE_DIR, "data", "game_manager.json"),
-        os.path.join(BASE_DIR, "output", "game_manager.mem"),
+        os.path.join(base_python_lab, "data", "game_manager.json"),
+        verilog_game_manager_path if isPushingVerilog else base_game_manager_path,
         encode_game_manager,
         hex_output=isHex
     )
 
     # Build Attack Objects .mem
     build_mem(
-        os.path.join(BASE_DIR, "data", "attack_object.json"),
-        os.path.join(BASE_DIR, "output", "attack_object.mem"),
+        os.path.join(base_python_lab, "data", "attack_object.json"),
+        verilog_attack_object_path if isPushingVerilog else base_attack_object_path,
         encode_attack,
         hex_output=isHex
     )
 
     # Build Platform Objects .mem
     build_mem(
-        os.path.join(BASE_DIR, "data", "platform_object.json"),
-        os.path.join(BASE_DIR, "output", "platform_object.mem"),
+        os.path.join(base_python_lab, "data", "platform_object.json"),
+        verilog_platform_object_path if isPushingVerilog else base_platform_object_path,
         encode_platform,
         hex_output=isHex
     )
