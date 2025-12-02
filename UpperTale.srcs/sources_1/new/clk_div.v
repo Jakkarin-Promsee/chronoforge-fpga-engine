@@ -15,7 +15,7 @@ module clk_div #(
 
     always @(posedge clk_i) begin
     // If sw0 = false, reset condition
-      if (!rst_ni) begin
+      if (rst_ni) begin
         clk_r <= 0;
         counter_r <= 0;
      

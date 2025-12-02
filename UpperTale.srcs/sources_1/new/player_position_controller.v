@@ -58,38 +58,24 @@ module player_position_controller#(
     
     assign player_w_hires = PLAYER_W << SCALE_FACTOR_BITS;
     assign player_h_hires = PLAYER_H << SCALE_FACTOR_BITS;
-    
-    // Player's visible size is constant
-    initial begin
-        player_w = PLAYER_W;
-        player_h = PLAYER_H;
-    end
 
     reg [9 + SCALE_FACTOR_GRAVITY_BITS: 0] falling_speed;
     reg on_ground;
     reg is_hold_switch_up;
     
-    initial begin
-        // Initialize high-resolution positions
-        player_pos_x_hires = PLAYER_POS_X << SCALE_FACTOR_BITS;
-        player_pos_y_hires = PLAYER_POS_Y << SCALE_FACTOR_BITS;
-        
-        // Initialize output positions (integer part only)
-        player_pos_x = PLAYER_POS_X;
-        player_pos_y = PLAYER_POS_Y;
-
-        on_ground = 1;
-        is_hold_switch_up = 0;
-    end
     
     always @(posedge clk_player_control) begin
-        if (!reset) begin
+        if (reset) begin
             // Reset high-resolution positions
             player_pos_x_hires <= PLAYER_POS_X << SCALE_FACTOR_BITS;
             player_pos_y_hires <= PLAYER_POS_Y << SCALE_FACTOR_BITS;
             
+            player_pos_x = PLAYER_POS_X;
+            player_pos_y = PLAYER_POS_Y;
+            
             player_w <= PLAYER_W;
             player_h <= PLAYER_H;
+            
             is_hold_switch_up <= 0;
             on_ground <= 1;
             

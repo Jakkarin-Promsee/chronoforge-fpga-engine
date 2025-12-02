@@ -28,25 +28,21 @@ module vga_translator (
     reg [9:0] h_count = 0;
     reg [9:0] v_count = 0;
 
-    // Horizontal counter (Synchronous Reset)
-    always @(posedge clk_display) begin
-        if (!reset)
-            h_count <= 0;
-        else if (h_count == H_TOTAL - 1)
-            h_count <= 0;
-        else
-            h_count <= h_count + 1;
-    end
 
-    // Vertical counter (FIXED: Uses Synchronous Reset)
+    // Horizontal/Vertical counter (FIXED: Uses Synchronous Reset)
     always @(posedge clk_display) begin
-        if (!reset)
+        if (reset) begin
+            h_count <= 0;
             v_count <= 0;
-        else if (h_count == H_TOTAL - 1) begin // Check only when horizontal counter is about to reset
+        end else if (h_count == H_TOTAL - 1) begin // Check only when horizontal counter is about to reset
+            h_count <= 0;
+            
             if (v_count == V_TOTAL - 1)
                 v_count <= 0;
             else
                 v_count <= v_count + 1;
+        end else begin
+             h_count <= h_count + 1;
         end
     end
 

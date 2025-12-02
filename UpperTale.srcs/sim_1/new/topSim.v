@@ -97,8 +97,8 @@ module tb_topModule;
 
     initial begin
         // Initialize inputs
-        clk <= 1'b0;
-        reset <= 1'b0; // Start in reset
+        clk <= 1'b1;
+        reset <= 1'b1; // Start in reset
         switch_up <= 1'b0;
         switch_down <= 1'b0;
         switch_left <= 1'b0;
@@ -110,7 +110,7 @@ module tb_topModule;
         $dumpvars(0, tb_topModule);
 
         // De-assert reset after 100ns
-        #100 reset <= 1'b1;
+        #100 reset <= 1'b0;
 
         // Apply a brief input stimulus after reset is released
         #500

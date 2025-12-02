@@ -5,6 +5,7 @@ module platform_object_rom #(
     parameter integer MAXIMUM_TIMES = 30
 )(
     input  clk,
+    input reset,
     input  [ADDR_WIDTH-1:0] addr,
     input  [MAXIMUM_TIMES-1:0] current_time,
     input  sync_platform_time,
@@ -22,18 +23,13 @@ module platform_object_rom #(
 
     reg [47:0] rom [0:(1<<ADDR_WIDTH)-1];
     reg update_data;
-
-    initial begin
-        $readmemh("platform_object.mem", rom);
-    end
-    
-    initial begin
-        update_data = 0; 
-        next_platform_time = 0;
-    end
         
     always @(posedge clk) begin
-        if(!sync_platform_time) begin
+        if(reset) begin
+            $readmemh("platform_object.mem", rom);
+            update_data <= 0; 
+            next_platform_time <= 0;
+        end else if(!sync_platform_time) begin
             if(!update_data) begin
                 movement_direction <= rom[addr][47:45];
                 speed              <= rom[addr][44:40];

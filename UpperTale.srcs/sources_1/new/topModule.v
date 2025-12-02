@@ -159,6 +159,7 @@ module topModule(
         .MAXIMUM_TIMES(MAXIMUM_TIMES)
     ) attack_object_reader (
         .clk(clk),
+        .reset(reset),
         .addr(attack_i),
         .current_time(current_time),
         .sync_attack_time(sync_attack_time),
@@ -191,6 +192,7 @@ module topModule(
         .MAXIMUM_TIMES(MAXIMUM_TIMES)
     ) platform_object_reader (
         .clk(clk),
+        .reset(reset),
         .addr(platform_i),
         .current_time(current_time),
         .sync_platform_time(sync_platform_time),
@@ -315,6 +317,7 @@ module topModule(
     );
     
     universal_renderer universal_render(
+        .reset(reset),
         .x(x),
         .y(y),
         .blank(blank),

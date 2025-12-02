@@ -5,6 +5,7 @@ module attack_object_rom #(
     parameter integer MAXIMUM_TIMES = 30
 )(
     input clk,
+    input reset,
     input [ADDR_WIDTH-1:0] addr,
     input [MAXIMUM_TIMES-1:0] current_time,
     input sync_attack_time,
@@ -26,18 +27,13 @@ module attack_object_rom #(
     reg [55:0] rom [0:(1<<ADDR_WIDTH)-1];
     reg update_data;
 
-    initial begin
-        $readmemh("attack_object.mem", rom);
-    end
-    
-    initial begin
-        update_data = 0; 
-        next_attack_time = 0;
-        
-    end
 
     always @(posedge clk) begin
-        if(!sync_attack_time) begin
+        if(reset) begin
+            $readmemh("attack_object.mem", rom);
+            update_data <= 0; 
+            next_attack_time <= 0;
+        end else if(!sync_attack_time) begin
             if(!update_data) begin
                 types               <= rom[addr][55:51];
                 colider_type       <= rom[addr][50:49];

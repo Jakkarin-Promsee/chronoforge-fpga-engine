@@ -34,12 +34,13 @@ module game_manager_contorller#(
     wire [7:0] wait_time;
     
     reg [MAXIMUM_TIMES-1:0] next_game_manager_time;
-    reg sync_game_manager;      // State machine signal: 1=Spawning, 0=Stage Transition/Wait
+    reg  sync_game_manager;      // State machine signal: 1=Spawning, 0=Stage Transition/Wait
     wire update_game_manager;   // Asserted by ROM module when data is ready
 
     // Instantiate ROM reader (Note: 'game_manager_rom' module assumed to be defined elsewhere)
     game_manager_rom game_manager_reader (
         .clk(clk),
+        .reset(reset),
         .addr(current_stage),
         .sync_game_manager(sync_game_manager),
         
@@ -54,32 +55,11 @@ module game_manager_contorller#(
     reg [9:0] count_attack;   // Counts attacks spawned in the current stage
     reg [9:0] count_platform; // Counts platforms spawned in the current stage
     
-    // Initial block for simulation startup
-    initial begin
-        current_stage = INITIAL_STAGE;
-        centi_time = 0; 
-        current_time = 0;
-        
-        attack_i = 0;
-        platform_i = 0;
-        
-        count_attack = 0;
-        count_platform = 0;
-        
-        next_game_manager_time = 0;
-        
-        sync_game_manager = 0;
-        sync_attack_time = 0;
-        sync_platform_time = 0;
-    end
-    
     // Main FSM and Spawning Logic
     always @(posedge clk) begin
-        if(!reset) begin
+        if(reset) begin
             // Asynchronous Reset
             current_stage <= INITIAL_STAGE;
-            centi_time <= 0; 
-            current_time <= 0;
             
             attack_i <= 0;
             platform_i <= 0;
@@ -182,7 +162,7 @@ module game_manager_contorller#(
     reg [MAXIMUM_TIMES: 0] centi_time;
     
     always @(posedge clk_centi_second) begin
-        if(!reset) begin
+        if(reset) begin
             centi_time <= 0;
             current_time <= 0;
         end else begin
