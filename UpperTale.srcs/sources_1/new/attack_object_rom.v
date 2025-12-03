@@ -9,8 +9,10 @@ module attack_object_rom #(
     input [ADDR_WIDTH-1:0] addr,
     input [MAXIMUM_TIMES-1:0] current_time,
     input sync_attack_time,
+    input update_attack_position,
     
     output reg  update_attack_time,
+    output reg  sync_attack_position,
     output reg  [MAXIMUM_TIMES-1:0] next_attack_time,
     output reg  [4:0]  types,
     output reg  [1:0]  colider_type,
@@ -33,9 +35,12 @@ module attack_object_rom #(
             $readmemh("attack_object.mem", rom);
             update_data <= 0; 
             next_attack_time <= 0;
+            sync_attack_position <= 0;
+            
         end else if(!sync_attack_time) begin
+            // Update data sync with game runtime
             if(!update_data) begin
-                types               <= rom[addr][55:51];
+                types              <= rom[addr][55:51];
                 colider_type       <= rom[addr][50:49];
                 movement_direction <= rom[addr][48:46];
                 speed              <= rom[addr][45:41];
@@ -46,13 +51,28 @@ module attack_object_rom #(
                 h                  <= rom[addr][15:8] << 2;
                 times              <= rom[addr][7:0];
             
+                
                 update_data <= 1;
-                                    
+            
+            // Wait 1 cycle to sync flip flop update                   
             end else begin
+                // Set next attack time
                 next_attack_time <= current_time + times;
+                
+                // Send out update to sync with game runtime module
                 update_attack_time <= 1;
+                
+                // Send out sync to activate object_position_control module
+                sync_attack_position <= 0;
             end
+            
+        // If sync_attack_time from game runtime module
         end else begin
+            // Communicate with object_position module
+            if(update_attack_position) begin
+                 sync_attack_position <= 1;
+            end 
+                    
             update_attack_time <= 0;
             update_data <= 0;
         end

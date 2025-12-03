@@ -9,7 +9,9 @@ module platform_object_rom #(
     input  [ADDR_WIDTH-1:0] addr,
     input  [MAXIMUM_TIMES-1:0] current_time,
     input  sync_platform_time,
+    input  update_platform_position,
     
+    output reg  sync_platform_position,
     output reg  update_platform_time,
     output reg  [MAXIMUM_TIMES-1:0] next_platform_time,
     output reg  [2:0]  movement_direction,
@@ -29,7 +31,10 @@ module platform_object_rom #(
             $readmemh("platform_object.mem", rom);
             update_data <= 0; 
             next_platform_time <= 0;
+            sync_platform_position <= 0;
+                        
         end else if(!sync_platform_time) begin
+            // Update data sync with game runtime
             if(!update_data) begin
                 movement_direction <= rom[addr][47:45];
                 speed              <= rom[addr][44:40];
@@ -40,12 +45,26 @@ module platform_object_rom #(
                 times               <= rom[addr][7:0];
                 
                 update_data <= 1;
-                
+            
+            // Wait 1 cycle to sync flip flop update       
             end else begin
+                // Set next platform time
                 next_platform_time <= current_time + times;
+                
+                // Send out update to sync with game runtime module
                 update_platform_time <= 1;
+                
+                // Send out sync to activate object_position_control module
+                sync_platform_position <= 0;
             end
+        
+        // If sync_attack_time from game runtime module
         end else begin
+            // Communicate with object_position module
+            if(update_platform_position) begin
+                sync_platform_position <= 1;
+            end 
+                    
             update_platform_time <= 0;
             update_data <= 0;
         end

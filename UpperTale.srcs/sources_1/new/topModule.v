@@ -231,6 +231,7 @@ module topModule(
     );
     
     // Attack Object Data Stream   
+    wire  sync_attack_position;
     wire  [4:0]  attack_type;
     wire  [1:0]  attack_colider_type;
     wire  [2:0]  attack_movement_direction;
@@ -250,8 +251,10 @@ module topModule(
         .addr(attack_i),
         .current_time(current_time),
         .sync_attack_time(sync_attack_time),
+        .update_attack_position(update_object_trigger_position),
         
         .update_attack_time(update_attack_time),
+        .sync_attack_position(sync_attack_position),
         .next_attack_time(next_attack_time),
         .types(attack_type),
         .colider_type(attack_colider_type),
@@ -266,6 +269,7 @@ module topModule(
     
     
     // Platform Object Data Stream   
+    wire sync_platform_position;
     wire  [2:0]  platform_movement_direction;
     wire  [4:0]  platform_speed;
     wire  [9:0]  platform_pos_x;
@@ -283,8 +287,10 @@ module topModule(
         .addr(platform_i),
         .current_time(current_time),
         .sync_platform_time(sync_platform_time),
+        .update_platform_position(update_object_collider_position),
         
         .update_platform_time(update_platform_time),
+        .sync_platform_position(sync_platform_position),
         .next_platform_time(next_platform_time),
         .movement_direction(platform_movement_direction),
         .speed(platform_speed),
@@ -341,30 +347,67 @@ module topModule(
    );
    
     //----------------------------------- Collider Object Runtimes Section  -----------------------------------------
-    wire object_colider1_signal;
+    
+    wire update_object_collider_position;
+    wire [9:0] object_collider_override_pos_x;
+    wire [9:0] object_collider_override_pos_y;
+    wire object_colider_signal;
+
+    object_position_controller object_collider_position_control (
+        .clk_object_control(clk_object_control),
+        .reset(sync_reset),
+        .movement_direction(platform_movement_direction),
+        .object_pos_x(platform_pos_x),
+        .object_pos_y(platform_pos_y),
+        .speed(platform_speed),
+        .sync_object_position(sync_platform_position),
+        
+        .update_object_position(update_object_collider_position),
+        .object_override_pos_x(object_collider_override_pos_x),
+        .object_override_pos_y(object_collider_override_pos_y)
+    );
+    
     object_renderer object_colider1 (
         .x(x),
         .y(y),
-        .object_pos_x(attack_pos_x),
-        .object_pos_y(attack_pos_y),
-        .object_w(attack_w),
-        .object_h(attack_h),
-        
-        .render(object_colider1_signal)
+        .object_pos_x(object_collider_override_pos_x),
+        .object_pos_y(object_collider_override_pos_y),
+        .object_w(platform_w),
+        .object_h(platform_h),
+              
+        .render(object_colider_signal)
     );
     
     //----------------------------------- Trigger Object Runtimes Section -----------------------------------------
     
-    wire object_trigger1_signal;
+    wire update_object_trigger_position;
+    wire [9:0] object_trigger_override_pos_x;
+    wire [9:0] object_trigger_override_pos_y;
+    wire object_trigger_signal;
+    
+    object_position_controller object_trigger_position_control (
+        .clk_object_control(clk_object_control),
+        .reset(sync_reset),
+        .movement_direction(attack_movement_direction),
+        .object_pos_x(attack_pos_x),
+        .object_pos_y(attack_pos_y),
+        .speed(attack_speed),
+        .sync_object_position(sync_attack_position),
+        
+        .update_object_position(update_object_trigger_position),
+        .object_override_pos_x(object_trigger_override_pos_x),
+        .object_override_pos_y(object_trigger_override_pos_y)
+    );
+    
     object_renderer object_trigger1 (
         .x(x),
         .y(y),
-        .object_pos_x(platform_pos_x),
-        .object_pos_y(platform_pos_y),
-        .object_w(platform_w),
-        .object_h(platform_h),
+        .object_pos_x(object_trigger_override_pos_x),
+        .object_pos_y(object_trigger_override_pos_y),
+        .object_w(attack_w),
+        .object_h(attack_h),
         
-        .render(object_trigger1_signal)
+        .render(object_trigger_signal)
     );
             
     //----------------------------------- Player Controller Section ----------------------------------------- 
@@ -436,8 +479,8 @@ module topModule(
         .blank(blank),
         
         .game_display_border_render(game_display_border_signal),
-        .object_colider_signal(object_colider1_signal),
-        .object_trigger_signal(object_trigger1_signal),
+        .object_colider_signal(object_colider_signal),
+        .object_trigger_signal(object_trigger_signal),
         .player_render(player_render_signal),
         
         .RED(RED),
