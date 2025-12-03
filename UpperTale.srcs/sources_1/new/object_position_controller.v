@@ -11,20 +11,28 @@ module object_position_controller (
         
         
     output reg update_object_position,
-    output reg [9:0] object_override_pos_x,
-    output reg [9:0] object_override_pos_y
+    output wire [9:0] object_override_pos_x,
+    output wire [9:0] object_override_pos_y
 );
+    localparam SCALE_FACTOR_BITS = 3;
+    localparam SCALE_FACTOR = 8;
+    
+    reg [9+SCALE_FACTOR_BITS:0] object_override_pos_x_hired;
+    reg [9+SCALE_FACTOR_BITS:0] object_override_pos_y_hired;
+    
+    assign object_override_pos_x = object_override_pos_x_hired >> SCALE_FACTOR_BITS;
+    assign object_override_pos_y = object_override_pos_y_hired >> SCALE_FACTOR_BITS;
 
     always @(posedge clk_object_control) begin
         if(reset) begin
             update_object_position <= 0;
-            object_override_pos_x <= 0;
-            object_override_pos_y <= 0;
+            object_override_pos_x_hired <= 0;
+            object_override_pos_y_hired <= 0;
             
         end else begin
             if (!sync_object_position) begin
-                object_override_pos_x <= object_pos_x;
-                object_override_pos_y <= object_pos_y;
+                object_override_pos_x_hired <= object_pos_x << SCALE_FACTOR_BITS;
+                object_override_pos_y_hired <= object_pos_y << SCALE_FACTOR_BITS;
                 
                 update_object_position <= 1;
             end else begin
@@ -33,46 +41,46 @@ module object_position_controller (
                 case (movement_direction)
                     // Upper
                     0: begin
-                        object_override_pos_y <= object_override_pos_y - 1;
+                        object_override_pos_y_hired <= object_override_pos_y_hired - speed;
                     end
                     
                     // Upper Right
                     1: begin
-                        object_override_pos_y <= object_override_pos_y - 1;
-                        object_override_pos_x <= object_override_pos_x + 1;       
+                        object_override_pos_y_hired <= object_override_pos_y_hired - speed;
+                        object_override_pos_x_hired <= object_override_pos_x_hired + speed;       
                     end
                     
                     // Right
                     2: begin
-                        object_override_pos_x <= object_override_pos_x + 1;       
+                        object_override_pos_x_hired <= object_override_pos_x_hired + speed;       
                     end
                     
                     // Bottom Right
                     3: begin
-                        object_override_pos_y <= object_override_pos_y + 1;
-                        object_override_pos_x <= object_override_pos_x + 1;       
+                        object_override_pos_y_hired <= object_override_pos_y_hired + speed;
+                        object_override_pos_x_hired <= object_override_pos_x_hired + speed;       
                     end
                     
                     // Bottom
                     4: begin
-                        object_override_pos_y <= object_override_pos_y + 1;   
+                        object_override_pos_y_hired <= object_override_pos_y_hired + speed;   
                     end
                     
                     // Bottom Left
                     5: begin
-                        object_override_pos_y <= object_override_pos_y + 1;
-                        object_override_pos_x <= object_override_pos_x - 1;       
+                        object_override_pos_y_hired <= object_override_pos_y_hired + speed;
+                        object_override_pos_x_hired <= object_override_pos_x_hired - speed;       
                     end
                     
                     // Left
                     6: begin
-                        object_override_pos_x <= object_override_pos_x - 1;       
+                        object_override_pos_x_hired <= object_override_pos_x_hired - speed;       
                     end
                     
                     // Upper Left
                     7: begin
-                        object_override_pos_y <= object_override_pos_y - 1;
-                        object_override_pos_x <= object_override_pos_x - 1;       
+                        object_override_pos_y_hired <= object_override_pos_y_hired - speed;
+                        object_override_pos_x_hired <= object_override_pos_x_hired - speed;       
                     end
                 endcase
             end

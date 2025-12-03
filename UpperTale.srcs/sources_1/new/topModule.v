@@ -367,7 +367,7 @@ module topModule(
         .object_override_pos_y(object_collider_override_pos_y)
     );
     
-    object_renderer object_colider1 (
+    object_renderer object_colider_render (
         .x(x),
         .y(y),
         .object_pos_x(object_collider_override_pos_x),
@@ -399,7 +399,7 @@ module topModule(
         .object_override_pos_y(object_trigger_override_pos_y)
     );
     
-    object_renderer object_trigger1 (
+    object_renderer object_trigger (
         .x(x),
         .y(y),
         .object_pos_x(object_trigger_override_pos_x),
