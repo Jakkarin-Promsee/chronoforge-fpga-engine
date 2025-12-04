@@ -13,6 +13,13 @@ module object_collilder_runtime (
     input [9:0] object_w,
     input [9:0] object_h,
     input [4:0] object_speed,
+    input [7:0] object_destroy_time,
+    input [1:0] object_destroy_trigger,
+    
+    input  [9:0]  display_pos_x1,
+    input  [9:0]  display_pos_y1,
+    input  [9:0]  display_pos_x2,
+    input  [9:0]  display_pos_y2,
     
     input sync_object_position,
     
@@ -35,6 +42,7 @@ module object_collilder_runtime (
     reg [OBJECT_AMOUNT-1: 0] sync_object_position_i ;
     wire [OBJECT_AMOUNT-1: 0] update_object_position_i ;
     wire [OBJECT_AMOUNT-1: 0] object_signal_i ;
+    wire [OBJECT_AMOUNT-1: 0] object_free_i;
     
     reg second_sync;
     
@@ -107,6 +115,10 @@ module object_collilder_runtime (
                 
                  for (it = 0; it < OBJECT_AMOUNT; it = it + 1) begin
                    sync_object_position_i[it] <= 1'b1;    // clear sync
+                   
+                   if(object_free_i[it]) begin
+                        object_ready_state[it] <= 1;
+                   end
                end
                 
             end
@@ -122,11 +134,20 @@ module object_collilder_runtime (
                 .object_pos_x(object_pos_x),
                 .object_pos_y(object_pos_y),
                 .object_speed(object_speed),
+                .object_destroy_time(object_destroy_time),
+                .object_destroy_trigger(object_destroy_trigger),
                 .sync_object_position(sync_object_position_i[i]),
+                
+                .display_pos_x1(display_pos_x1),
+                .display_pos_y1(display_pos_y1),
+                .display_pos_x2(display_pos_x2),
+                .display_pos_y2(display_pos_y2),
                 
                 .update_object_position(update_object_position_i[i]),
                 .object_override_pos_x(object_collider_override_pos_x[i]),
-                .object_override_pos_y(object_collider_override_pos_y[i])
+                .object_override_pos_y(object_collider_override_pos_y[i]),
+                
+                .object_free(object_free_i[i])
             );
             
             object_renderer object_colider_render (

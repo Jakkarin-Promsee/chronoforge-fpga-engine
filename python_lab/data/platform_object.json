@@ -52,7 +52,7 @@
             "h": 6, 
             "wait_time": 2, 
             "destroy_time": 0,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         }, 
 
@@ -65,7 +65,7 @@
             "h": 6, 
             "wait_time": 2, 
             "destroy_time": 0,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         },
 
@@ -78,7 +78,7 @@
             "h": 6, 
             "wait_time": 2, 
             "destroy_time": 0,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         }
     ]

@@ -5,11 +5,11 @@
             "attack_amount": 6,
             "platform_amount": 3,
             "wait_time": 1,
-            "gravity_direction": 2,
-            "display_pos_x1": 100,
-            "display_pos_y1": 100,
-            "display_pos_x2": 460,
-            "display_pos_y2": 360,
+            "gravity_direction": 0,
+            "display_pos_x1": 130,
+            "display_pos_y1": 251,
+            "display_pos_x2": 506,
+            "display_pos_y2": 391,
             "free(unused)": 0
         },
 
@@ -18,12 +18,13 @@
             "attack_amount": 6,
             "platform_amount": 3,
             "wait_time": 1,
-            "gravity_direction": 2,
-            "display_pos_x1": 130,
-            "display_pos_y1": 251,
-            "display_pos_x2": 560,
-            "display_pos_y2": 391,
+            "gravity_direction": 3,
+            "display_pos_x1": 100,
+            "display_pos_y1": 100,
+            "display_pos_x2": 540,
+            "display_pos_y2": 380,
             "free(unused)": 0
         }
+
     ]
 }

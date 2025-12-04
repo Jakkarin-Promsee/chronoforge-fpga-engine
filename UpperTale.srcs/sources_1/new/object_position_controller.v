@@ -8,13 +8,20 @@ module object_position_controller (
     input [9:0] object_pos_x,
     input [9:0] object_pos_y,
     input [4:0] object_speed,
-    
+    input [7:0] object_destroy_time,
+    input [1:0] object_destroy_trigger,
     input sync_object_position,
-        
+    
+    input  [9:0]  display_pos_x1,
+    input  [9:0]  display_pos_y1,
+    input  [9:0]  display_pos_x2,
+    input  [9:0]  display_pos_y2,
         
     output reg update_object_position,
     output wire [9:0] object_override_pos_x,
-    output wire [9:0] object_override_pos_y
+    output wire [9:0] object_override_pos_y,
+    
+    output reg object_free
 );
     localparam SCALE_FACTOR_BITS = 3;
     localparam SCALE_FACTOR = 8;
@@ -24,6 +31,11 @@ module object_position_controller (
     reg [2:0] movement_direction_hired;
     reg [4:0] object_speed_hired;
     
+    reg [9+SCALE_FACTOR_BITS:0] display_pos_x1_hired;
+    reg [9+SCALE_FACTOR_BITS:0] display_pos_y1_hired;
+    reg [9+SCALE_FACTOR_BITS:0] display_pos_x2_hired;
+    reg [9+SCALE_FACTOR_BITS:0] display_pos_y2_hired;
+    
     assign object_override_pos_x = object_override_pos_x_hired >> SCALE_FACTOR_BITS;
     assign object_override_pos_y = object_override_pos_y_hired >> SCALE_FACTOR_BITS;
 
@@ -32,6 +44,12 @@ module object_position_controller (
             update_object_position <= 0;
             object_override_pos_x_hired <= 0;
             object_override_pos_y_hired <= 0;
+            object_free <= 1;
+            
+            display_pos_x1_hired <= 0;
+            display_pos_y1_hired <= 0;
+            display_pos_x2_hired <= 0;
+            display_pos_y2_hired <= 0;
             
             movement_direction_hired <= movement_direction;
             object_speed_hired <= object_speed;
@@ -43,10 +61,42 @@ module object_position_controller (
                 movement_direction_hired <= movement_direction;
                 object_speed_hired <= object_speed;
                 
+                display_pos_x1_hired <=  display_pos_x1;
+                display_pos_y1_hired <=  display_pos_y1;
+                display_pos_x2_hired <=  display_pos_x2;
+                display_pos_y2_hired <=  display_pos_y2;
+                
                 update_object_position <= 1;
+                object_free <= 0;
             end else begin
                 update_object_position <= 0;
                 
+                // Check destroy trigger
+                case (object_destroy_trigger)
+                    // 0 is non trigger destroy
+                    
+                    1: begin
+                        if (object_override_pos_x_hired > 640*SCALE_FACTOR ||
+                            object_override_pos_x_hired < 0   ||
+                            object_override_pos_y_hired > 480*SCALE_FACTOR ||
+                            object_override_pos_y_hired < 0) begin
+                            
+                            object_free <= 1;
+                        end
+                    end
+                    
+                    2: begin
+                        if (object_override_pos_x_hired > display_pos_x2_hired||
+                            object_override_pos_x_hired < display_pos_x1_hired   ||
+                            object_override_pos_y_hired > display_pos_y1_hired ||
+                            object_override_pos_y_hired < display_pos_y2_hired) begin
+                            
+                            object_free <= 1;
+                        end
+                    end
+                endcase
+                
+                // Move position
                 case (movement_direction_hired)
                     // Upper
                     0: begin

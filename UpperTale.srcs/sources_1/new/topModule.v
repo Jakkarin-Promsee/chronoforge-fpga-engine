@@ -198,6 +198,10 @@ module topModule#(
     wire [MAXIMUM_TIMES-1:0] current_time;
     wire [MAXIMUM_ATTACK_OBJECT-1:0] attack_i;
     wire [MAXIMUM_PLATFORM_OBJECT-1:0] platform_i;
+    wire [9:0]  display_pos_x1;
+    wire [9:0]  display_pos_y1;
+    wire [9:0]  display_pos_x2;
+    wire [9:0]  display_pos_y2;
     
     // Assign with attack_object reader and platform_object_reader
     wire [MAXIMUM_TIMES-1:0] next_attack_time;
@@ -231,6 +235,11 @@ module topModule#(
         .update_attack_time(update_attack_time),
         .update_platform_time(update_platform_time),
         
+        .display_pos_x1(display_pos_x1),
+        .display_pos_y1(display_pos_y1),
+        .display_pos_x2(display_pos_x2),
+        .display_pos_y2(display_pos_y2),
+                
         .current_stage(current_stage),
         .current_time(current_time),
         .attack_i(attack_i),
@@ -250,6 +259,8 @@ module topModule#(
     wire  [9:0]  attack_pos_y;
     wire  [9:0]  attack_w;
     wire  [9:0]  attack_h;
+    wire  [7:0]  attack_destroy_time;
+    wire  [1:0]  attack_destroy_trigger;
     
     attack_object_rom #(
         .ADDR_WIDTH(MAXIMUM_ATTACK_OBJECT),
@@ -272,7 +283,9 @@ module topModule#(
         .pos_x(attack_pos_x),
         .pos_y(attack_pos_y),
         .w(attack_w),
-        .h(attack_h)
+        .h(attack_h),
+        .destroy_time(attack_destroy_time),
+        .destroy_trigger(attack_destroy_trigger)
     );
     
     
@@ -285,6 +298,8 @@ module topModule#(
     wire  [9:0]  platform_pos_y;
     wire  [9:0]  platform_w;
     wire  [9:0]  platform_h;
+    wire  [7:0]  platform_destroy_time;
+    wire  [1:0]  platform_destroy_trigger;
         
     platform_object_rom #(
         .ADDR_WIDTH(MAXIMUM_PLATFORM_OBJECT),
@@ -305,7 +320,9 @@ module topModule#(
         .pos_x(platform_pos_x),
         .pos_y(platform_pos_y),
         .w(platform_w),
-        .h(platform_h)
+        .h(platform_h),
+        .destroy_time(platform_destroy_time),
+        .destroy_trigger(platform_destroy_trigger)
     );
     
     
@@ -333,6 +350,11 @@ module topModule#(
     ) game_display_control (
         .clk_object_control(clk_object_control),
         .reset(sync_reset),
+        
+        .display_pos_x1(display_pos_x1),
+        .display_pos_y1(display_pos_y1),
+        .display_pos_x2(display_pos_x2),
+        .display_pos_y2(display_pos_y2),
         
         .game_display_x0(game_display_x0),
         .game_display_y0(game_display_y0),
@@ -370,6 +392,13 @@ module topModule#(
         .object_w(platform_w),
         .object_h(platform_h),
         .object_speed(platform_speed),
+        .object_destroy_time(platform_destroy_time),
+        .object_destroy_trigger(platform_destroy_trigger),
+        
+        .display_pos_x1(display_pos_x1),
+        .display_pos_y1(display_pos_y1),
+        .display_pos_x2(display_pos_x2),
+        .display_pos_y2(display_pos_y2),
         
         .sync_object_position(sync_platform_position),
         

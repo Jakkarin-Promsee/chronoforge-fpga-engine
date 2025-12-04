@@ -19,6 +19,11 @@ module game_runtime#(
     input update_platform_time, // Asserted by external module when time is updated
     
     // Outputs
+    output wire [9:0] display_pos_x1,
+    output wire [9:0] display_pos_y1,
+    output wire [9:0] display_pos_x2,
+    output wire [9:0] display_pos_y2,
+    
     output reg [MAXIMUM_STAGE-1:0] current_stage,
     output reg [MAXIMUM_TIMES-1:0] current_time,
     output reg [MAXIMUM_ATTACK_OBJECT-1:0] attack_i,
@@ -47,6 +52,10 @@ module game_runtime#(
         .stage(stage),
         .attack_amount(attack_amount),
         .platform_amount(platform_amount),
+        .display_pos_x1(display_pos_x1),
+        .display_pos_y1(display_pos_y1),
+        .display_pos_x2(display_pos_x2),
+        .display_pos_y2(display_pos_y2),
        
         .wait_time(wait_time),
         .update_game_manager(update_game_manager)

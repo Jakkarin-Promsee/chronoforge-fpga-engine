@@ -54,6 +54,20 @@ module tb_topModule;
     assign sync_platform   = dut.sync_platform_time;
     assign update_platform = dut.update_platform_time;
     
+    
+    wire [1:0] platform_destroy_trigger;
+    assign platform_destroy_trigger = dut.platform_destroy_trigger;
+    
+    wire [9:0]  display_pos_x1;
+    wire [9:0]  display_pos_y1;
+    wire [9:0]  display_pos_x2;
+    wire [9:0]  display_pos_y2;
+    
+    assign display_pos_x1 = dut.display_pos_x1;
+    assign display_pos_y1 = dut.display_pos_y1;
+    assign display_pos_x2 = dut.display_pos_x2;
+    assign display_pos_y2 = dut.display_pos_y2;
+    
     assign attack_pos_x = dut.attack_object_reader.pos_x;
     assign attack_movement_direection = dut.attack_object_reader.movement_direction;
     
@@ -66,6 +80,7 @@ module tb_topModule;
     wire [OBJECT_AMOUNT-1: 0] sync_object_position_i ;
     wire [OBJECT_AMOUNT-1: 0] update_object_position_i ;
     wire [OBJECT_AMOUNT-1: 0] object_signal_i ;
+    wire [OBJECT_AMOUNT-1: 0] object_free_i ;
     
     assign itertor_ready_state = dut.object_collider_runtime_execute.itertor_ready_state;
    
@@ -78,6 +93,7 @@ module tb_topModule;
     
     assign sync_object_position = dut.object_collider_runtime_execute.sync_object_position;
     assign sync_object_position_i = dut.object_collider_runtime_execute.sync_object_position_i;
+    assign object_free_i = dut.object_collider_runtime_execute.object_free_i;
     
 
     initial begin
