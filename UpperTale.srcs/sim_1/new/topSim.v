@@ -2,55 +2,18 @@
 
 // Testbench for the topModule, designed to observe timing and control signals.
 module tb_topModule;
-
-    // -----------------------------------------------------
-    // 1. Testbench Signals (Registers and Wires)
-    // -----------------------------------------------------
-
-    // Clock and Reset
     reg clk;
     reg reset;
-
-    // Controller Inputs (Mock Stimulus)
     reg switch_up;
     reg switch_down;
     reg switch_left;
     reg switch_right;
-
-    // Outputs from the DUT (not strictly needed for testing logic, but required for instantiation)
     wire HS, VS;
     wire [3:0] RED, GREEN, BLUE;
 
-    // Clock Period definition (50MHz clock -> 20ns period)
-    parameter CLK_PERIOD = 20; // 20ns for a 50MHz clock
-
-    // Monitored Internal Game Signals (Mirrors of DUT internal wires)
-    // Assuming MAXIMUM_TIMES=30, MAXIMUM_ATTACK=20, MAXIMUM_PLATFORM=20 from topModule
-    wire [29:0] tb_current_time;
-    wire [19:0] tb_attack_i;
-    wire [19:0] tb_platform_i;
-    wire tb_sync_attack;
-    wire tb_update_attack;
-    wire tb_sync_platform;
-    wire tb_update_platform;
-    
-    wire [29:0] next_attack_time;
-        wire [29:0] next_platform_time;
-        wire [29:0] attack_current_time;
-        
-        wire [7:0] attack_times;
-         wire [7:0] attack_pos_x;
-        
-        wire sync_game_manager;
-        wire update_game_manager;
-
-    // -----------------------------------------------------
-    // 2. Instantiate the Device Under Test (DUT)
-    // -----------------------------------------------------
-
     topModule dut (
         .clk(clk),
-        .reset(reset),
+        .clk_reset(reset),
         .switch_up(switch_up),
         .switch_down(switch_down),
         .switch_left(switch_left),
@@ -62,9 +25,6 @@ module tb_topModule;
         .BLUE(BLUE)
     );
 
-    // -----------------------------------------------------
-    // 3. Clock Generation
-    // -----------------------------------------------------
 
     always #1 clk = ~clk;
 
@@ -72,28 +32,50 @@ module tb_topModule;
     // 3.5. Internal Signal Mirroring (for easy debugging/graph)
     // -----------------------------------------------------
     // Assign top-level wires to the DUT's internal signals via hierarchical reference
-    assign tb_current_time    = dut.current_time;
-    assign tb_attack_i        = dut.attack_i;
-    assign tb_platform_i      = dut.platform_i;
-    assign tb_sync_attack     = dut.sync_attack_time;
-    assign tb_update_attack   = dut.update_attack_time;
-    assign tb_sync_platform   = dut.sync_platform_time;
-    assign tb_update_platform = dut.update_platform_time;
-    assign next_attack_time = dut.next_attack_time;
-    assign next_platform_time = dut.next_platform_time;
-    assign attack_current_time = dut.attack_object_reader.current_time;
-    assign attack_times = dut.attack_object_reader.times;
+    localparam integer MAXIMUM_STAGE = 8; // 256 stages
+    localparam integer MAXIMUM_TIMES = 30; // 10,000,000.00 seconds
+    localparam integer MAXIMUM_ATTACK_OBJECT = 20; // 1,000,000 objects
+    localparam integer MAXIMUM_PLATFORM_OBJECT = 20; // 1,000,000 objects
+        
+    wire [MAXIMUM_STAGE-1:0] current_stage;
+    wire [MAXIMUM_TIMES-1:0] current_time;
+    wire [MAXIMUM_ATTACK_OBJECT-1:0] attack_i;
+    wire [MAXIMUM_PLATFORM_OBJECT-1:0] platform_i;
+    
+    assign current_stage = dut.current_stage;
+    assign current_time    = dut.current_time;
+    assign attack_i        = dut.attack_i;
+    assign platform_i      = dut.platform_i;
+    assign sync_attack     = dut.sync_attack_time;
+    assign update_attack   = dut.update_attack_time;
+    assign sync_platform   = dut.sync_platform_time;
+    assign update_platform = dut.update_platform_time;
+    
     assign attack_pos_x = dut.attack_object_reader.pos_x;
-    assign attack_update_data = dut.attack_object_reader.update_data;
+    assign attack_movement_direection = dut.attack_object_reader.movement_direction;
     
-    assign sync_game_manager = dut.game_manager_contorl.sync_game_manager;
-    assign update_game_manager = dut.game_manager_contorl.update_game_manager;
+    assign sync_game_manager = dut.game_runtime_execute.sync_game_manager;
+    assign update_game_manager = dut.game_runtime_execute.update_game_manager;
     
     
-
-    // -----------------------------------------------------
-    // 4. Initialization and Stimulus
-    // -----------------------------------------------------
+    localparam integer OBJECT_AMOUNT = 10;
+    wire [OBJECT_AMOUNT-1: 0] object_ready_state ;  
+    wire [OBJECT_AMOUNT-1: 0] sync_object_position_i ;
+    wire [OBJECT_AMOUNT-1: 0] update_object_position_i ;
+    wire [OBJECT_AMOUNT-1: 0] object_signal_i ;
+    
+    assign itertor_ready_state = dut.object_collider_runtime_execute.itertor_ready_state;
+   
+    assign update_object_position_i = dut.object_collider_runtime_execute.update_object_position_i;
+    assign object_signal_i = dut.object_collider_runtime_execute.object_signal_i;
+    
+    assign sync_object_position = dut.object_collider_runtime_execute.sync_object_position;
+    assign get_itertor_ready_state_state = dut.object_collider_runtime_execute.get_itertor_ready_state_state;
+    assign object_ready_state = dut.object_collider_runtime_execute.object_ready_state;
+    
+    assign sync_object_position = dut.object_collider_runtime_execute.sync_object_position;
+    assign sync_object_position_i = dut.object_collider_runtime_execute.sync_object_position_i;
+    
 
     initial begin
         // Initialize inputs
@@ -114,7 +96,7 @@ module tb_topModule;
 
         // Apply a brief input stimulus after reset is released
         #500
-        switch_left <= 1'b1; // Move player left
+        switch_left <= 1'b0; // Move player left
         
         // Wait for player control clock to potentially tick (100Hz -> 10ms period)
         #200_000 // 200 us, ensuring several player control cycles
@@ -137,6 +119,7 @@ module tb_topModule;
         $finish;
     end
     
+    reg [55:0] rom [0:10];
     wire  [7:0]  times;
     wire  [7:0]  pos_x;
     wire  [7:0]  w;
@@ -145,7 +128,6 @@ module tb_topModule;
     assign pos_x = rom[0][39:32];
     assign w = rom[0][23:16];
     
-    reg [55:0] rom [0:10];
     initial begin
         $readmemh("attack_object.mem", rom);
         $display("ROM[0] = %h", rom[0]);

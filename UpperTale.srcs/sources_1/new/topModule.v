@@ -55,25 +55,25 @@ module topModule(
     // Conect to clk_div_player_control (100Hz)
     // To maintain player module.
     // Such as switch_control, player_pos, player_gravity, player_render, etc.
-    localparam integer CLK_DIV_FACTOR_PLAYER_CONTROL = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_PLAYER_CONTROL = 1_000;
     localparam integer CLK_DIV_FACTOR_BIT_PLAYER_CONTROL = 20;
 
     // Conect to clk_div_object_control (100Hz)
     // To maintain object module. Seperate to coliders and triggers type (100+ objects)
     // Such as objects_runtime, objects_position, objects_render
-    localparam integer CLK_DIV_FACTOR_OBJECT_CONTROL = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_OBJECT_CONTROL = 1_000;
     localparam integer CLK_DIV_FACTOR_BIT_OBJECT_CONTROL = 20;
 
     // Conect to clk_div_centi_second (100Hz)
     // To maintain run-time module. Require precise 0.01clk/s to count time
     // For main runtime module that read dynamic task from ROM file
-    localparam integer CLK_DIV_FACTOR_CENTI_SECOND = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_CENTI_SECOND = 1_000;
     localparam integer CLK_DIV_FACTOR_BIT_CENTI_SECOND = 20;
 
     // Conect to clk_div_calculation (1kHz)
     // To maintain object collidion and tringger check or heavy calculation
     // This clock should faster than main clk to keep it synchonus
-    localparam integer CLK_DIV_FACTOR_CALCULATION = 100_000;
+    localparam integer CLK_DIV_FACTOR_CALCULATION = 100;
     localparam integer CLK_DIV_FACTOR_BIT_CALCULATION = 20;
     
 
@@ -136,7 +136,7 @@ module topModule(
     
     //----------------------------------- Synchonus Reset Section -----------------------------------------
     // To sync clock reset and other flip-flop reset (1s)
-    localparam integer WAIT_TIME_FOR_CLK_SYNC = 100_000_000;
+    localparam integer WAIT_TIME_FOR_CLK_SYNC = 1_000;
     
     reg sync_reset; // To prevent bufg to share real pin to many module
     reg [27:0] wait_sync_reset; // To synchonus all modules setup
@@ -231,7 +231,8 @@ module topModule(
     );
     
     // Attack Object Data Stream   
-    wire  sync_attack_position;
+    wire sync_attack_position;
+    wire update_object_trigger_position;
     wire  [4:0]  attack_type;
     wire  [1:0]  attack_colider_type;
     wire  [2:0]  attack_movement_direction;
@@ -240,7 +241,6 @@ module topModule(
     wire  [9:0]  attack_pos_y;
     wire  [9:0]  attack_w;
     wire  [9:0]  attack_h;
-    wire  [7:0]  attack_time;
     
     attack_object_rom #(
         .ADDR_WIDTH(MAXIMUM_ATTACK_OBJECT),
@@ -263,20 +263,19 @@ module topModule(
         .pos_x(attack_pos_x),
         .pos_y(attack_pos_y),
         .w(attack_w),
-        .h(attack_h),
-        .times(attack_time)
+        .h(attack_h)
     );
     
     
     // Platform Object Data Stream   
     wire sync_platform_position;
+    wire update_object_collider_position;
     wire  [2:0]  platform_movement_direction;
     wire  [4:0]  platform_speed;
     wire  [9:0]  platform_pos_x;
     wire  [9:0]  platform_pos_y;
     wire  [9:0]  platform_w;
     wire  [9:0]  platform_h;
-    wire  [7:0]  platform_time;
         
     platform_object_rom #(
         .ADDR_WIDTH(MAXIMUM_PLATFORM_OBJECT),
@@ -297,8 +296,7 @@ module topModule(
         .pos_x(platform_pos_x),
         .pos_y(platform_pos_y),
         .w(platform_w),
-        .h(platform_h),
-        .times(platform_time)
+        .h(platform_h)
     );
     
     
@@ -348,39 +346,30 @@ module topModule(
    
     //----------------------------------- Collider Object Runtimes Section  -----------------------------------------
     
-    wire update_object_collider_position;
-    wire [9:0] object_collider_override_pos_x;
-    wire [9:0] object_collider_override_pos_y;
     wire object_colider_signal;
 
-    object_position_controller object_collider_position_control (
+    object_collilder_runtime object_collider_runtime_execute (
         .clk_object_control(clk_object_control),
+        .clk_calculation(clk_calculation),
         .reset(sync_reset),
-        .movement_direction(platform_movement_direction),
-        .object_pos_x(platform_pos_x),
-        .object_pos_y(platform_pos_y),
-        .speed(platform_speed),
-        .sync_object_position(sync_platform_position),
-        
-        .update_object_position(update_object_collider_position),
-        .object_override_pos_x(object_collider_override_pos_x),
-        .object_override_pos_y(object_collider_override_pos_y)
-    );
-    
-    object_renderer object_colider_render (
         .x(x),
         .y(y),
-        .object_pos_x(object_collider_override_pos_x),
-        .object_pos_y(object_collider_override_pos_y),
+        
+        .object_movement_direction(platform_movement_direction),
+        .object_pos_x(platform_pos_x),
+        .object_pos_y(platform_pos_y),
         .object_w(platform_w),
         .object_h(platform_h),
-              
-        .render(object_colider_signal)
+        .object_speed(platform_speed),
+        
+        .sync_object_position(sync_platform_position),
+        
+        .update_object_position(update_object_collider_position),    
+        .object_signal(object_colider_signal)
     );
     
     //----------------------------------- Trigger Object Runtimes Section -----------------------------------------
     
-    wire update_object_trigger_position;
     wire [9:0] object_trigger_override_pos_x;
     wire [9:0] object_trigger_override_pos_y;
     wire object_trigger_signal;
@@ -388,10 +377,11 @@ module topModule(
     object_position_controller object_trigger_position_control (
         .clk_object_control(clk_object_control),
         .reset(sync_reset),
+        
         .movement_direction(attack_movement_direction),
         .object_pos_x(attack_pos_x),
         .object_pos_y(attack_pos_y),
-        .speed(attack_speed),
+        .object_speed(attack_speed),
         .sync_object_position(sync_attack_position),
         
         .update_object_position(update_object_trigger_position),

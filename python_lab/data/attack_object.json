@@ -9,7 +9,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -22,7 +24,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -35,7 +39,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -48,7 +54,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -61,7 +69,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -74,7 +84,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         },
 
@@ -91,7 +103,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -104,20 +118,9 @@
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
-            "free(unused)": 0
-        }, 
-
-        {
-            "type": 0, 
-            "colider_type": 0, 
-            "movement_direction": 8, 
-            "speed": 8, 
-            "pos_x": 320, 
-            "pos_y": 240, 
-            "w": 20, 
-            "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -125,12 +128,14 @@
             "type": 0, 
             "colider_type": 0, 
             "movement_direction": 0, 
-            "speed": 9, 
+            "speed": 8, 
             "pos_x": 320, 
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -138,12 +143,14 @@
             "type": 0, 
             "colider_type": 0, 
             "movement_direction": 1, 
-            "speed": 10, 
+            "speed": 9, 
             "pos_x": 320, 
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }, 
 
@@ -151,12 +158,29 @@
             "type": 0, 
             "colider_type": 0, 
             "movement_direction": 2, 
+            "speed": 10, 
+            "pos_x": 320, 
+            "pos_y": 240, 
+            "w": 20, 
+            "h": 20, 
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
+            "free(unused)": 0
+        }, 
+
+        {
+            "type": 0, 
+            "colider_type": 0, 
+            "movement_direction": 3, 
             "speed": 11, 
             "pos_x": 320, 
             "pos_y": 240, 
             "w": 20, 
             "h": 20, 
-            "time": 2,
+            "wait_time": 2, 
+            "destroy_time": 0,
+            "destroy_trigger": 1,
             "free(unused)": 0
         }
     ]

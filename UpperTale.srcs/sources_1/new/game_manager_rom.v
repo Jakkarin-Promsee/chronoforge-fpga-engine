@@ -11,16 +11,19 @@ module game_manager_rom #(
     output reg  [7:0]  stage,
     output reg  [9:0]  attack_amount,
     output reg  [9:0]  platform_amount,
-    output reg  [3:0]  free_unused,
+    output reg  [2:0]  gravity_direction,
+    output reg  [9:0]  display_pos_x1,
+    output reg  [9:0]  display_pos_y1,
+    output reg  [9:0]  display_pos_x2,
+    output reg  [9:0]  display_pos_y2,
     output reg  [7:0]  wait_time,
+    
     output reg update_game_manager
     
 );
 
     // ROM storage
-    reg [39:0] rom [0:(1<<ADDR_WIDTH)-1];  // 40-bit per entry
-
-    
+    reg [71:0] rom [0:(1<<ADDR_WIDTH)-1];  // 40-bit per entry
 
     // Read and unpack fields
     always @(posedge clk) begin
@@ -28,11 +31,15 @@ module game_manager_rom #(
         if(reset) begin
             $readmemh("game_manager.mem", rom);
         end else if(!sync_game_manager) begin
-            stage           <= rom[addr][39:32];    // 8 bits
-            attack_amount   <= rom[addr][31:22];    // 10 bits
-            platform_amount <= rom[addr][21:12];    // 10 bits
-            free_unused     <= rom[addr][11:8];     // 4 bits
-            wait_time       <= rom[addr][7:0];      // 8 bits
+            stage            <= rom[addr][71:64];
+            attack_amount    <= rom[addr][63:54];
+            platform_amount  <= rom[addr][53:44];
+            gravity_direction<= rom[addr][43:41];
+            display_pos_x1   <= rom[addr][40:33] << 2;
+            display_pos_y1   <= rom[addr][32:25] << 2;
+            display_pos_x2   <= rom[addr][24:17] << 2;
+            display_pos_y2   <= rom[addr][16:9]  << 2;
+            wait_time        <= rom[addr][8:1];
             
             update_game_manager <= 1;
         end else begin

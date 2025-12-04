@@ -47,7 +47,7 @@ module game_runtime#(
         .stage(stage),
         .attack_amount(attack_amount),
         .platform_amount(platform_amount),
-        .free_unused(),
+       
         .wait_time(wait_time),
         .update_game_manager(update_game_manager)
     );

@@ -22,11 +22,13 @@ module attack_object_rom #(
     output reg  [9:0]  pos_y,
     output reg  [9:0]  w,
     output reg  [9:0]  h,
-    output reg  [7:0]  times
+    output reg  [7:0]  wait_time,
+    output reg  [7:0]  destroy_time,
+    output reg  [1:0]  destroy_trigger
 );
     reg  [0:0]  free_unused;
 
-    reg [55:0] rom [0:(1<<ADDR_WIDTH)-1];
+    reg [71:0] rom [0:(1<<ADDR_WIDTH)-1];
     reg update_data;
 
 
@@ -40,24 +42,24 @@ module attack_object_rom #(
         end else if(!sync_attack_time) begin
             // Update data sync with game runtime
             if(!update_data) begin
-                types              <= rom[addr][55:51];
-                colider_type       <= rom[addr][50:49];
-                movement_direction <= rom[addr][48:46];
-                speed              <= rom[addr][45:41];
-                free_unused        <= rom[addr][40];
-                pos_x              <= rom[addr][39:32] << 2;
-                pos_y              <= rom[addr][31:24] << 2;
-                w                  <= rom[addr][23:16] << 2;
-                h                  <= rom[addr][15:8] << 2;
-                times              <= rom[addr][7:0];
+                types           <= rom[addr][71:67];
+                colider_type    <= rom[addr][66:65];
+                movement_direction    <= rom[addr][64:62];
+                speed           <= rom[addr][61:57];
+                pos_x           <= rom[addr][56:49] << 2;
+                pos_y           <= rom[addr][48:41] << 2;
+                w               <= rom[addr][40:33] << 2;
+                h               <= rom[addr][32:25] << 2;
+                wait_time       <= rom[addr][24:17];
+                destroy_time    <= rom[addr][16:9];
+                destroy_trigger <= rom[addr][8:7];
             
-                
                 update_data <= 1;
             
             // Wait 1 cycle to sync flip flop update                   
             end else begin
                 // Set next attack time
-                next_attack_time <= current_time + times;
+                next_attack_time <= current_time + wait_time;
                 
                 // Send out update to sync with game runtime module
                 update_attack_time <= 1;
