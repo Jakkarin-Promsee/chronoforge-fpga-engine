@@ -33,7 +33,7 @@ module platform_object_rom #(
             $readmemh("platform_object.mem", rom);
             update_data <= 0; 
             next_platform_time <= 0;
-            sync_platform_position <= 0;
+            sync_platform_position <= 1;
                         
         end else if(!sync_platform_time) begin
             // Update data sync with game runtime

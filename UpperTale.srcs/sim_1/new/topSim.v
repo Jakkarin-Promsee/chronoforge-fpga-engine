@@ -11,7 +11,9 @@ module tb_topModule;
     wire HS, VS;
     wire [3:0] RED, GREEN, BLUE;
 
-    topModule dut (
+    topModule #(
+        .IS_SIM(1)
+    ) dut (
         .clk(clk),
         .clk_reset(reset),
         .switch_up(switch_up),
@@ -42,6 +44,7 @@ module tb_topModule;
     wire [MAXIMUM_ATTACK_OBJECT-1:0] attack_i;
     wire [MAXIMUM_PLATFORM_OBJECT-1:0] platform_i;
     
+    assign sync_reset = dut.sync_reset;
     assign current_stage = dut.current_stage;
     assign current_time    = dut.current_time;
     assign attack_i        = dut.attack_i;

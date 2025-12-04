@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-module topModule(
+module topModule#(
+    parameter integer IS_SIM = 0
+)(
     // Setting Inputs
     input clk,
     input clk_reset,
@@ -55,25 +57,30 @@ module topModule(
     // Conect to clk_div_player_control (100Hz)
     // To maintain player module.
     // Such as switch_control, player_pos, player_gravity, player_render, etc.
-    localparam integer CLK_DIV_FACTOR_PLAYER_CONTROL = 1_000;
+    localparam integer CLK_DIV_FACTOR_PLAYER_CONTROL = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_PLAYER_CONTROL_SIM = 10;
     localparam integer CLK_DIV_FACTOR_BIT_PLAYER_CONTROL = 20;
 
+    
     // Conect to clk_div_object_control (100Hz)
     // To maintain object module. Seperate to coliders and triggers type (100+ objects)
     // Such as objects_runtime, objects_position, objects_render
-    localparam integer CLK_DIV_FACTOR_OBJECT_CONTROL = 1_000;
+    localparam integer CLK_DIV_FACTOR_OBJECT_CONTROL = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_OBJECT_CONTROL_SIM = 10;
     localparam integer CLK_DIV_FACTOR_BIT_OBJECT_CONTROL = 20;
 
     // Conect to clk_div_centi_second (100Hz)
     // To maintain run-time module. Require precise 0.01clk/s to count time
     // For main runtime module that read dynamic task from ROM file
-    localparam integer CLK_DIV_FACTOR_CENTI_SECOND = 1_000;
+    localparam integer CLK_DIV_FACTOR_CENTI_SECOND = 1_000_000;
+    localparam integer CLK_DIV_FACTOR_CENTI_SECOND_SIM = 10;
     localparam integer CLK_DIV_FACTOR_BIT_CENTI_SECOND = 20;
 
     // Conect to clk_div_calculation (1kHz)
     // To maintain object collidion and tringger check or heavy calculation
     // This clock should faster than main clk to keep it synchonus
-    localparam integer CLK_DIV_FACTOR_CALCULATION = 100;
+    localparam integer CLK_DIV_FACTOR_CALCULATION = 100_000;
+    localparam integer CLK_DIV_FACTOR_CALCULATION_SIM = 5;
     localparam integer CLK_DIV_FACTOR_BIT_CALCULATION = 20;
     
 
@@ -95,7 +102,7 @@ module topModule(
     );
     
     clk_div #(
-        .DIV_FACTOR(CLK_DIV_FACTOR_PLAYER_CONTROL),
+        .DIV_FACTOR(IS_SIM? CLK_DIV_FACTOR_PLAYER_CONTROL_SIM : CLK_DIV_FACTOR_PLAYER_CONTROL),
         .DIV_FACTOR_BIT(CLK_DIV_FACTOR_BIT_PLAYER_CONTROL)
     ) clk_div_player_control (
         .clk_i(clk), 
@@ -105,7 +112,7 @@ module topModule(
     );
     
     clk_div #(
-        .DIV_FACTOR(CLK_DIV_FACTOR_OBJECT_CONTROL),
+        .DIV_FACTOR(IS_SIM? CLK_DIV_FACTOR_OBJECT_CONTROL_SIM : CLK_DIV_FACTOR_OBJECT_CONTROL),
         .DIV_FACTOR_BIT(CLK_DIV_FACTOR_BIT_OBJECT_CONTROL)
     ) clk_div_object_control (
         .clk_i(clk), 
@@ -115,7 +122,7 @@ module topModule(
     );
     
     clk_div #(
-        .DIV_FACTOR(CLK_DIV_FACTOR_CENTI_SECOND),
+        .DIV_FACTOR(IS_SIM? CLK_DIV_FACTOR_CENTI_SECOND_SIM : CLK_DIV_FACTOR_CENTI_SECOND),
         .DIV_FACTOR_BIT(CLK_DIV_FACTOR_BIT_CENTI_SECOND)
     ) clk_div_centi_second (
         .clk_i(clk), 
@@ -125,7 +132,7 @@ module topModule(
     );
     
     clk_div #(
-        .DIV_FACTOR(CLK_DIV_FACTOR_CALCULATION),
+        .DIV_FACTOR(IS_SIM? CLK_DIV_FACTOR_CALCULATION_SIM : CLK_DIV_FACTOR_CALCULATION),
         .DIV_FACTOR_BIT(CLK_DIV_FACTOR_BIT_CALCULATION)
     ) clk_div_calculation (
         .clk_i(clk), 
@@ -136,7 +143,9 @@ module topModule(
     
     //----------------------------------- Synchonus Reset Section -----------------------------------------
     // To sync clock reset and other flip-flop reset (1s)
-    localparam integer WAIT_TIME_FOR_CLK_SYNC = 1_000;
+    localparam integer WAIT_TIME_FOR_CLK_SYNC = 100_000_000;
+    localparam integer WAIT_TIME_FOR_CLK_SYNC_SIM = 20;
+
     
     reg sync_reset; // To prevent bufg to share real pin to many module
     reg [27:0] wait_sync_reset; // To synchonus all modules setup
@@ -147,7 +156,7 @@ module topModule(
             wait_sync_reset <= 0;
             sync_reset <= 1;
         end else begin
-            if(wait_sync_reset <= WAIT_TIME_FOR_CLK_SYNC) begin
+            if(wait_sync_reset <= (IS_SIM ? WAIT_TIME_FOR_CLK_SYNC_SIM : WAIT_TIME_FOR_CLK_SYNC)) begin
                 wait_sync_reset <= wait_sync_reset + 1;
                 sync_reset <= 1;
             end else begin

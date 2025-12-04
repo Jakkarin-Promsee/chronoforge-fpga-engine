@@ -231,7 +231,7 @@
         <Option Name="TopModule" Val="tb_topModule"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="SrcSet" Val="sources_1"/>
-        <Option Name="xsim.simulate.runtime" Val="1000000ns"/>
+        <Option Name="xsim.simulate.runtime" Val="500000ns"/>
         <Option Name="NLNetlistMode" Val="funcsim"/>
       </Config>
     </FileSet>

@@ -37,7 +37,7 @@ module attack_object_rom #(
             $readmemh("attack_object.mem", rom);
             update_data <= 0; 
             next_attack_time <= 0;
-            sync_attack_position <= 0;
+            sync_attack_position <= 1;
             
         end else if(!sync_attack_time) begin
             // Update data sync with game runtime
