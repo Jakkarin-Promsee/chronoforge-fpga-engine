@@ -1,0 +1,76 @@
+{
+    "decimal_data": [
+        {
+            "movement_direction": 2,
+            "speed": 0,
+            "pos_x": 340,
+            "pos_y": 300,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 1,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 6,
+            "speed": 2,
+            "pos_x": 340,
+            "pos_y": 340,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 1,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 4,
+            "speed": 2,
+            "pos_x": 340,
+            "pos_y": 340,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 1,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 0,
+            "speed": 2,
+            "pos_x": 340,
+            "pos_y": 340,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 7,
+            "speed": 2,
+            "pos_x": 340,
+            "pos_y": 340,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 1,
+            "speed": 2,
+            "pos_x": 340,
+            "pos_y": 340,
+            "w": 40,
+            "h": 6,
+            "wait_time": 2,
+            "destroy_time": 5,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        }
+    ]
+}

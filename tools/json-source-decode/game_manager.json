@@ -12,7 +12,6 @@
             "display_pos_y2": 391,
             "free(unused)": 0
         },
-
         {
             "stage": 0,
             "attack_amount": 6,
@@ -25,6 +24,5 @@
             "display_pos_y2": 380,
             "free(unused)": 0
         }
-
     ]
 }
