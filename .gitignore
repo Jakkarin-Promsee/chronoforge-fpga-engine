@@ -1,0 +1,6 @@
+UpperTale.cache/
+UpperTale.sim/
+UpperTale.runs/
+*.jou
+*.str
+*.log
