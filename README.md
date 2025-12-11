@@ -7,13 +7,88 @@
 
 ---
 
-## 1. Executive Summary
+# 1. Executive Summary
 
-The ChronoForge FPGA Engine is a Verilog-based, hardware-accelerated 2D game platform designed for the Basys3 board. Its core innovation lies in a **decentralized, multi-clock, parallel processing architecture** that guarantees highly deterministic timing and predictable object-lifecycle management. The system is driven by a custom Python-based toolchain that compiles high-level JSON scene descriptions into dedicated binary ROM files (`.mem`), enabling rapid level design while maintaining the performance and accuracy of a pure hardware implementation. Key features include a robust **Sync/Update Handshake Protocol** for inter-module communication and a specialized rendering pipeline optimized for resource efficiency.
+## ChronoForge FPGA Engine: Architectural Overview
+
+The ChronoForge FPGA Engine is a specialized, hardware-accelerated 2D game platform implemented entirely in Verilog Hardware Description Language (HDL), targeting the Xilinx Basys3 development board. Its design methodology prioritizes **deterministic execution** and **predictable object-lifecycle management**, achieving performance characteristics inherent to pure hardware systems.
+
+### 1. Decentralized Processing Architecture
+
+At its core, the engine utilizes a **decentralized, multi-clock, parallel processing architecture**. Rather than a single sequential game loop, critical functions—including **physics calculation, object animation, collision detection, trigger activation, ROM decoding/assignment,** and **video rendering**—are partitioned into dedicated, concurrent hardware modules.
+
+- Each functional module operates **simultaneously**, often on its own optimized clock domain, maximizing throughput and parallelism.
+
+- Synchronization and data integrity across these independently clocked modules are meticulously maintained through a custom-defined **Sync/Update Handshake Protocol**. This protocol guarantees stable timing and reliable, controlled transitions in the state and lifecycle of all game objects.
+
+### 2. The Toolchain and Workflow
+
+The performance of the hardware logic is coupled with a rapid, flexible content creation workflow.
+
+- The system is driven by a custom **Python-based toolchain** that acts as the compilation bridge between high-level design and low-level hardware memory.
+
+- This toolchain accepts **JSON scene descriptions** from the developer and compiles them into dedicated, compact **binary ROM files (.mem)**.
+
+- This workflow enables developers to quickly and intuitively design complex game levels (stages, attack patterns, platforms) up **without requiring modifications to the underlying Register Transfer Level (RTL) code**, thereby retaining the performance and accuracy of the hardware-tuned game logic.
 
 ---
 
-## 2. Clocking and Synchronization Architecture
+# 2. Maximum Performance & Design Limits
+
+## Motion & Dynamics Capabilities
+
+| Properties       | Freedom / Range          |
+| :--------------- | :----------------------- |
+| Player direction | 4-axis vector motion     |
+| Player gravity   | 4-axis configurable      |
+| Object direction | 8-axis motion            |
+| Object speed     | 32 discrete speed levels |
+
+---
+
+## Real-Time Object Processing
+
+| Object Type     | Maximum per Frame |
+| :-------------- | :---------------- |
+| Player object   | 1                 |
+| Collider object | 30                |
+| Trigger object  | 100               |
+
+These values are configurable via `localparam` in the top module (line 35).  
+Detailed explanations are found in `deep_module_docs.md`.
+
+---
+
+# FPGA Resource Utilization (Basys3 Target)
+
+| Resource | Utilization | Available | Board Usage % |
+| :------- | :---------- | :-------- | :------------ |
+| LUT      | 18015       | 20800     | 87%           |
+| FF       | 7196        | 41600     | 17%           |
+| BUFG     | 6           | 32        | 19%           |
+
+**Notes:**
+
+- Synthesis may temporarily exceed 100% due to wiring congestion.
+- Implementation reduces routing pressure and stabilizes usage.
+
+---
+
+# ROM Encoding & Storage Capacity
+
+| ROM Type             | Bytes/Object | Maximum Count (Basys3 BRAM) |
+| :------------------- | :----------- | :-------------------------- |
+| Game Manager (Stage) | 9 bytes      | 25,000 stages               |
+| Attack Object        | 9 bytes      | 25,000 attacks              |
+| Platform Object      | 8 bytes      | 28,125 platforms            |
+
+Basys3 BRAM capacity: **1.8 Mb ≈ 225 KB** total.
+
+---
+
+## 3. How to coding stage
+
+## 4. Clocking and Synchronization Architecture
 
 The system utilizes five clock domains derived from the Basys3 100 MHz main clock using **BUFG (Buffer Global)** resources to ensure low-skew distribution and robust timing closure across all crucial subsystems. This isolation is essential for maintaining deterministic behavior between fast (VGA) and slow (Game Logic) modules.
 
@@ -45,7 +120,7 @@ All data transfer and control flow between parent and child modules are mediated
 
 ---
 
-## 3. Game Runtime Pipeline and Data Structure
+## 4. Game Runtime Pipeline and Data Structure
 
 The engine's execution flow is orchestrated by the **Game Manager Runtime**, which continuously reads a sequence of game states from dedicated ROM files.
 
