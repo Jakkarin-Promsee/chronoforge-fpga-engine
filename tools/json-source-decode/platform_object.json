@@ -38,18 +38,6 @@
         },
         {
             "movement_direction": 2,
-            "speed": 3,
-            "pos_x": 137,
-            "pos_y": 328,
-            "w": 62,
-            "h": 12,
-            "wait_time": 3,
-            "destroy_time": 10,
-            "destroy_trigger": 1,
-            "free(unused)": 0
-        },
-        {
-            "movement_direction": 2,
             "speed": 6,
             "pos_x": 137,
             "pos_y": 328,
@@ -57,19 +45,43 @@
             "h": 12,
             "wait_time": 3,
             "destroy_time": 10,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         },
         {
             "movement_direction": 2,
-            "speed": 6,
+            "speed": 9,
             "pos_x": 137,
             "pos_y": 328,
             "w": 62,
             "h": 12,
             "wait_time": 3,
             "destroy_time": 10,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 2,
+            "speed": 9,
+            "pos_x": 137,
+            "pos_y": 328,
+            "w": 62,
+            "h": 12,
+            "wait_time": 3,
+            "destroy_time": 10,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 2,
+            "speed": 9,
+            "pos_x": 137,
+            "pos_y": 328,
+            "w": 62,
+            "h": 12,
+            "wait_time": 3,
+            "destroy_time": 10,
+            "destroy_trigger": 2,
             "free(unused)": 0
         },
         {
@@ -93,7 +105,7 @@
             "h": 12,
             "wait_time": 5,
             "destroy_time": 25.5,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         },
         {
@@ -105,7 +117,7 @@
             "h": 12,
             "wait_time": 5,
             "destroy_time": 25.5,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         },
         {
@@ -117,7 +129,7 @@
             "h": 12,
             "wait_time": 5,
             "destroy_time": 25.5,
-            "destroy_trigger": 1,
+            "destroy_trigger": 2,
             "free(unused)": 0
         }
     ]

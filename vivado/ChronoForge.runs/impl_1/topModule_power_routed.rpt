@@ -1,7 +1,7 @@
 Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
-| Date             : Thu Dec 11 14:49:49 2025
+| Date             : Thu Dec 11 17:56:05 2025
 | Host             : Victus running 64-bit major release  (build 9200)
 | Command          : report_power -file topModule_power_routed.rpt -pb topModule_power_summary_routed.pb
 | Design           : topModule
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.118 |
-| Dynamic (W)              | 0.046 |
+| Total On-Chip Power (W)  | 0.134 |
+| Dynamic (W)              | 0.062 |
 | Device Static (W)        | 0.072 |
 | Effective TJA (C/W)      | 5.0   |
-| Max Ambient (C)          | 84.4  |
-| Junction Temperature (C) | 25.6  |
+| Max Ambient (C)          | 84.3  |
+| Junction Temperature (C) | 25.7  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -49,18 +49,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.024 |    35822 |       --- |             --- |
-|   LUT as Logic |     0.022 |    17469 |     20800 |           83.99 |
-|   CARRY4       |     0.002 |     3760 |      8150 |           46.13 |
-|   Register     |    <0.001 |     7546 |     41600 |           18.14 |
+| Clocks         |     0.003 |        3 |       --- |             --- |
+| Slice Logic    |     0.036 |    37878 |       --- |             --- |
+|   LUT as Logic |     0.031 |    18328 |     20800 |           88.12 |
+|   CARRY4       |     0.004 |     3757 |      8150 |           46.10 |
+|   Register     |    <0.001 |     7717 |     41600 |           18.55 |
 |   BUFG         |    <0.001 |        5 |        32 |           15.63 |
-|   F7/F8 Muxes  |    <0.001 |       28 |     32600 |            0.09 |
+|   F7/F8 Muxes  |    <0.001 |       29 |     32600 |            0.09 |
 |   Others       |     0.000 |      300 |       --- |             --- |
-| Signals        |     0.019 |    21276 |       --- |             --- |
+| Signals        |     0.023 |    21633 |       --- |             --- |
 | I/O            |    <0.001 |       20 |       106 |           18.87 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.118 |          |           |                 |
+| Total          |     0.134 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,7 +70,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.056 |       0.046 |      0.010 |
+| Vccint    |       1.000 |     0.071 |       0.062 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -139,8 +139,8 @@ Table of Contents
 +--------------------------------------------------+-----------+
 | Name                                             | Power (W) |
 +--------------------------------------------------+-----------+
-| topModule                                        |     0.046 |
-|   attack_object_reader                           |     0.002 |
+| topModule                                        |     0.062 |
+|   attack_object_reader                           |     0.003 |
 |   clk_div_calculation                            |    <0.001 |
 |   clk_div_centi_second                           |    <0.001 |
 |   clk_div_object_control                         |    <0.001 |
@@ -174,7 +174,7 @@ Table of Contents
 |     OBJECTS[26].object_collider_position_control |    <0.001 |
 |     OBJECTS[27].object_colider_render            |     0.000 |
 |     OBJECTS[27].object_collider_position_control |    <0.001 |
-|     OBJECTS[28].object_colider_render            |    <0.001 |
+|     OBJECTS[28].object_colider_render            |     0.000 |
 |     OBJECTS[28].object_collider_position_control |    <0.001 |
 |     OBJECTS[29].object_collider_position_control |    <0.001 |
 |     OBJECTS[2].object_collider_position_control  |    <0.001 |
@@ -185,7 +185,7 @@ Table of Contents
 |     OBJECTS[7].object_collider_position_control  |    <0.001 |
 |     OBJECTS[8].object_collider_position_control  |    <0.001 |
 |     OBJECTS[9].object_collider_position_control  |    <0.001 |
-|   muti_object_trigger_runtime_execute            |     0.020 |
+|   muti_object_trigger_runtime_execute            |     0.034 |
 |     OBJECTS[0].object_collider_position_control  |    <0.001 |
 |     OBJECTS[10].object_collider_position_control |    <0.001 |
 |     OBJECTS[11].object_collider_position_control |    <0.001 |

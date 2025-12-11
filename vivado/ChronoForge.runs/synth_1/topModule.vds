@@ -2,8 +2,8 @@
 # Vivado v2015.4 (64-bit)
 # SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Thu Dec 11 14:44:59 2025
-# Process ID: 16308
+# Start of session at: Thu Dec 11 17:49:33 2025
+# Process ID: 28544
 # Current directory: C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/vivado/ChronoForge.runs/synth_1
 # Command line: vivado.exe -log topModule.vds -mode batch -messageDb vivado.pb -notrace -source topModule.tcl
 # Log file: C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/vivado/ChronoForge.runs/synth_1/topModule.vds
@@ -15,7 +15,7 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 261.512 ; gain = 89.594
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 261.387 ; gain = 89.613
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'topModule' [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/top/topModule.v:3]
 	Parameter IS_SIM bound to: 0 - type: integer 
@@ -40,7 +40,7 @@ INFO: [Synth 8-638] synthesizing module 'topModule' [C:/Users/BTCOM/Desktop/0_Pr
 	Parameter MAXIMUM_ATTACK_OBJECT bound to: 20 - type: integer 
 	Parameter MAXIMUM_PLATFORM_OBJECT bound to: 20 - type: integer 
 	Parameter INITIAL_STAGE bound to: 0 - type: integer 
-	Parameter LAST_STAGE bound to: 5 - type: integer 
+	Parameter LAST_STAGE bound to: 6 - type: integer 
 	Parameter GAME_DISPLAY_X0 bound to: 130 - type: integer 
 	Parameter GAME_DISPLAY_Y0 bound to: 251 - type: integer 
 	Parameter GAME_DISPLAY_X1 bound to: 506 - type: integer 
@@ -95,7 +95,7 @@ INFO: [Synth 8-638] synthesizing module 'game_runtime' [C:/Users/BTCOM/Desktop/0
 	Parameter MAXIMUM_TIMES bound to: 30 - type: integer 
 	Parameter MAXIMUM_ATTACK_OBJECT bound to: 20 - type: integer 
 	Parameter MAXIMUM_PLATFORM_OBJECT bound to: 20 - type: integer 
-	Parameter LAST_STAGE bound to: 5 - type: integer 
+	Parameter LAST_STAGE bound to: 6 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'game_manager_rom' [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/rom_reader/game_manager_rom_reader.v:3]
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 INFO: [Synth 8-3876] $readmem data file 'game_manager.mem' is read successfully [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/rom_reader/game_manager_rom_reader.v:32]
@@ -158,7 +158,7 @@ INFO: [Synth 8-638] synthesizing module 'universal_renderer' [C:/Users/BTCOM/Des
 INFO: [Synth 8-256] done synthesizing module 'universal_renderer' (15#1) [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/peripherals/universal_renderer.v:3]
 INFO: [Synth 8-256] done synthesizing module 'topModule' (16#1) [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/top/topModule.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -168,7 +168,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -184,22 +184,22 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 872.734 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 872.609 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5546] ROM "clk_r" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "clk_r" won't be mapped to RAM because it is too sparse
@@ -208,7 +208,7 @@ INFO: [Synth 8-5546] ROM "clk_r" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "v_count" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "rom" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-3537] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the inputs of the operator [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/object/object_position_controller.v:160]
 INFO: [Synth 8-3537] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the inputs of the operator [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/object/object_position_controller.v:160]
 INFO: [Synth 8-41] '+' operator could not be merged with '+' operator due to loss of accuracy [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/object/object_position_controller.v:152]
@@ -320,7 +320,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'RED_reg' [C:/Users/BTCOM/De
 WARNING: [Synth 8-327] inferring latch for variable 'GREEN_reg' [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/peripherals/universal_renderer.v:25]
 WARNING: [Synth 8-327] inferring latch for variable 'BLUE_reg' [C:/Users/BTCOM/Desktop/0_Project/ChronoForge-FPGA-Engine/verilog/sources/peripherals/universal_renderer.v:26]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -339,7 +339,7 @@ Report RTL Partitions:
 |10    |multi_object_trigger_runtime__GB5  |           1|     15260|
 |11    |multi_object_trigger_runtime__GB6  |           1|     19822|
 |12    |multi_object_trigger_runtime__GB7  |           1|     24486|
-|13    |topModule__GC0                     |           1|     10127|
+|13    |topModule__GC0                     |           1|     10358|
 +------+-----------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -379,9 +379,9 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 415   
 +---Muxes : 
 	   2 Input    100 Bit        Muxes := 12    
-	   6 Input     72 Bit        Muxes := 1     
-	 115 Input     72 Bit        Muxes := 1     
-	   9 Input     64 Bit        Muxes := 1     
+	   7 Input     72 Bit        Muxes := 1     
+	 144 Input     72 Bit        Muxes := 1     
+	  11 Input     64 Bit        Muxes := 1     
 	   2 Input     30 Bit        Muxes := 12    
 	   2 Input     20 Bit        Muxes := 2     
 	   2 Input     14 Bit        Muxes := 18    
@@ -4266,7 +4266,7 @@ Detailed RTL Component Info :
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   6 Input     72 Bit        Muxes := 1     
+	   7 Input     72 Bit        Muxes := 1     
 Module game_runtime 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -4298,7 +4298,7 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 2     
 	                1 Bit    Registers := 3     
 +---Muxes : 
-	 115 Input     72 Bit        Muxes := 1     
+	 144 Input     72 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 2     
 Module platform_object_rom 
 Detailed RTL Component Info : 
@@ -4313,7 +4313,7 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 3     
 +---Muxes : 
-	   9 Input     64 Bit        Muxes := 1     
+	  11 Input     64 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 2     
 Module game_display_controller 
 Detailed RTL Component Info : 
@@ -4368,7 +4368,7 @@ BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 872.734 ; gain = 700.816
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
@@ -4382,9 +4382,9 @@ INFO: [Synth 8-5546] ROM "clk_div_object_control/clk_r" won't be mapped to RAM b
 INFO: [Synth 8-5546] ROM "clk_div_centi_second/clk_r" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "clk_div_calculation/clk_r" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:42 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:33 ; elapsed = 00:00:42 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Parallel Reinference  : Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 872.609 ; gain = 700.836
 
 Report RTL Partitions: 
 +------+-----------------------------------+------------+----------+
@@ -4402,7 +4402,7 @@ Report RTL Partitions:
 |10    |multi_object_trigger_runtime__GB5  |           1|     16344|
 |11    |multi_object_trigger_runtime__GB6  |           1|     21233|
 |12    |multi_object_trigger_runtime__GB7  |           1|     26229|
-|13    |topModule__GC0                     |           1|     12760|
+|13    |topModule__GC0                     |           1|     12986|
 +------+-----------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Area Optimization
@@ -4616,15 +4616,16 @@ INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instan
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/gravity_direction_reg[0] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[6] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[5] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[3] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[2] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[5] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[4] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[2] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\current_time_reg[29] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\current_time_reg[28] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[6] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[4] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[2] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\next_game_manager_time_reg[29] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\attack_i_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\attack_i_reg[8] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\attack_i_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\attack_i_reg[10] ) is unused and will be removed from module game_runtime.
@@ -4653,22 +4654,16 @@ WARNING: [Synth 8-3332] Sequential element (\platform_i_reg[7] ) is unused and w
 WARNING: [Synth 8-3332] Sequential element (\platform_i_reg[6] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\platform_i_reg[5] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\platform_i_reg[4] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\platform_i_reg[3] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[3] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/gravity_direction_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/gravity_direction_reg[1] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[3] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[0] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[1] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[1] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[1] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[2] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[4] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[5] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[6] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[7] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[0] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/wait_time_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[2] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[3] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[4] ) is unused and will be removed from module game_runtime.
@@ -4677,69 +4672,74 @@ WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[8] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/platform_amount_reg[9] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[6] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[7] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[8] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/attack_amount_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[1] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[3] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[2] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[3] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[4] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[5] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[6] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y2_reg[8] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[7] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[2] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[1] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[2] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[3] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[4] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[5] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[6] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[8] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x2_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[1] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[8] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[5] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[4] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[6] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[7] ) is unused and will be removed from module game_runtime.
+WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[7] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_y1_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[9] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[0] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[1] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[4] ) is unused and will be removed from module game_runtime.
-WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[5] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\game_manager_reader/display_pos_x1_reg[8] ) is unused and will be removed from module game_runtime.
 WARNING: [Synth 8-3332] Sequential element (\next_attack_time_reg[29] ) is unused and will be removed from module attack_object_rom.
-WARNING: [Synth 8-3332] Sequential element (\pos_x_reg[5] ) is unused and will be removed from module attack_object_rom.
-WARNING: [Synth 8-3332] Sequential element (\pos_x_reg[4] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\destroy_time_reg[3] ) is unused and will be removed from module attack_object_rom.
 WARNING: [Synth 8-3332] Sequential element (\destroy_time_reg[1] ) is unused and will be removed from module attack_object_rom.
-WARNING: [Synth 8-3332] Sequential element (\destroy_trigger_reg[0] ) is unused and will be removed from module attack_object_rom.
 WARNING: [Synth 8-3332] Sequential element (\destroy_time_reg[0] ) is unused and will be removed from module attack_object_rom.
-WARNING: [Synth 8-3332] Sequential element (\destroy_trigger_reg[1] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\destroy_time_reg[4] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\destroy_trigger_reg[0] ) is unused and will be removed from module attack_object_rom.
 WARNING: [Synth 8-3332] Sequential element (\types_reg[0] ) is unused and will be removed from module attack_object_rom.
 WARNING: [Synth 8-3332] Sequential element (\types_reg[1] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\types_reg[2] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\types_reg[3] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\types_reg[4] ) is unused and will be removed from module attack_object_rom.
+WARNING: [Synth 8-3332] Sequential element (\colider_type_reg[1] ) is unused and will be removed from module attack_object_rom.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:00:59 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:00:56 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:49 ; elapsed = 00:00:59 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:48 ; elapsed = 00:00:56 . Memory (MB): peak = 872.609 ; gain = 700.836
 
 Report RTL Partitions: 
 +------+-----------------------------------+------------+----------+
 |      |RTL Partition                      |Replication |Instances |
 +------+-----------------------------------+------------+----------+
-|1     |multi_object_collider_runtime__GB0 |           1|     13460|
-|2     |multi_object_collider_runtime__GB1 |           1|      3370|
-|3     |multi_object_collider_runtime__GB2 |           1|      4982|
-|4     |multi_object_collider_runtime__GB3 |           1|      5674|
-|5     |multi_object_trigger_runtime__GB0  |           1|     14535|
-|6     |multi_object_trigger_runtime__GB1  |           1|      3315|
+|1     |multi_object_collider_runtime__GB0 |           1|     13453|
+|2     |multi_object_collider_runtime__GB1 |           1|      3365|
+|3     |multi_object_collider_runtime__GB2 |           1|      4983|
+|4     |multi_object_collider_runtime__GB3 |           1|      5650|
+|5     |multi_object_trigger_runtime__GB0  |           1|     14551|
+|6     |multi_object_trigger_runtime__GB1  |           1|      3314|
 |7     |multi_object_trigger_runtime__GB2  |           1|      4994|
-|8     |multi_object_trigger_runtime__GB3  |           1|      5798|
-|9     |multi_object_trigger_runtime__GB4  |           1|      7828|
-|10    |multi_object_trigger_runtime__GB5  |           1|      9324|
-|11    |multi_object_trigger_runtime__GB6  |           1|     12115|
-|12    |multi_object_trigger_runtime__GB7  |           1|     14858|
-|13    |topModule__GC0                     |           1|      4461|
+|8     |multi_object_trigger_runtime__GB3  |           1|      5792|
+|9     |multi_object_trigger_runtime__GB4  |           1|      7830|
+|10    |multi_object_trigger_runtime__GB5  |           1|      9323|
+|11    |multi_object_trigger_runtime__GB6  |           1|     12116|
+|12    |multi_object_trigger_runtime__GB7  |           1|     14861|
+|13    |topModule__GC0                     |           1|      4556|
 +------+-----------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -4748,44 +4748,44 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:07 . Memory (MB): peak = 872.734 ; gain = 700.816
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:01:04 . Memory (MB): peak = 872.609 ; gain = 700.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:04 ; elapsed = 00:01:14 . Memory (MB): peak = 883.832 ; gain = 711.914
+Finished Timing Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:10 . Memory (MB): peak = 884.355 ; gain = 712.582
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
 +------+-----------------------------------+------------+----------+
 |      |RTL Partition                      |Replication |Instances |
 +------+-----------------------------------+------------+----------+
-|1     |multi_object_collider_runtime__GB0 |           1|      9609|
-|2     |multi_object_collider_runtime__GB1 |           1|      1969|
-|3     |multi_object_collider_runtime__GB2 |           1|      2880|
-|4     |multi_object_collider_runtime__GB3 |           1|      3269|
-|5     |multi_object_trigger_runtime__GB0  |           1|      9475|
-|6     |multi_object_trigger_runtime__GB1  |           1|      2022|
-|7     |multi_object_trigger_runtime__GB2  |           1|      3013|
-|8     |multi_object_trigger_runtime__GB3  |           1|      3534|
-|9     |multi_object_trigger_runtime__GB4  |           1|      4715|
-|10    |multi_object_trigger_runtime__GB5  |           1|      5655|
-|11    |multi_object_trigger_runtime__GB6  |           1|      7296|
-|12    |multi_object_trigger_runtime__GB7  |           1|      8955|
-|13    |topModule__GC0                     |           1|      4450|
+|1     |multi_object_collider_runtime__GB0 |           1|      9678|
+|2     |multi_object_collider_runtime__GB1 |           1|      2001|
+|3     |multi_object_collider_runtime__GB2 |           1|      2933|
+|4     |multi_object_collider_runtime__GB3 |           1|      3306|
+|5     |multi_object_trigger_runtime__GB0  |           1|      9773|
+|6     |multi_object_trigger_runtime__GB1  |           1|      2102|
+|7     |multi_object_trigger_runtime__GB2  |           1|      3131|
+|8     |multi_object_trigger_runtime__GB3  |           1|      3666|
+|9     |multi_object_trigger_runtime__GB4  |           1|      4902|
+|10    |multi_object_trigger_runtime__GB5  |           1|      5873|
+|11    |multi_object_trigger_runtime__GB6  |           1|      7585|
+|12    |multi_object_trigger_runtime__GB7  |           1|      9304|
+|13    |topModule__GC0                     |           1|      4556|
 +------+-----------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:14 ; elapsed = 00:01:23 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Technology Mapping : Time (s): cpu = 00:01:10 ; elapsed = 00:01:19 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:01:14 ; elapsed = 00:01:23 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:01:10 ; elapsed = 00:01:19 . Memory (MB): peak = 888.551 ; gain = 716.777
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:14 ; elapsed = 00:01:23 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:10 ; elapsed = 00:01:19 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -4802,7 +4802,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:01:26 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished IO Insertion : Time (s): cpu = 00:01:13 ; elapsed = 00:01:22 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -4815,7 +4815,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:13 ; elapsed = 00:01:22 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4827,25 +4827,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:19 ; elapsed = 00:01:29 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:25 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:20 ; elapsed = 00:01:29 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:25 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -4862,191 +4862,192 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     6|
-|2     |CARRY4 |  3760|
-|3     |LUT1   |  3163|
-|4     |LUT2   |  9665|
-|5     |LUT3   |  3246|
-|6     |LUT4   |  5801|
-|7     |LUT5   |  2177|
-|8     |LUT6   |  2578|
-|9     |MUXF7  |    28|
-|10    |FDRE   |  7381|
-|11    |FDSE   |   160|
-|12    |LDC    |     5|
-|13    |IBUF   |     6|
-|14    |OBUF   |    14|
+|2     |CARRY4 |  3757|
+|3     |LUT1   |  2589|
+|4     |LUT2   | 10119|
+|5     |LUT3   |  4522|
+|6     |LUT4   |  5864|
+|7     |LUT5   |  2400|
+|8     |LUT6   |  2594|
+|9     |MUXF7  |    26|
+|10    |MUXF8  |     3|
+|11    |FDRE   |  7551|
+|12    |FDSE   |   161|
+|13    |LDC    |     5|
+|14    |IBUF   |     6|
+|15    |OBUF   |    14|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+---------------------------------------------------+-------------------------------+------+
 |      |Instance                                           |Module                         |Cells |
 +------+---------------------------------------------------+-------------------------------+------+
-|1     |top                                                |                               | 37990|
-|2     |  attack_object_reader                             |attack_object_rom              |   587|
+|1     |top                                                |                               | 39617|
+|2     |  attack_object_reader                             |attack_object_rom              |   795|
 |3     |  clk_div_calculation                              |clk_div__parameterized3        |    68|
 |4     |  clk_div_centi_second                             |clk_div__parameterized2        |    68|
 |5     |  clk_div_object_control                           |clk_div__parameterized1        |    68|
 |6     |  clk_div_player_control                           |clk_div__parameterized0        |    68|
 |7     |  clk_div_vga                                      |clk_div                        |     4|
-|8     |  game_display_control                             |game_display_controller        |   141|
-|9     |  game_runtime_execute                             |game_runtime                   |   850|
-|10    |    game_manager_reader                            |game_manager_rom               |    43|
-|11    |  multi_object_collider_runtime_execute            |multi_object_collider_runtime  |  7941|
-|12    |    \OBJECTS[0].object_collider_position_control   |object_position_controller_103 |   244|
-|13    |    \OBJECTS[10].object_collider_position_control  |object_position_controller_104 |   248|
-|14    |    \OBJECTS[11].object_collider_position_control  |object_position_controller_105 |   257|
-|15    |    \OBJECTS[12].object_collider_position_control  |object_position_controller_106 |   248|
-|16    |    \OBJECTS[13].object_collider_position_control  |object_position_controller_107 |   255|
-|17    |    \OBJECTS[14].object_collider_position_control  |object_position_controller_108 |   252|
+|8     |  game_display_control                             |game_display_controller        |    97|
+|9     |  game_runtime_execute                             |game_runtime                   |   894|
+|10    |    game_manager_reader                            |game_manager_rom               |    48|
+|11    |  multi_object_collider_runtime_execute            |multi_object_collider_runtime  |  8033|
+|12    |    \OBJECTS[0].object_collider_position_control   |object_position_controller_103 |   247|
+|13    |    \OBJECTS[10].object_collider_position_control  |object_position_controller_104 |   251|
+|14    |    \OBJECTS[11].object_collider_position_control  |object_position_controller_105 |   260|
+|15    |    \OBJECTS[12].object_collider_position_control  |object_position_controller_106 |   251|
+|16    |    \OBJECTS[13].object_collider_position_control  |object_position_controller_107 |   261|
+|17    |    \OBJECTS[14].object_collider_position_control  |object_position_controller_108 |   255|
 |18    |    \OBJECTS[15].object_colider_render             |object_renderer_109            |     6|
-|19    |    \OBJECTS[15].object_collider_position_control  |object_position_controller_110 |   260|
-|20    |    \OBJECTS[16].object_collider_position_control  |object_position_controller_111 |   246|
-|21    |    \OBJECTS[17].object_collider_position_control  |object_position_controller_112 |   255|
-|22    |    \OBJECTS[18].object_collider_position_control  |object_position_controller_113 |   247|
+|19    |    \OBJECTS[15].object_collider_position_control  |object_position_controller_110 |   261|
+|20    |    \OBJECTS[16].object_collider_position_control  |object_position_controller_111 |   249|
+|21    |    \OBJECTS[17].object_collider_position_control  |object_position_controller_112 |   258|
+|22    |    \OBJECTS[18].object_collider_position_control  |object_position_controller_113 |   250|
 |23    |    \OBJECTS[19].object_colider_render             |object_renderer_114            |     6|
-|24    |    \OBJECTS[19].object_collider_position_control  |object_position_controller_115 |   261|
-|25    |    \OBJECTS[1].object_collider_position_control   |object_position_controller_116 |   251|
-|26    |    \OBJECTS[20].object_collider_position_control  |object_position_controller_117 |   246|
-|27    |    \OBJECTS[21].object_collider_position_control  |object_position_controller_118 |   255|
+|24    |    \OBJECTS[19].object_collider_position_control  |object_position_controller_115 |   262|
+|25    |    \OBJECTS[1].object_collider_position_control   |object_position_controller_116 |   254|
+|26    |    \OBJECTS[20].object_collider_position_control  |object_position_controller_117 |   249|
+|27    |    \OBJECTS[21].object_collider_position_control  |object_position_controller_118 |   257|
 |28    |    \OBJECTS[22].object_colider_render             |object_renderer_119            |     6|
-|29    |    \OBJECTS[22].object_collider_position_control  |object_position_controller_120 |   251|
-|30    |    \OBJECTS[23].object_collider_position_control  |object_position_controller_121 |   262|
-|31    |    \OBJECTS[24].object_collider_position_control  |object_position_controller_122 |   247|
-|32    |    \OBJECTS[25].object_collider_position_control  |object_position_controller_123 |   255|
-|33    |    \OBJECTS[26].object_collider_position_control  |object_position_controller_124 |   249|
+|29    |    \OBJECTS[22].object_collider_position_control  |object_position_controller_120 |   252|
+|30    |    \OBJECTS[23].object_collider_position_control  |object_position_controller_121 |   266|
+|31    |    \OBJECTS[24].object_collider_position_control  |object_position_controller_122 |   250|
+|32    |    \OBJECTS[25].object_collider_position_control  |object_position_controller_123 |   258|
+|33    |    \OBJECTS[26].object_collider_position_control  |object_position_controller_124 |   253|
 |34    |    \OBJECTS[27].object_colider_render             |object_renderer_125            |     6|
-|35    |    \OBJECTS[27].object_collider_position_control  |object_position_controller_126 |   260|
+|35    |    \OBJECTS[27].object_collider_position_control  |object_position_controller_126 |   261|
 |36    |    \OBJECTS[28].object_colider_render             |object_renderer_127            |     6|
-|37    |    \OBJECTS[28].object_collider_position_control  |object_position_controller_128 |   304|
-|38    |    \OBJECTS[29].object_collider_position_control  |object_position_controller_129 |   243|
-|39    |    \OBJECTS[2].object_collider_position_control   |object_position_controller_130 |   272|
-|40    |    \OBJECTS[3].object_collider_position_control   |object_position_controller_131 |   258|
-|41    |    \OBJECTS[4].object_collider_position_control   |object_position_controller_132 |   246|
-|42    |    \OBJECTS[5].object_collider_position_control   |object_position_controller_133 |   265|
-|43    |    \OBJECTS[6].object_collider_position_control   |object_position_controller_134 |   253|
-|44    |    \OBJECTS[7].object_collider_position_control   |object_position_controller_135 |   262|
-|45    |    \OBJECTS[8].object_collider_position_control   |object_position_controller_136 |   256|
-|46    |    \OBJECTS[9].object_collider_position_control   |object_position_controller_137 |   255|
-|47    |  muti_object_trigger_runtime_execute              |multi_object_trigger_runtime   | 19925|
-|48    |    \OBJECTS[0].object_collider_position_control   |object_position_controller     |   190|
-|49    |    \OBJECTS[10].object_collider_position_control  |object_position_controller_0   |   198|
-|50    |    \OBJECTS[11].object_collider_position_control  |object_position_controller_1   |   193|
-|51    |    \OBJECTS[12].object_collider_position_control  |object_position_controller_2   |   195|
-|52    |    \OBJECTS[13].object_collider_position_control  |object_position_controller_3   |   199|
-|53    |    \OBJECTS[14].object_collider_position_control  |object_position_controller_4   |   191|
-|54    |    \OBJECTS[15].object_collider_position_control  |object_position_controller_5   |   191|
-|55    |    \OBJECTS[16].object_collider_position_control  |object_position_controller_6   |   190|
-|56    |    \OBJECTS[17].object_collider_position_control  |object_position_controller_7   |   190|
-|57    |    \OBJECTS[18].object_collider_position_control  |object_position_controller_8   |   190|
-|58    |    \OBJECTS[19].object_collider_position_control  |object_position_controller_9   |   191|
-|59    |    \OBJECTS[1].object_collider_position_control   |object_position_controller_10  |   197|
-|60    |    \OBJECTS[20].object_collider_position_control  |object_position_controller_11  |   191|
-|61    |    \OBJECTS[21].object_collider_position_control  |object_position_controller_12  |   190|
-|62    |    \OBJECTS[22].object_collider_position_control  |object_position_controller_13  |   190|
-|63    |    \OBJECTS[23].object_collider_position_control  |object_position_controller_14  |   196|
-|64    |    \OBJECTS[24].object_collider_position_control  |object_position_controller_15  |   191|
-|65    |    \OBJECTS[25].object_collider_position_control  |object_position_controller_16  |   195|
-|66    |    \OBJECTS[26].object_collider_position_control  |object_position_controller_17  |   192|
-|67    |    \OBJECTS[27].object_collider_position_control  |object_position_controller_18  |   193|
-|68    |    \OBJECTS[28].object_collider_position_control  |object_position_controller_19  |   191|
-|69    |    \OBJECTS[29].object_collider_position_control  |object_position_controller_20  |   191|
-|70    |    \OBJECTS[2].object_collider_position_control   |object_position_controller_21  |   198|
-|71    |    \OBJECTS[30].object_collider_position_control  |object_position_controller_22  |   190|
-|72    |    \OBJECTS[31].object_collider_position_control  |object_position_controller_23  |   192|
-|73    |    \OBJECTS[32].object_collider_position_control  |object_position_controller_24  |   191|
-|74    |    \OBJECTS[33].object_collider_position_control  |object_position_controller_25  |   190|
-|75    |    \OBJECTS[34].object_collider_position_control  |object_position_controller_26  |   191|
-|76    |    \OBJECTS[35].object_collider_position_control  |object_position_controller_27  |   197|
-|77    |    \OBJECTS[36].object_collider_position_control  |object_position_controller_28  |   190|
-|78    |    \OBJECTS[37].object_collider_position_control  |object_position_controller_29  |   192|
-|79    |    \OBJECTS[38].object_collider_position_control  |object_position_controller_30  |   201|
-|80    |    \OBJECTS[39].object_collider_position_control  |object_position_controller_31  |   192|
-|81    |    \OBJECTS[3].object_collider_position_control   |object_position_controller_32  |   197|
-|82    |    \OBJECTS[40].object_collider_position_control  |object_position_controller_33  |   196|
-|83    |    \OBJECTS[41].object_collider_position_control  |object_position_controller_34  |   190|
-|84    |    \OBJECTS[42].object_collider_position_control  |object_position_controller_35  |   190|
-|85    |    \OBJECTS[43].object_collider_position_control  |object_position_controller_36  |   193|
-|86    |    \OBJECTS[44].object_collider_position_control  |object_position_controller_37  |   192|
-|87    |    \OBJECTS[45].object_collider_position_control  |object_position_controller_38  |   191|
-|88    |    \OBJECTS[46].object_collider_position_control  |object_position_controller_39  |   190|
-|89    |    \OBJECTS[47].object_collider_position_control  |object_position_controller_40  |   196|
+|37    |    \OBJECTS[28].object_collider_position_control  |object_position_controller_128 |   306|
+|38    |    \OBJECTS[29].object_collider_position_control  |object_position_controller_129 |   246|
+|39    |    \OBJECTS[2].object_collider_position_control   |object_position_controller_130 |   275|
+|40    |    \OBJECTS[3].object_collider_position_control   |object_position_controller_131 |   261|
+|41    |    \OBJECTS[4].object_collider_position_control   |object_position_controller_132 |   252|
+|42    |    \OBJECTS[5].object_collider_position_control   |object_position_controller_133 |   270|
+|43    |    \OBJECTS[6].object_collider_position_control   |object_position_controller_134 |   257|
+|44    |    \OBJECTS[7].object_collider_position_control   |object_position_controller_135 |   265|
+|45    |    \OBJECTS[8].object_collider_position_control   |object_position_controller_136 |   260|
+|46    |    \OBJECTS[9].object_collider_position_control   |object_position_controller_137 |   258|
+|47    |  muti_object_trigger_runtime_execute              |multi_object_trigger_runtime   | 21200|
+|48    |    \OBJECTS[0].object_collider_position_control   |object_position_controller     |   203|
+|49    |    \OBJECTS[10].object_collider_position_control  |object_position_controller_0   |   207|
+|50    |    \OBJECTS[11].object_collider_position_control  |object_position_controller_1   |   206|
+|51    |    \OBJECTS[12].object_collider_position_control  |object_position_controller_2   |   210|
+|52    |    \OBJECTS[13].object_collider_position_control  |object_position_controller_3   |   211|
+|53    |    \OBJECTS[14].object_collider_position_control  |object_position_controller_4   |   206|
+|54    |    \OBJECTS[15].object_collider_position_control  |object_position_controller_5   |   203|
+|55    |    \OBJECTS[16].object_collider_position_control  |object_position_controller_6   |   202|
+|56    |    \OBJECTS[17].object_collider_position_control  |object_position_controller_7   |   202|
+|57    |    \OBJECTS[18].object_collider_position_control  |object_position_controller_8   |   203|
+|58    |    \OBJECTS[19].object_collider_position_control  |object_position_controller_9   |   203|
+|59    |    \OBJECTS[1].object_collider_position_control   |object_position_controller_10  |   210|
+|60    |    \OBJECTS[20].object_collider_position_control  |object_position_controller_11  |   203|
+|61    |    \OBJECTS[21].object_collider_position_control  |object_position_controller_12  |   201|
+|62    |    \OBJECTS[22].object_collider_position_control  |object_position_controller_13  |   202|
+|63    |    \OBJECTS[23].object_collider_position_control  |object_position_controller_14  |   205|
+|64    |    \OBJECTS[24].object_collider_position_control  |object_position_controller_15  |   202|
+|65    |    \OBJECTS[25].object_collider_position_control  |object_position_controller_16  |   207|
+|66    |    \OBJECTS[26].object_collider_position_control  |object_position_controller_17  |   202|
+|67    |    \OBJECTS[27].object_collider_position_control  |object_position_controller_18  |   205|
+|68    |    \OBJECTS[28].object_collider_position_control  |object_position_controller_19  |   206|
+|69    |    \OBJECTS[29].object_collider_position_control  |object_position_controller_20  |   202|
+|70    |    \OBJECTS[2].object_collider_position_control   |object_position_controller_21  |   211|
+|71    |    \OBJECTS[30].object_collider_position_control  |object_position_controller_22  |   204|
+|72    |    \OBJECTS[31].object_collider_position_control  |object_position_controller_23  |   203|
+|73    |    \OBJECTS[32].object_collider_position_control  |object_position_controller_24  |   206|
+|74    |    \OBJECTS[33].object_collider_position_control  |object_position_controller_25  |   203|
+|75    |    \OBJECTS[34].object_collider_position_control  |object_position_controller_26  |   206|
+|76    |    \OBJECTS[35].object_collider_position_control  |object_position_controller_27  |   212|
+|77    |    \OBJECTS[36].object_collider_position_control  |object_position_controller_28  |   202|
+|78    |    \OBJECTS[37].object_collider_position_control  |object_position_controller_29  |   203|
+|79    |    \OBJECTS[38].object_collider_position_control  |object_position_controller_30  |   210|
+|80    |    \OBJECTS[39].object_collider_position_control  |object_position_controller_31  |   205|
+|81    |    \OBJECTS[3].object_collider_position_control   |object_position_controller_32  |   212|
+|82    |    \OBJECTS[40].object_collider_position_control  |object_position_controller_33  |   209|
+|83    |    \OBJECTS[41].object_collider_position_control  |object_position_controller_34  |   202|
+|84    |    \OBJECTS[42].object_collider_position_control  |object_position_controller_35  |   204|
+|85    |    \OBJECTS[43].object_collider_position_control  |object_position_controller_36  |   204|
+|86    |    \OBJECTS[44].object_collider_position_control  |object_position_controller_37  |   203|
+|87    |    \OBJECTS[45].object_collider_position_control  |object_position_controller_38  |   202|
+|88    |    \OBJECTS[46].object_collider_position_control  |object_position_controller_39  |   203|
+|89    |    \OBJECTS[47].object_collider_position_control  |object_position_controller_40  |   210|
 |90    |    \OBJECTS[48].object_colider_render             |object_renderer                |     6|
-|91    |    \OBJECTS[48].object_collider_position_control  |object_position_controller_41  |   194|
-|92    |    \OBJECTS[49].object_collider_position_control  |object_position_controller_42  |   191|
-|93    |    \OBJECTS[4].object_collider_position_control   |object_position_controller_43  |   190|
-|94    |    \OBJECTS[50].object_collider_position_control  |object_position_controller_44  |   197|
-|95    |    \OBJECTS[51].object_collider_position_control  |object_position_controller_45  |   197|
-|96    |    \OBJECTS[52].object_collider_position_control  |object_position_controller_46  |   191|
-|97    |    \OBJECTS[53].object_collider_position_control  |object_position_controller_47  |   190|
-|98    |    \OBJECTS[54].object_collider_position_control  |object_position_controller_48  |   195|
-|99    |    \OBJECTS[55].object_collider_position_control  |object_position_controller_49  |   200|
-|100   |    \OBJECTS[56].object_collider_position_control  |object_position_controller_50  |   195|
-|101   |    \OBJECTS[57].object_collider_position_control  |object_position_controller_51  |   191|
-|102   |    \OBJECTS[58].object_collider_position_control  |object_position_controller_52  |   190|
+|91    |    \OBJECTS[48].object_collider_position_control  |object_position_controller_41  |   204|
+|92    |    \OBJECTS[49].object_collider_position_control  |object_position_controller_42  |   206|
+|93    |    \OBJECTS[4].object_collider_position_control   |object_position_controller_43  |   202|
+|94    |    \OBJECTS[50].object_collider_position_control  |object_position_controller_44  |   209|
+|95    |    \OBJECTS[51].object_collider_position_control  |object_position_controller_45  |   211|
+|96    |    \OBJECTS[52].object_collider_position_control  |object_position_controller_46  |   204|
+|97    |    \OBJECTS[53].object_collider_position_control  |object_position_controller_47  |   204|
+|98    |    \OBJECTS[54].object_collider_position_control  |object_position_controller_48  |   211|
+|99    |    \OBJECTS[55].object_collider_position_control  |object_position_controller_49  |   212|
+|100   |    \OBJECTS[56].object_collider_position_control  |object_position_controller_50  |   211|
+|101   |    \OBJECTS[57].object_collider_position_control  |object_position_controller_51  |   204|
+|102   |    \OBJECTS[58].object_collider_position_control  |object_position_controller_52  |   202|
 |103   |    \OBJECTS[59].object_colider_render             |object_renderer_53             |     6|
-|104   |    \OBJECTS[59].object_collider_position_control  |object_position_controller_54  |   197|
-|105   |    \OBJECTS[5].object_collider_position_control   |object_position_controller_55  |   195|
-|106   |    \OBJECTS[60].object_collider_position_control  |object_position_controller_56  |   191|
-|107   |    \OBJECTS[61].object_collider_position_control  |object_position_controller_57  |   190|
-|108   |    \OBJECTS[62].object_collider_position_control  |object_position_controller_58  |   193|
-|109   |    \OBJECTS[63].object_collider_position_control  |object_position_controller_59  |   194|
-|110   |    \OBJECTS[64].object_collider_position_control  |object_position_controller_60  |   190|
-|111   |    \OBJECTS[65].object_collider_position_control  |object_position_controller_61  |   196|
-|112   |    \OBJECTS[66].object_collider_position_control  |object_position_controller_62  |   195|
-|113   |    \OBJECTS[67].object_collider_position_control  |object_position_controller_63  |   196|
-|114   |    \OBJECTS[68].object_collider_position_control  |object_position_controller_64  |   197|
-|115   |    \OBJECTS[69].object_collider_position_control  |object_position_controller_65  |   191|
-|116   |    \OBJECTS[6].object_collider_position_control   |object_position_controller_66  |   195|
-|117   |    \OBJECTS[70].object_collider_position_control  |object_position_controller_67  |   197|
-|118   |    \OBJECTS[71].object_collider_position_control  |object_position_controller_68  |   191|
-|119   |    \OBJECTS[72].object_collider_position_control  |object_position_controller_69  |   192|
-|120   |    \OBJECTS[73].object_collider_position_control  |object_position_controller_70  |   193|
-|121   |    \OBJECTS[74].object_collider_position_control  |object_position_controller_71  |   195|
-|122   |    \OBJECTS[75].object_collider_position_control  |object_position_controller_72  |   192|
-|123   |    \OBJECTS[76].object_collider_position_control  |object_position_controller_73  |   194|
-|124   |    \OBJECTS[77].object_collider_position_control  |object_position_controller_74  |   191|
-|125   |    \OBJECTS[78].object_collider_position_control  |object_position_controller_75  |   195|
-|126   |    \OBJECTS[79].object_collider_position_control  |object_position_controller_76  |   189|
-|127   |    \OBJECTS[7].object_collider_position_control   |object_position_controller_77  |   197|
-|128   |    \OBJECTS[80].object_collider_position_control  |object_position_controller_78  |   195|
-|129   |    \OBJECTS[81].object_collider_position_control  |object_position_controller_79  |   191|
-|130   |    \OBJECTS[82].object_collider_position_control  |object_position_controller_80  |   190|
-|131   |    \OBJECTS[83].object_collider_position_control  |object_position_controller_81  |   200|
-|132   |    \OBJECTS[84].object_collider_position_control  |object_position_controller_82  |   193|
-|133   |    \OBJECTS[85].object_collider_position_control  |object_position_controller_83  |   192|
-|134   |    \OBJECTS[86].object_collider_position_control  |object_position_controller_84  |   189|
-|135   |    \OBJECTS[87].object_collider_position_control  |object_position_controller_85  |   197|
-|136   |    \OBJECTS[88].object_collider_position_control  |object_position_controller_86  |   195|
-|137   |    \OBJECTS[89].object_collider_position_control  |object_position_controller_87  |   199|
-|138   |    \OBJECTS[8].object_collider_position_control   |object_position_controller_88  |   195|
-|139   |    \OBJECTS[90].object_collider_position_control  |object_position_controller_89  |   194|
-|140   |    \OBJECTS[91].object_collider_position_control  |object_position_controller_90  |   194|
+|104   |    \OBJECTS[59].object_collider_position_control  |object_position_controller_54  |   207|
+|105   |    \OBJECTS[5].object_collider_position_control   |object_position_controller_55  |   206|
+|106   |    \OBJECTS[60].object_collider_position_control  |object_position_controller_56  |   203|
+|107   |    \OBJECTS[61].object_collider_position_control  |object_position_controller_57  |   202|
+|108   |    \OBJECTS[62].object_collider_position_control  |object_position_controller_58  |   205|
+|109   |    \OBJECTS[63].object_collider_position_control  |object_position_controller_59  |   207|
+|110   |    \OBJECTS[64].object_collider_position_control  |object_position_controller_60  |   202|
+|111   |    \OBJECTS[65].object_collider_position_control  |object_position_controller_61  |   209|
+|112   |    \OBJECTS[66].object_collider_position_control  |object_position_controller_62  |   210|
+|113   |    \OBJECTS[67].object_collider_position_control  |object_position_controller_63  |   212|
+|114   |    \OBJECTS[68].object_collider_position_control  |object_position_controller_64  |   212|
+|115   |    \OBJECTS[69].object_collider_position_control  |object_position_controller_65  |   204|
+|116   |    \OBJECTS[6].object_collider_position_control   |object_position_controller_66  |   211|
+|117   |    \OBJECTS[70].object_collider_position_control  |object_position_controller_67  |   207|
+|118   |    \OBJECTS[71].object_collider_position_control  |object_position_controller_68  |   203|
+|119   |    \OBJECTS[72].object_collider_position_control  |object_position_controller_69  |   203|
+|120   |    \OBJECTS[73].object_collider_position_control  |object_position_controller_70  |   210|
+|121   |    \OBJECTS[74].object_collider_position_control  |object_position_controller_71  |   210|
+|122   |    \OBJECTS[75].object_collider_position_control  |object_position_controller_72  |   205|
+|123   |    \OBJECTS[76].object_collider_position_control  |object_position_controller_73  |   209|
+|124   |    \OBJECTS[77].object_collider_position_control  |object_position_controller_74  |   202|
+|125   |    \OBJECTS[78].object_collider_position_control  |object_position_controller_75  |   210|
+|126   |    \OBJECTS[79].object_collider_position_control  |object_position_controller_76  |   203|
+|127   |    \OBJECTS[7].object_collider_position_control   |object_position_controller_77  |   210|
+|128   |    \OBJECTS[80].object_collider_position_control  |object_position_controller_78  |   210|
+|129   |    \OBJECTS[81].object_collider_position_control  |object_position_controller_79  |   204|
+|130   |    \OBJECTS[82].object_collider_position_control  |object_position_controller_80  |   202|
+|131   |    \OBJECTS[83].object_collider_position_control  |object_position_controller_81  |   214|
+|132   |    \OBJECTS[84].object_collider_position_control  |object_position_controller_82  |   210|
+|133   |    \OBJECTS[85].object_collider_position_control  |object_position_controller_83  |   203|
+|134   |    \OBJECTS[86].object_collider_position_control  |object_position_controller_84  |   202|
+|135   |    \OBJECTS[87].object_collider_position_control  |object_position_controller_85  |   209|
+|136   |    \OBJECTS[88].object_collider_position_control  |object_position_controller_86  |   211|
+|137   |    \OBJECTS[89].object_collider_position_control  |object_position_controller_87  |   207|
+|138   |    \OBJECTS[8].object_collider_position_control   |object_position_controller_88  |   209|
+|139   |    \OBJECTS[90].object_collider_position_control  |object_position_controller_89  |   207|
+|140   |    \OBJECTS[91].object_collider_position_control  |object_position_controller_90  |   207|
 |141   |    \OBJECTS[92].object_colider_render             |object_renderer_91             |     6|
-|142   |    \OBJECTS[92].object_collider_position_control  |object_position_controller_92  |   194|
+|142   |    \OBJECTS[92].object_collider_position_control  |object_position_controller_92  |   205|
 |143   |    \OBJECTS[93].object_colider_render             |object_renderer_93             |     6|
-|144   |    \OBJECTS[93].object_collider_position_control  |object_position_controller_94  |   195|
-|145   |    \OBJECTS[94].object_collider_position_control  |object_position_controller_95  |   194|
-|146   |    \OBJECTS[95].object_collider_position_control  |object_position_controller_96  |   190|
-|147   |    \OBJECTS[96].object_collider_position_control  |object_position_controller_97  |   190|
-|148   |    \OBJECTS[97].object_collider_position_control  |object_position_controller_98  |   188|
-|149   |    \OBJECTS[98].object_collider_position_control  |object_position_controller_99  |   189|
+|144   |    \OBJECTS[93].object_collider_position_control  |object_position_controller_94  |   206|
+|145   |    \OBJECTS[94].object_collider_position_control  |object_position_controller_95  |   206|
+|146   |    \OBJECTS[95].object_collider_position_control  |object_position_controller_96  |   202|
+|147   |    \OBJECTS[96].object_collider_position_control  |object_position_controller_97  |   202|
+|148   |    \OBJECTS[97].object_collider_position_control  |object_position_controller_98  |   202|
+|149   |    \OBJECTS[98].object_collider_position_control  |object_position_controller_99  |   203|
 |150   |    \OBJECTS[99].object_colider_render             |object_renderer_100            |     6|
-|151   |    \OBJECTS[99].object_collider_position_control  |object_position_controller_101 |   300|
-|152   |    \OBJECTS[9].object_collider_position_control   |object_position_controller_102 |   189|
-|153   |  platform_object_reader                           |platform_object_rom            |    73|
-|154   |  player_position                                  |player_position_controller     |  1007|
-|155   |  universal_render                                 |universal_renderer             |   156|
-|156   |  vga_translate                                    |vga_translator                 |  6610|
+|151   |    \OBJECTS[99].object_collider_position_control  |object_position_controller_101 |   310|
+|152   |    \OBJECTS[9].object_collider_position_control   |object_position_controller_102 |   202|
+|153   |  platform_object_reader                           |platform_object_rom            |    76|
+|154   |  player_position                                  |player_position_controller     |  1014|
+|155   |  universal_render                                 |universal_renderer             |   158|
+|156   |  vga_translate                                    |vga_translator                 |  6643|
 +------+---------------------------------------------------+-------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 888.238 ; gain = 716.320
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 888.551 ; gain = 716.777
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 103 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:22 . Memory (MB): peak = 888.238 ; gain = 700.449
-Synthesis Optimization Complete : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 888.238 ; gain = 716.320
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:05 ; elapsed = 00:01:19 . Memory (MB): peak = 888.551 ; gain = 700.910
+Synthesis Optimization Complete : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 888.551 ; gain = 716.777
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 3771 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Netlist 29-17] Analyzing 3768 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
@@ -5056,6 +5057,6 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 393 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:27 ; elapsed = 00:01:36 . Memory (MB): peak = 888.238 ; gain = 700.449
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.133 . Memory (MB): peak = 888.238 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Thu Dec 11 14:46:41 2025...
+synth_design: Time (s): cpu = 00:01:24 ; elapsed = 00:01:33 . Memory (MB): peak = 888.551 ; gain = 700.910
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.132 . Memory (MB): peak = 888.551 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 11 17:51:11 2025...
