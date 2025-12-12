@@ -100,13 +100,13 @@ module Topsim_Collider_pipline_test;
 //     assign centi_second = dut.multi_object_collider_runtime_execute.object_collider_position_control[i].centi_second;
 
     // Iterator Log
-    localparam integer OBJECT_AMOUNT = 25;   
+    localparam integer OBJECT_AMOUNT = 30;   
     wire [OBJECT_AMOUNT-1: 0] object_ready_state;
     
     assign object_ready_state = dut.multi_object_collider_runtime_execute.object_ready_state;
     
     // Iterator Log
-    localparam integer OBJECT_AMOUNT_T = 60;   
+    localparam integer OBJECT_AMOUNT_T = 80;   
     wire [OBJECT_AMOUNT_T-1: 0] object_ready_state_T;
     
     assign object_ready_state_T = dut.muti_object_trigger_runtime_execute.object_ready_state;
