@@ -7,7 +7,7 @@ from tkinter import ttk
 # Directory Setup
 # ==================================================
 TOOLS_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STAGE_DATA_DIR = os.path.join(TOOLS_PATH, "source")
+STAGE_DATA_DIR = os.path.join(TOOLS_PATH, "json_stage_source")
 STAGE_FILE_PREFIX = "stage"
 
 data = {}

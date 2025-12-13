@@ -165,18 +165,7 @@ class EntireGame:
         self.stages.append(stage)
 
     # ---- EXPORT to many stageXX.json ----
-    def export(self, directory="output" , is_base=True):
-        # Base path for this file
-        base_path = os.path.dirname(os.path.abspath(__file__))
-
-        if(is_base==False):
-            base_path = os.path.dirname(base_path)
-
-        # Final output folder
-        export_folder = os.path.join(base_path, directory)
-
-        
-
+    def export(self, export_folder):
         # Create directory if missing
         os.makedirs(export_folder, exist_ok=True)
 

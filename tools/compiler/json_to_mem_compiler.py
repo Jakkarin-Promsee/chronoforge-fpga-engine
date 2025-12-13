@@ -83,6 +83,19 @@ def build_mem_files(isPushingVerilog=True, isHex=True):
                 line = bin_to_hex(bitstring) if isHex else bitstring
                 lines.append(line)
 
+            # -------------------------------------------------
+            # ADD CLOSER RECORD (only for some ROMs)
+            # -------------------------------------------------
+            if task["name"] in ("Game Manager", "Game UI"):
+                bit_width = {
+                    "Game Manager": 72,
+                    "Game UI": 56,
+                }[task["name"]]
+
+                closer_bits = "1" * bit_width
+                closer_line = bin_to_hex(closer_bits) if isHex else closer_bits
+                lines.append(closer_line)
+
             # Ensure output folder exists and write the final file
             os.makedirs(os.path.dirname(task["mem_path"]), exist_ok=True)
             with open(task["mem_path"], "w") as f:

@@ -13,26 +13,26 @@
             "free(unused)": 0
         },
         {
-            "movement_direction": 1,
+            "movement_direction": 2,
             "speed": 0,
             "pos_x": 0,
             "pos_y": 0,
             "w": 0,
             "h": 0,
-            "wait_time": 1,
-            "destroy_time": 5,
+            "wait_time": 0,
+            "destroy_time": 0,
             "destroy_trigger": 0,
             "free(unused)": 0
         },
         {
-            "movement_direction": 1,
+            "movement_direction": 2,
             "speed": 0,
             "pos_x": 0,
             "pos_y": 0,
             "w": 0,
             "h": 0,
-            "wait_time": 1,
-            "destroy_time": 5,
+            "wait_time": 0,
+            "destroy_time": 0,
             "destroy_trigger": 0,
             "free(unused)": 0
         },

@@ -12,7 +12,7 @@ import glob
 TOOLS_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Input: Directory containing sequentially named stage JSON files (e.g., stage00.json)
-STAGE_DATA_DIR = os.path.join(TOOLS_PATH, "source")
+STAGE_DATA_DIR = os.path.join(TOOLS_PATH, "json_stage_source")
 STAGE_FILE_PATTERN = "stage*.json"
 
 # Output: Directory for the unified JSON files

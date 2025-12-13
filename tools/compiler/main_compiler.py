@@ -13,7 +13,7 @@ def run_compiler_pipeline():
     """
     
     # Define the base directory (where this script lives)
-    tools_path = os.path.dirname(os.path.abspath(__file__))
+    tools_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 1. Define the component script paths
     # These must match the exact file names in your /tools directory
