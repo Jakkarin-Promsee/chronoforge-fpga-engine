@@ -1,8 +1,8 @@
 {
     "decimal_data": [
         {
-            "stage": 1,
-            "attack_amount": 25,
+            "stage": 0,
+            "attack_amount": 48,
             "platform_amount": 1,
             "wait_time": 5,
             "gravity_direction": 0,

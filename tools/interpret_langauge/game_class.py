@@ -8,8 +8,8 @@ import os
 class GameManager:
     def __init__(self,
                  stage=0,
-                 attack_amount=0,
-                 platform_amount=0,
+                 attack_amount=-1,
+                 platform_amount=-1,
                  wait_time=0,
                  gravity_direction=0,
                  display_pos_x1=0,
@@ -144,6 +144,9 @@ class GameStage:
         self.platform_objects = []
 
     def to_dict(self):
+        self.game_manager.attack_amount = len(self.attack_objects)
+        self.game_manager.platform_amount = len(self.platform_objects)
+
         return {
             "game_manger": self.game_manager.to_dict(),
             "attack_object": [obj.to_dict() for obj in self.attack_objects],
@@ -162,12 +165,17 @@ class EntireGame:
         self.stages.append(stage)
 
     # ---- EXPORT to many stageXX.json ----
-    def export(self, directory="output"):
+    def export(self, directory="output" , is_base=True):
         # Base path for this file
         base_path = os.path.dirname(os.path.abspath(__file__))
 
+        if(is_base==False):
+            base_path = os.path.dirname(base_path)
+
         # Final output folder
         export_folder = os.path.join(base_path, directory)
+
+        
 
         # Create directory if missing
         os.makedirs(export_folder, exist_ok=True)
