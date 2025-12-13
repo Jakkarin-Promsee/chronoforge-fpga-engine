@@ -15,7 +15,7 @@ def stage():
         display_pos_x1=136,
         display_pos_y1=256,
         display_pos_x2=508,
-        display_pos_y2=386,
+        display_pos_y2=384,
     )
 
     # ------------------------------------------------------------------

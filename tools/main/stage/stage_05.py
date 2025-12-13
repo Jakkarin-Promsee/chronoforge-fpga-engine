@@ -16,26 +16,22 @@ def stage():
         display_pos_x1=136,
         display_pos_y1=256,
         display_pos_x2=508,
-        display_pos_y2=386,
+        display_pos_y2=384,
     )
 
     # ------------------------------------------------------------------
     # Common Parameters
     # ------------------------------------------------------------------
-    ATTACK_SPEED = 12
+    ATTACK_SPEED = 9
     BAR_WIDTH = 12
-    THRESHOLD = 36
-
-
-    LEFT_EDGE_X = stage.game_manager.display_pos_x1 - BAR_WIDTH
-    RIGHT_EDGE_X = stage.game_manager.display_pos_x2
+    BAR_HEIGHT = 40
 
     TOP_EDGE_Y = stage.game_manager.display_pos_y1
     BOTTOM_EDGE_Y = stage.game_manager.display_pos_y2
 
 
     LEFT_DELAY = 0
-    RIGHT_DELAY = 1.5
+    RIGHT_DELAY = 2
 
     REPEAT_COUNT = 10
 
@@ -61,47 +57,57 @@ def stage():
     # ------------------------------------------------------------------
     # Helper: Create Left / Right Wall Pair with Vertical Gap
     # ------------------------------------------------------------------
-    def add_threshold_pair(threshold, right_delay):
-        lower_y = BOTTOM_EDGE_Y - threshold
-        upper_h = BOTTOM_EDGE_Y - TOP_EDGE_Y - threshold
+    def add_vertical_pair(right_delay):
+        upper_y = TOP_EDGE_Y - BAR_HEIGHT
+        lower_y = BOTTOM_EDGE_Y
 
         stage.attack_objects.extend([
-            # Left - Lower
             AttackObject(
                 type=0,
                 colider_type=0,
-                movement_direction=2,
+                movement_direction=0,
                 speed=ATTACK_SPEED,
-                pos_x=LEFT_EDGE_X,
+                pos_x=283,
                 pos_y=lower_y,
                 w=BAR_WIDTH,
-                h=threshold,
+                h=BAR_HEIGHT,
                 wait_time=LEFT_DELAY,
                 destroy_time=20,
                 destroy_trigger=2,
             ),
-            # Right - Upper (delayed)
             AttackObject(
                 type=0,
                 colider_type=0,
-                movement_direction=6,
+                movement_direction=4,
                 speed=ATTACK_SPEED,
-                pos_x=RIGHT_EDGE_X,
-                pos_y=TOP_EDGE_Y,
+                pos_x=363,
+                pos_y=upper_y,
                 w=BAR_WIDTH,
-                h=upper_h,
-                wait_time=right_delay,
+                h=BAR_HEIGHT,
+                wait_time=LEFT_DELAY,
                 destroy_time=20,
                 destroy_trigger=2,
             ),
+            AttackObject(
+                type=0,
+                colider_type=0,
+                movement_direction=0,
+                speed=ATTACK_SPEED,
+                pos_x=443,
+                pos_y=lower_y,
+                w=BAR_WIDTH,
+                h=BAR_HEIGHT,
+                wait_time=right_delay,
+                destroy_time=20,
+                destroy_trigger=2,
+            )
         ])
 
     # ------------------------------------------------------------------
     # Repeating Symmetric Wall Pattern
     # ------------------------------------------------------------------
     for _ in range(REPEAT_COUNT):
-        add_threshold_pair(
-            THRESHOLD,
+        add_vertical_pair(
             right_delay = RIGHT_DELAY
         )
 
@@ -127,18 +133,19 @@ def stage():
     # ------------------------------------------------------------------
     # Platform Placeholder (No Movement)
     # ------------------------------------------------------------------
-    stage.platform_objects.append(
-        PlatformObject(
-            movement_direction=2,
-            speed=0,
-            pos_x=0,
-            pos_y=0,
-            w=0,
-            h=0,
-            wait_time=0,
-            destroy_time=0,
-            destroy_trigger=2,
+    for _ in range(5):
+        stage.platform_objects.append(
+            PlatformObject(
+                movement_direction=2,
+                speed=9,
+                pos_x=137 - 62,
+                pos_y=328,
+                w=62,
+                h=8,
+                wait_time=1.5,
+                destroy_time=20,
+                destroy_trigger=2,
+            )
         )
-    )
 
     return stage

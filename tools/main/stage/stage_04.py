@@ -16,7 +16,7 @@ def stage():
         display_pos_x1=136,
         display_pos_y1=256,
         display_pos_x2=508,
-        display_pos_y2=386,
+        display_pos_y2=384,
     )
 
     # ------------------------------------------------------------------
@@ -24,7 +24,7 @@ def stage():
     # ------------------------------------------------------------------
     ATTACK_SPEED = 12
     BAR_WIDTH = 12
-    THRESHOLD = 36
+    THRESHOLD = 24
 
 
     LEFT_EDGE_X = stage.game_manager.display_pos_x1 - BAR_WIDTH
@@ -35,7 +35,7 @@ def stage():
 
 
     LEFT_DELAY = 0
-    RIGHT_DELAY = 1.5
+    RIGHT_DELAY = 1.2
 
     REPEAT_COUNT = 10
 

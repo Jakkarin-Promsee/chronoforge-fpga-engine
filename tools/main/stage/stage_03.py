@@ -19,7 +19,7 @@ def stage():
         display_pos_x1=136,
         display_pos_y1=256,
         display_pos_x2=508,
-        display_pos_y2=386,
+        display_pos_y2=384,
     )
 
     # ================================================================
@@ -89,8 +89,8 @@ def stage():
     # Phase 2: Break + Extension
     # ================================================================
     for _ in range(3):
-        stage.attack_objects.extend([
-            left_lower_bar(0, destroy=0),
+        left_lower_bar(0, destroy=0)
+        stage.attack_objects.append(
             AttackObject(
                 type=0,
                 colider_type=0,
@@ -103,8 +103,8 @@ def stage():
                 wait_time=NORMAL_DELAY,
                 destroy_time=20,
                 destroy_trigger=2,
-            ),
-        ])
+            )
+        )
 
     # ================================================================
     # Phase 3: Resume Pressure
