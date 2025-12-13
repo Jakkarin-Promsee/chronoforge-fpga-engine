@@ -3,7 +3,7 @@
         "stage": 1,
         "attack_amount": 34,
         "platform_amount": 1,
-        "wait_time": 3,
+        "wait_time": 1,
         "gravity_direction": 3,
         "display_pos_x1": 136,
         "display_pos_y1": 256,
@@ -483,7 +483,7 @@
             "pos_y": 0,
             "w": 0,
             "h": 0,
-            "wait_time": 5,
+            "wait_time": 2,
             "destroy_time": 0,
             "destroy_trigger": 2,
             "free(unused)": 0

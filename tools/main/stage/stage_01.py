@@ -11,7 +11,7 @@ def stage():
     # ------------------------------------------------------------------
     stage.game_manager = GameManager(
         stage=1,
-        wait_time=3,
+        wait_time=1,
         gravity_direction=3,
         display_pos_x1=136,
         display_pos_y1=256,

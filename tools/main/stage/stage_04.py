@@ -10,12 +10,12 @@ def stage():
     # Game Manager Configuration
     # ------------------------------------------------------------------
     stage.game_manager = GameManager(
-        stage=0,
+        stage=1,
         wait_time=1,
-        gravity_direction=0,
-        display_pos_x1=245,
-        display_pos_y1=229,
-        display_pos_x2=403,
+        gravity_direction=3,
+        display_pos_x1=136,
+        display_pos_y1=256,
+        display_pos_x2=508,
         display_pos_y2=386,
     )
 
@@ -24,21 +24,23 @@ def stage():
     # ------------------------------------------------------------------
     ATTACK_SPEED = 12
     BAR_WIDTH = 12
+    THRESHOLD = 36
 
-    LOWER_BAR_BASE_HEIGHT = 72
-    UPPER_BAR_BASE_HEIGHT = 46
-
-    STEP = 8
-
-    LOWER_DELAY = 0
-    UPPER_DELAY = 0.2
 
     LEFT_EDGE_X = stage.game_manager.display_pos_x1 - BAR_WIDTH
+    RIGHT_EDGE_X = stage.game_manager.display_pos_x2
+
     TOP_EDGE_Y = stage.game_manager.display_pos_y1
     BOTTOM_EDGE_Y = stage.game_manager.display_pos_y2
 
+
+    LEFT_DELAY = 0
+    RIGHT_DELAY = 1.5
+
+    REPEAT_COUNT = 10
+
     # ------------------------------------------------------------------
-    # Initial Delay (5 seconds)
+    # Initial Delay (3 seconds)
     # ------------------------------------------------------------------
     stage.attack_objects.append(
         AttackObject(
@@ -50,17 +52,21 @@ def stage():
             pos_y=0,
             w=0,
             h=0,
-            wait_time=5,
+            wait_time=3,
             destroy_time=0,
             destroy_trigger=2,
         )
     )
 
     # ------------------------------------------------------------------
-    # Helper: Create Paired Upper / Lower Bars
+    # Helper: Create Left / Right Wall Pair with Vertical Gap
     # ------------------------------------------------------------------
-    def add_bar_pair(index, lower_y, lower_h, upper_h):
+    def add_threshold_pair(threshold, right_delay):
+        lower_y = BOTTOM_EDGE_Y - threshold
+        upper_h = BOTTOM_EDGE_Y - TOP_EDGE_Y - threshold
+
         stage.attack_objects.extend([
+            # Left - Lower
             AttackObject(
                 type=0,
                 colider_type=0,
@@ -69,89 +75,34 @@ def stage():
                 pos_x=LEFT_EDGE_X,
                 pos_y=lower_y,
                 w=BAR_WIDTH,
-                h=lower_h,
-                wait_time=LOWER_DELAY,
+                h=threshold,
+                wait_time=LEFT_DELAY,
                 destroy_time=20,
                 destroy_trigger=2,
             ),
+            # Right - Upper (delayed)
             AttackObject(
                 type=0,
                 colider_type=0,
-                movement_direction=2,
+                movement_direction=6,
                 speed=ATTACK_SPEED,
-                pos_x=LEFT_EDGE_X,
+                pos_x=RIGHT_EDGE_X,
                 pos_y=TOP_EDGE_Y,
                 w=BAR_WIDTH,
                 h=upper_h,
-                wait_time=UPPER_DELAY,
+                wait_time=right_delay,
                 destroy_time=20,
                 destroy_trigger=2,
             ),
         ])
 
     # ------------------------------------------------------------------
-    # Phase 1: Expanding Gap
+    # Repeating Symmetric Wall Pattern
     # ------------------------------------------------------------------
-    PHASE1_STEPS = 4
-    for i in range(PHASE1_STEPS + 1):
-        add_bar_pair(
-            i,
-            lower_y=BOTTOM_EDGE_Y - LOWER_BAR_BASE_HEIGHT - i * STEP,
-            lower_h=LOWER_BAR_BASE_HEIGHT + i * STEP,
-            upper_h=UPPER_BAR_BASE_HEIGHT - i * STEP,
-        )
-
-    # ------------------------------------------------------------------
-    # Phase 2: Contracting Gap
-    # ------------------------------------------------------------------
-    PHASE2_STEPS = 11
-    for i in range(PHASE2_STEPS + 1):
-        add_bar_pair(
-            i,
-            lower_y=(
-                BOTTOM_EDGE_Y
-                - LOWER_BAR_BASE_HEIGHT
-                + i * STEP
-                - PHASE1_STEPS * STEP
-            ),
-            lower_h=(
-                LOWER_BAR_BASE_HEIGHT
-                - i * STEP
-                + PHASE1_STEPS * STEP
-            ),
-            upper_h=(
-                UPPER_BAR_BASE_HEIGHT
-                + i * STEP
-                - PHASE1_STEPS * STEP
-            ),
-        )
-
-    # ------------------------------------------------------------------
-    # Phase 3: Re-expanding Gap
-    # ------------------------------------------------------------------
-    PHASE3_STEPS = 6
-    for i in range(PHASE3_STEPS + 1):
-        add_bar_pair(
-            i,
-            lower_y=(
-                BOTTOM_EDGE_Y
-                - LOWER_BAR_BASE_HEIGHT
-                - i * STEP
-                + PHASE2_STEPS * STEP
-                - PHASE1_STEPS * STEP
-            ),
-            lower_h=(
-                LOWER_BAR_BASE_HEIGHT
-                + i * STEP
-                - PHASE2_STEPS * STEP
-                + PHASE1_STEPS * STEP
-            ),
-            upper_h=(
-                UPPER_BAR_BASE_HEIGHT
-                - i * STEP
-                + PHASE2_STEPS * STEP
-                - PHASE1_STEPS * STEP
-            ),
+    for _ in range(REPEAT_COUNT):
+        add_threshold_pair(
+            THRESHOLD,
+            right_delay = RIGHT_DELAY
         )
 
     # ------------------------------------------------------------------

@@ -35,7 +35,7 @@ module Topsim_Collider_pipline_test;
         clk <= 1'b1;
         reset <= 1'b1; // Start in reset
         
-        switch_up <= 1'b1;
+        switch_up <= 1'b0;
         switch_down <= 1'b0;
         switch_left <= 1'b0;
         switch_right <= 1'b0;
@@ -75,7 +75,7 @@ module Topsim_Collider_pipline_test;
     // Player Log
     wire on_ground;
     wire [13:0] jump_height_hires;
-    wire [9:0] player_pos_x;
+    wire [13:0] player_pos_x;
     wire [9:0] player_pos_y;
     wire [9:0] player_w;
     wire [13:0] falling_speed;
@@ -83,7 +83,7 @@ module Topsim_Collider_pipline_test;
     assign jump_height_hires = dut.player_position.jump_height_hires;
     assign falling_speed = dut.player_position.falling_speed;
     assign on_ground = dut.player_position.on_ground;
-    assign player_pos_x = dut.player_pos_x;
+    assign player_pos_x = dut.player_position.player_pos_x_hires;
     assign player_pos_y = dut.player_pos_y;
     assign player_w = dut.player_w;
     

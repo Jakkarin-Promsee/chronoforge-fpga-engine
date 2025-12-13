@@ -220,28 +220,28 @@ module player_position_controller#(
             end
             
             // --- Horizontal Movement Logic ---
-            // Left axis
-            // Use SPEED directly
-            if (player_pos_x_hires - HORIZONTAL_SPEED >= game_display_x0_hires) begin
-                if(switch_left) begin
-                    player_pos_x_hires <= player_pos_x_hires - HORIZONTAL_SPEED;
-                end
-            end else begin
-                player_pos_x_hires <= game_display_x0_hires; // Snap to left boundary
-            end
             
+            // Left axis
+            if(switch_left) begin
+                // Use SPEED directly
+                if (player_pos_x_hires - HORIZONTAL_SPEED >= game_display_x0_hires) begin
+                    player_pos_x_hires <= player_pos_x_hires - HORIZONTAL_SPEED;
+                end else begin
+                    player_pos_x_hires <= game_display_x0_hires; // Snap to left boundary
+                end
+            end
             
             // Right axis
-            // Use SPEED directly
-            if (player_pos_x_hires + player_w_hires + HORIZONTAL_SPEED - 2*SCALE_FACTOR <= game_display_x1_hires) begin
-                if(switch_right) begin
+            if(switch_right) begin
+                // Use SPEED directly
+                if (player_pos_x_hires + player_w_hires + HORIZONTAL_SPEED - 2*SCALE_FACTOR <= game_display_x1_hires) begin
                     player_pos_x_hires <= player_pos_x_hires + HORIZONTAL_SPEED;
+                end else begin
+                    player_pos_x_hires <= (game_display_x1_hires - player_w_hires) + 2*SCALE_FACTOR;
                 end
-            end else begin
-                player_pos_x_hires <= (game_display_x1_hires - player_w_hires) + 2*SCALE_FACTOR;
             end
             
-            
+           
             // If player are out size
             if(player_pos_x_hires + player_w_hires > game_display_x1_hires)
                 player_pos_x_hires <= game_display_x1_hires - player_w_hires;
@@ -253,6 +253,13 @@ module player_position_controller#(
                 on_ground <= 1;
             end else if(player_pos_y_hires < game_display_y0_hires)
                 player_pos_y_hires <= game_display_y0_hires;
+                
+                
+            if(player_pos_x_hires >= (1<<14) - player_w_hires)
+                player_pos_x_hires <= (1<<14) - player_w_hires - 1;
+                
+            if (player_pos_y_hires >= (1<<14) - player_h_hires)
+                player_pos_y_hires <= (1<<14) - player_h_hires - 1;
                 
             // --- Output Assignment (10-bit integer part only) ---
             // Divide by 16 by shifting right 4 bits to get the pixel integer value
