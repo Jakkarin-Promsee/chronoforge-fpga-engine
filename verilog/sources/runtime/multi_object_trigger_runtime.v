@@ -152,6 +152,7 @@ module multi_object_trigger_runtime #(
             object_position_controller object_collider_position_control (
                 .clk_centi_second(clk_centi_second),
                 .clk_object_control(clk_object_control),
+                .clk_calculation(clk_calculation),
                 .reset(reset),
                 .movement_direction(object_movement_direction),
                 .object_pos_x(object_pos_x),

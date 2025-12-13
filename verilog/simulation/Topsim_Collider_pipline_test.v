@@ -125,6 +125,15 @@ module Topsim_Collider_pipline_test;
     
     assign object_ready_state = dut.multi_object_collider_runtime_execute.object_ready_state;
     
+    wire [7:0] destroy_time;
+    assign destroy_time = dut.attack_object_reader.destroy_time;
+    
+    wire [7:0] object_destroy_time_count;
+    wire sync_object_position;
+    assign object_destroy_time_count = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_destroy_time;
+    assign object_free = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_free;
+    assign sync_object_position = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.sync_object_position;
+    
     // Iterator Log
     localparam integer OBJECT_AMOUNT_T = 80;   
     wire [OBJECT_AMOUNT_T-1: 0] object_ready_state_T;

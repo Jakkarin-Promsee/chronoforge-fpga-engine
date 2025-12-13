@@ -93,6 +93,8 @@ module player_position_controller#(
             on_ground <= 1;
             active_gravity <= 0;
             
+            falling_speed<=0;
+            
         end else begin
             case (gravity_direction) 
                 // No Gravity

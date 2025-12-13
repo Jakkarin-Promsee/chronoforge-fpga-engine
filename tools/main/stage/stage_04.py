@@ -22,7 +22,7 @@ def stage():
     # ------------------------------------------------------------------
     # Common Parameters
     # ------------------------------------------------------------------
-    ATTACK_SPEED = 12
+    ATTACK_SPEED = 10
     BAR_WIDTH = 12
     THRESHOLD = 24
 
@@ -35,7 +35,7 @@ def stage():
 
 
     LEFT_DELAY = 0
-    RIGHT_DELAY = 1.2
+    RIGHT_DELAY = 1
 
     REPEAT_COUNT = 10
 

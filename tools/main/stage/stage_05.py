@@ -54,6 +54,23 @@ def stage():
         )
     )
 
+    # Ground spire
+    stage.attack_objects.append(
+        AttackObject(
+            type=0,
+            colider_type=0,
+            movement_direction=0,
+            speed=0,
+            pos_x=136,
+            pos_y=384-20,
+            w=374,
+            h=20,
+            wait_time=0,
+            destroy_time=0,
+            destroy_trigger=2,
+        )
+    )
+
     # ------------------------------------------------------------------
     # Helper: Create Left / Right Wall Pair with Vertical Gap
     # ------------------------------------------------------------------
@@ -133,7 +150,7 @@ def stage():
     # ------------------------------------------------------------------
     # Platform Placeholder (No Movement)
     # ------------------------------------------------------------------
-    for _ in range(5):
+    for _ in range(3):
         stage.platform_objects.append(
             PlatformObject(
                 movement_direction=2,
@@ -142,7 +159,20 @@ def stage():
                 pos_y=328,
                 w=62,
                 h=8,
-                wait_time=1.5,
+                wait_time=3,
+                destroy_time=20,
+                destroy_trigger=2,
+            )
+        )
+        stage.platform_objects.append(
+            PlatformObject(
+                movement_direction=2,
+                speed=9,
+                pos_x=508,
+                pos_y=328,
+                w=62,
+                h=8,
+                wait_time=3,
                 destroy_time=20,
                 destroy_trigger=2,
             )

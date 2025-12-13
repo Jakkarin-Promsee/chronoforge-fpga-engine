@@ -127,7 +127,19 @@
             "pos_y": 328,
             "w": 62,
             "h": 8,
-            "wait_time": 1.5,
+            "wait_time": 3,
+            "destroy_time": 20,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 2,
+            "speed": 9,
+            "pos_x": 508,
+            "pos_y": 328,
+            "w": 62,
+            "h": 8,
+            "wait_time": 3,
             "destroy_time": 20,
             "destroy_trigger": 2,
             "free(unused)": 0
@@ -139,7 +151,19 @@
             "pos_y": 328,
             "w": 62,
             "h": 8,
-            "wait_time": 1.5,
+            "wait_time": 3,
+            "destroy_time": 20,
+            "destroy_trigger": 2,
+            "free(unused)": 0
+        },
+        {
+            "movement_direction": 2,
+            "speed": 9,
+            "pos_x": 508,
+            "pos_y": 328,
+            "w": 62,
+            "h": 8,
+            "wait_time": 3,
             "destroy_time": 20,
             "destroy_trigger": 2,
             "free(unused)": 0
@@ -151,7 +175,7 @@
             "pos_y": 328,
             "w": 62,
             "h": 8,
-            "wait_time": 1.5,
+            "wait_time": 3,
             "destroy_time": 20,
             "destroy_trigger": 2,
             "free(unused)": 0
@@ -159,23 +183,11 @@
         {
             "movement_direction": 2,
             "speed": 9,
-            "pos_x": 75,
+            "pos_x": 508,
             "pos_y": 328,
             "w": 62,
             "h": 8,
-            "wait_time": 1.5,
-            "destroy_time": 20,
-            "destroy_trigger": 2,
-            "free(unused)": 0
-        },
-        {
-            "movement_direction": 2,
-            "speed": 9,
-            "pos_x": 75,
-            "pos_y": 328,
-            "w": 62,
-            "h": 8,
-            "wait_time": 1.5,
+            "wait_time": 3,
             "destroy_time": 20,
             "destroy_trigger": 2,
             "free(unused)": 0

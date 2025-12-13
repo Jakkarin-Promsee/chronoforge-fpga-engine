@@ -3,6 +3,7 @@
 module object_position_controller (
     input clk_centi_second,
     input clk_object_control,
+    input clk_calculation,
     input reset,
     
     input [2:0] movement_direction,
@@ -51,21 +52,31 @@ module object_position_controller (
     reg [7:0] object_destroy_time_count;
     reg [6:0] centi_second;
     
+    reg [7:0] object_destroy_time_master;
+    reg sync_master;
+    reg update_master;
+    
     always @(posedge clk_centi_second) begin
         if(reset) begin
-            object_free_override <= 1;
+            object_free_override <= 0;
             centi_second <= 0;
             object_destroy_time_count <= 255;
+            update_master <= 0;
             
-        end if(!sync_object_position) begin
+        end if(!sync_master) begin
             object_free_override <= 0;
-            object_destroy_time_count <= object_destroy_time;
+            object_destroy_time_count <= object_destroy_time_master;
+            update_master <= 1;
             
         end else if (object_free) begin
+            object_destroy_time_count <= 255;
             centi_second <= 0;
             object_free_override <= 0;
+            update_master <= 0;
         
         end else begin
+            update_master <= 0;
+        
             if(centi_second == 100) begin
                 centi_second <= 0;
                 
@@ -81,8 +92,18 @@ module object_position_controller (
             end 
         end
     end
+    
+    reg clk_obj_sync_1, clk_obj_sync_2;
+    
+    always @(posedge clk_calculation) begin
+        clk_obj_sync_1 <= clk_object_control;
+        clk_obj_sync_2 <= clk_obj_sync_1;
+    end
+    
+    wire obj_control_pulse = clk_obj_sync_1 & ~clk_obj_sync_2;
+    
 
-    always @(posedge clk_object_control) begin
+    always @(posedge clk_calculation) begin
         if(reset) begin
             update_object_position <= 0;
             object_override_pos_x_hired <= 0;
@@ -99,6 +120,8 @@ module object_position_controller (
             
             movement_direction_hired <= movement_direction;
             object_speed_hired <= object_speed;
+            
+            sync_master <= 0;
             
         end else begin
             if (!sync_object_position) begin
@@ -119,96 +142,104 @@ module object_position_controller (
                 update_object_position <= 1;
                 object_free <= 0;
                 
+                object_destroy_time_master <= object_destroy_time;
+                sync_master <= 0;
+                
             end else if (object_free) begin
                 object_override_pos_x_hired <= 0;
                 object_override_pos_y_hired <= 0;
                 
                 object_override_w <= 0;
                 object_override_h <= 0;
+                
+                sync_master <= 1;
             
             end else begin
                 update_object_position <= 0;
                 
-                if(object_free_override)
-                    object_free <= 1;
-                
-                // Check destroy trigger
-                case (object_destroy_trigger)
-                    // 0 is non trigger destroy
-                    2: begin
-                        if (object_override_pos_x_hired > 640*SCALE_FACTOR ||
-                            object_override_pos_x_hired + (object_override_w<<SCALE_FACTOR_BITS) < 0   ||
-                            object_override_pos_y_hired > 480*SCALE_FACTOR ||
-                            object_override_pos_y_hired + (object_override_h<<SCALE_FACTOR_BITS) < 0) begin
-                            
-                            object_free <= 1;
+                if(update_master) begin
+                    sync_master <= 1;
+                end else begin
+
+                    // Check destroy trigger
+                    case (object_destroy_trigger)
+                        // 0 is non trigger destroy
+                        2: begin
+                            if (object_override_pos_x_hired > 640*SCALE_FACTOR ||
+                                object_override_pos_x_hired + (object_override_w<<SCALE_FACTOR_BITS) < 0   ||
+                                object_override_pos_y_hired > 480*SCALE_FACTOR ||
+                                object_override_pos_y_hired + (object_override_h<<SCALE_FACTOR_BITS) < 0) begin
+                                
+                                object_free <= 1;
+                            end
                         end
-                    end
-                    
-                    1: begin
-                        if (object_override_pos_x_hired > display_pos_x2_hired||
-                            object_override_pos_x_hired + (object_override_w<<SCALE_FACTOR_BITS) < display_pos_x1_hired   ||
-                            object_override_pos_y_hired > display_pos_y2_hired ||
-                            object_override_pos_y_hired + (object_override_h<<SCALE_FACTOR_BITS) < display_pos_y1_hired) begin
-                            
-                            object_free <= 1;
+                        
+                        1: begin
+                            if (object_override_pos_x_hired > display_pos_x2_hired||
+                                object_override_pos_x_hired + (object_override_w<<SCALE_FACTOR_BITS) < display_pos_x1_hired   ||
+                                object_override_pos_y_hired > display_pos_y2_hired ||
+                                object_override_pos_y_hired + (object_override_h<<SCALE_FACTOR_BITS) < display_pos_y1_hired) begin
+                                
+                                object_free <= 1;
+                            end
                         end
-                    end
-                endcase
-                
-                // Move position
-                case (movement_direction_hired)
-                    // Upper
-                    0: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
-                    end
+                    endcase
                     
-                    // Upper Right
-                    1: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
-                        object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
+                    if(obj_control_pulse) begin
+                        if(object_free_override)
+                            object_free <= 1;
+                                            
+                        // Move position
+                        case (movement_direction_hired)
+                            // Upper
+                            0: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
+                            end
+                            
+                            // Upper Right
+                            1: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
+                                object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
+                            end
+                            
+                            // Right
+                            2: begin
+                                object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
+                            end
+                            
+                            // Bottom Right
+                            3: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;
+                                object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
+                            end
+                            
+                            // Bottom
+                            4: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;   
+                            end
+                            
+                            // Bottom Left
+                            5: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;
+                                object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
+                            end
+                            
+                            // Left
+                            6: begin
+                                object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
+                            end
+                            
+                            // Upper Left
+                            7: begin
+                                object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
+                                object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
+                            end
+                        endcase
                     end
+                end
                     
-                    // Right
-                    2: begin
-                        object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
-                    end
-                    
-                    // Bottom Right
-                    3: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;
-                        object_override_pos_x_hired <= object_override_pos_x_hired + object_speed_hired;       
-                    end
-                    
-                    // Bottom
-                    4: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;   
-                    end
-                    
-                    // Bottom Left
-                    5: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired + object_speed_hired;
-                        object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
-                    end
-                    
-                    // Left
-                    6: begin
-                        object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
-                    end
-                    
-                    // Upper Left
-                    7: begin
-                        object_override_pos_y_hired <= object_override_pos_y_hired - object_speed_hired;
-                        object_override_pos_x_hired <= object_override_pos_x_hired - object_speed_hired;       
-                    end
-                endcase
             end
         end
     end
-    
-
-    
-    
-    
 
 endmodule

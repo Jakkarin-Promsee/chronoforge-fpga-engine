@@ -38,7 +38,7 @@
         },
         {
             "stage": 1,
-            "attack_amount": 25,
+            "attack_amount": 28,
             "platform_amount": 6,
             "wait_time": 1,
             "gravity_direction": 3,
@@ -62,8 +62,8 @@
         },
         {
             "stage": 1,
-            "attack_amount": 32,
-            "platform_amount": 5,
+            "attack_amount": 33,
+            "platform_amount": 6,
             "wait_time": 1,
             "gravity_direction": 3,
             "display_pos_x1": 136,
