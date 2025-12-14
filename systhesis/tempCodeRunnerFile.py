@@ -1,1 +1,0 @@
-os.path.join(main_path, "17x17_font_data", f"{ch}.jpg")

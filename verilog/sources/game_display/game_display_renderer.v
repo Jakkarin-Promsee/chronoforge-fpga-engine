@@ -10,7 +10,8 @@ module game_display_renderer #(
     input [9:0] game_display_x1,
     input [9:0] game_display_y1,
     
-    output render
+    output render,
+    output out_side_display_signal  
 );
     
     // Border logic
@@ -27,5 +28,6 @@ module game_display_renderer #(
         (y <= game_display_y1 + BORDER);
     
     assign render = border_size && (~normal_size);
+    assign out_side_display_signal = ~border_size;
 
 endmodule

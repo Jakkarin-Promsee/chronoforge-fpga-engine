@@ -55,7 +55,7 @@ module platform_object_rom #(
                 // Set next platform time
                 
                 if(wait_time==0)
-                    next_platform_time <= current_time + 3;
+                    next_platform_time <= current_time + 1;
                 else
                     next_platform_time <= current_time + wait_time*10;
                 

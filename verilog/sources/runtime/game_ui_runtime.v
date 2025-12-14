@@ -2,8 +2,10 @@
 
 module game_ui_runtime #(
     parameter integer ADDR_WIDTH = 10,              // 1024 entries
-    parameter integer MAXIMUM_TIMES = 30
+    parameter integer MAXIMUM_TIMES = 30,
+    parameter integer CHARACTER_AMOUNT = 30
  ) (
+    input clk_vga,
     input clk_centi_second,
     input clk_calculation,
     input reset,
@@ -18,7 +20,12 @@ module game_ui_runtime #(
     
     output reg is_player_dead,
     output reg [ADDR_WIDTH-1:0] addr,
-    output wire ui_signal
+    
+    output wire healt_bar_signal,
+    output wire healt_bar_border_signal,
+    output wire character_signal,
+    
+    output wire transparent_out_screen_display
 );
     
     reg sync_ui_time;
@@ -26,8 +33,10 @@ module game_ui_runtime #(
     
     wire [9:0]   character_amount;
     wire [9:0]   healt_current;
+    reg [9:0]   healt_current_hires;
     wire [9:0]   healt_max;
-    wire         transparent_out_screen_display;
+    reg [9:0]   healt_max_hires;
+//    wire         transparent_out_screen_display;
     wire         reset_when_dead;
     wire [9:0]   healt_bar_pos_x;
     wire [9:0]   healt_bar_pos_y;
@@ -84,13 +93,12 @@ module game_ui_runtime #(
         (y >= (healt_bar_pos_y) - BORDER) &&
         (y <= (healt_bar_pos_y) + (healt_bar_h) + BORDER);
     
-    wire healt_border;
-    assign healt_border = border_size && (~normal_size);
+    assign healt_bar_border_signal = border_size && (~normal_size);
     
-    wire healt_amount = (x >= (healt_bar_pos_x)) && (x < (healt_bar_pos_x) + (healt_bar_w - healt_bar_w_minus)) 
+    assign  healt_bar_signal = (x >= (healt_bar_pos_x)) && (x < (healt_bar_pos_x) + (healt_bar_w - (healt_bar_w_minus/healt_max)*healt_bar_w)) 
                             && (y >= (healt_bar_pos_y)) && (y < (healt_bar_pos_y) + (healt_bar_h));
     
-    assign ui_signal = healt_border || healt_amount;
+
     
     
     reg sync_character;
@@ -101,52 +109,6 @@ module game_ui_runtime #(
     
     reg [ADDR_WIDTH-1:0] count_character_i;
     reg [ADDR_WIDTH-1:0] character_i;
-    
-    always @(posedge clk_calculation) begin
-        if(reset) begin
-            sync_ui_time <= 0;
-            addr <= 0;
-            sync_character <= 1;
-            sync_master <= 1;
-            character_i <= (1<<ADDR_WIDTH) - 1;
-            
-        end else if (!sync_ui_time) begin
-            if(update_ui_time) begin
-                count_character_i <= 0;
-                sync_ui_time <= 1;
-                sync_character <= 0;
-                sync_master <= 0;
-            end
-               
-            
-        end else begin
-            if(update_master) begin
-                sync_master<= 1;
-                
-            end 
-            
-            if(update_character) begin
-                 sync_character <= 1;
-                 
-            end else if (sync_character) begin
-                if(count_character_i < character_amount) begin
-                    count_character_i = count_character_i + 1;
-                    character_i = character_i + 1;
-                    sync_character <= 0;
-                end
-            end
-            
-            if(is_end || is_reset_stage) begin
-                addr <= 0;
-                character_i <= (1<<ADDR_WIDTH) - 1;
-                sync_ui_time <= 0;
-                
-            end else if(current_time >= next_ui_time) begin
-                addr <= addr + 1;
-                sync_ui_time <= 0;
-            end
-        end
-    end
     
     wire [9:0]   character_pos_x;
     wire [9:0]   character_pos_y;
@@ -168,6 +130,127 @@ module game_ui_runtime #(
         .character_index(character_index)
     );
     
+    reg [CHARACTER_AMOUNT-1: 0]        character_active_i ;
+    reg [9:0]   character_pos_x_i [CHARACTER_AMOUNT-1: 0];
+    reg [9:0]   character_pos_y_i [CHARACTER_AMOUNT-1: 0];
+    reg [7:0]   character_index_i [CHARACTER_AMOUNT-1: 0];
+    
+    reg update;
+    
+    integer i;
+    
+    always @(posedge clk_calculation) begin
+        if(reset) begin
+            sync_ui_time <= 0;
+            addr <= 0;
+            sync_character <= 1;
+            sync_master <= 1;
+            character_i <= 0;
+            update <= 0;
+            
+            for(i=0; i<CHARACTER_AMOUNT; i=i+1) begin
+                character_active_i <= 0;
+                character_pos_x_i[i] <= 0;
+                character_pos_y_i[i] <= 0;
+                character_index_i[i] <= 0;
+            end
+            
+        end else if (!sync_ui_time) begin
+            if(update_ui_time) begin
+                count_character_i <= 0;
+                sync_ui_time <= 1;
+                sync_character <= 0;
+                sync_master <= 0;
+                update <= 0;
+                
+                healt_current_hires <= healt_current;
+                healt_max_hires <= healt_max;
+                
+                for(i=0; i<CHARACTER_AMOUNT; i=i+1) begin
+                    character_active_i[i] <= 0;
+                    character_pos_x_i[i] <= 0;
+                    character_pos_y_i[i] <= 0;
+                    character_index_i[i] <= 0;
+                end
+            end
+               
+            
+        end else begin
+            if(update_master) begin
+                sync_master<= 1;
+                
+            end 
+            
+            if(update_character) begin
+                 sync_character <= 1;
+                 
+            end else if (sync_character) begin
+                
+                if(count_character_i < character_amount) begin
+                    count_character_i <= count_character_i + 1;
+                    character_i <= character_i + 1;
+                    sync_character <= 0;
+                    
+                    character_active_i[CHARACTER_AMOUNT-1-count_character_i] <= 1;
+                    character_index_i[CHARACTER_AMOUNT-1-count_character_i] <= character_index;
+                    character_pos_x_i[CHARACTER_AMOUNT-1-count_character_i] <= character_pos_x;
+                    character_pos_y_i[CHARACTER_AMOUNT-1-count_character_i] <= character_pos_y;
+                end
+               
+            end
+            
+            if(is_end || is_reset_stage) begin
+                addr <= 0;
+                character_i <= 0;
+                sync_ui_time <= 0;
+                
+            end else if(current_time >= next_ui_time) begin
+                addr <= addr + 1;
+                sync_ui_time <= 0;
+            end
+        end
+    end
+    
+    reg hit;
+    reg [7:0] hit_char;   // enough for 0..29
+    reg [9:0] local_x, local_y;
+    
+    always @(*) begin
+        hit = 0;
+        hit_char = 0;
+        local_x = 0;
+        local_y = 0;
+    
+        for (i = 0; i < CHARACTER_AMOUNT; i = i + 1) begin
+            if (!hit &&
+                character_active_i[CHARACTER_AMOUNT-1-i] &&
+                x >= character_pos_x_i[CHARACTER_AMOUNT-1-i] &&
+                x <  character_pos_x_i[CHARACTER_AMOUNT-1-i] + 17 &&
+                y >= character_pos_y_i[CHARACTER_AMOUNT-1-i] &&
+                y <  character_pos_y_i[CHARACTER_AMOUNT-1-i] + 17
+            ) begin
+                hit = 1;
+                hit_char = character_index_i[CHARACTER_AMOUNT-1-i];
+                local_x = x - character_pos_x_i[CHARACTER_AMOUNT-1-i];
+                local_y = y - character_pos_y_i[CHARACTER_AMOUNT-1-i];
+            end
+        end
+    end
+    
+    
+    wire is_character;
+    font_data_rom_reader #(
+        
+    ) font_data_reader (
+        .char_index(hit_char),
+        .x(local_x),
+        .y(local_y),
+        .is_character(is_character)
+    );
+    
+    assign character_signal = is_character;
+    
+    
     reg [6:0] current_healt_bar_sensitivity;
     reg [9:0] healt_bar_w_minus;
     
@@ -180,7 +263,9 @@ module game_ui_runtime #(
             
         end else if (!sync_master) begin
             update_master<= 1;
-            healt_bar_w_minus <= 0;
+            
+            if(healt_current_hires != 0)
+                healt_bar_w_minus <= healt_max_hires - healt_current_hires;
             
         end else begin
             update_master <= 0;
@@ -189,7 +274,7 @@ module game_ui_runtime #(
                 healt_bar_w_minus <= 0;
                 
                 
-            if(healt_bar_w_minus < healt_bar_w)
+            if(healt_bar_w_minus < healt_max)
                 is_player_dead <= 0;
             
             if(is_trigger_player) begin
@@ -197,7 +282,7 @@ module game_ui_runtime #(
                     // Reset Sensitivity
                     current_healt_bar_sensitivity <= healt_bar_sensitivity;
                     
-                    if(healt_bar_w_minus < healt_bar_w)
+                    if(healt_bar_w_minus < healt_max)
                         healt_bar_w_minus <= healt_bar_w_minus + 1;
                     else 
                         is_player_dead <= 1 && reset_when_dead;

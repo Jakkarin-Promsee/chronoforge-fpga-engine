@@ -175,5 +175,31 @@ module Topsim_Collider_pipline_test;
     
     assign character_i = dut.game_ui_runtime_execute.character_i;
     assign character_pos_x = dut.game_ui_runtime_execute.character_pos_x;
+    
+    wire [9:0]   character_pos_x_i [29:0];
+    wire [29:0] character_active_i;
+    
+    assign character_active_i = dut.game_ui_runtime_execute.character_active_i;
+    
+    genvar i;
+    generate
+        for (i = 0; i < 30; i = i + 1) begin
+            assign character_pos_x_i[i] =
+                dut.game_ui_runtime_execute.character_pos_x_i[i];
+        end
+    endgenerate
+    
+    assign healt_bar_signal = dut.healt_bar_signal;
+    assign healt_bar_border_signal = dut.healt_bar_border_signal;
+    assign character_signal = dut.character_signal;
+    
+    wire [8:0] hit_char;
+    
+    assign hit_char = dut.game_ui_runtime_execute.hit_char;
+    
+//    wire [19:0] font_addr;
+    
+//    assign font_addr = dut.game_ui_runtime_execute.font_addr;
+
 
 endmodule

@@ -4,7 +4,7 @@ import os
 # ---------------- CONFIG ----------------
 IMG_SIZE = 17
 THRESHOLD = 128           # < threshold = black (1)
-OUTPUT_FILE = "font.mem"
+OUTPUT_FILE = "font_data.mem"
 
 CHAR_LIST = (
     [chr(c) for c in range(ord('a'), ord('z') + 1)] +

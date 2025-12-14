@@ -8,10 +8,15 @@ module universal_renderer(
     
     input is_trigger_player, 
     
+    input transparent_out_screen_display,
+    
     input object_colider_signal,
     input object_trigger_signal,
     input game_display_border_render,
-    input ui_signal,
+    input out_side_display_signal,
+    input healt_bar_signal,
+    input healt_bar_border_signal,
+    input character_signal,
     input player_render,
     
     output reg [3:0] RED,  
@@ -30,24 +35,19 @@ module universal_renderer(
             end 
             
             // Object Colider
-            else if (object_colider_signal) begin
+            else if (object_colider_signal && !(out_side_display_signal && !transparent_out_screen_display)) begin
                 RED   <= 0;
                 GREEN <= 15;
                 BLUE  <= 15;
             end 
             
             // Object Trigger
-            else if (object_trigger_signal) begin
+            else if (object_trigger_signal && !(out_side_display_signal && !transparent_out_screen_display)) begin
                 RED   <= 15;
                 GREEN <= 0;
                 BLUE  <= 0;
             end
-            
-            else if (ui_signal) begin
-                RED   <= 15;
-                GREEN <= 15;
-                BLUE  <= 15;
-            end
+                        
             // Game display border
             else if (game_display_border_render) begin
                 RED   <= 15;
@@ -61,6 +61,24 @@ module universal_renderer(
                 GREEN <= 0;
                 BLUE  <= 15;
             end 
+            
+            else if (healt_bar_border_signal) begin
+                RED   <= 15;
+                GREEN <= 15;
+                BLUE  <= 15;
+            end
+            
+            else if (healt_bar_signal) begin
+                RED   <= 15;
+                GREEN <= 5;
+                BLUE  <= 5;
+            end
+            
+            else if (character_signal) begin
+                RED   <= 0;
+                GREEN <= 15;
+                BLUE  <= 0;
+            end
             
             // Background
             else begin

@@ -339,11 +339,16 @@ module topModule#(
     wire object_trigger_signal;
     wire [MAXIMUM_UI-1:0] ui_i;
     wire ui_signal;
+    wire healt_bar_signal;
+    wire healt_bar_border_signal;
+    wire character_signal;
+    wire transparent_out_screen_display;
     
     game_ui_runtime #(
         .ADDR_WIDTH(MAXIMUM_UI),
         .MAXIMUM_TIMES(MAXIMUM_TIMES)
     ) game_ui_runtime_execute (
+        .clk_vga(clk_vga),
         .clk_centi_second(clk_centi_second),
         .clk_calculation(clk_calculation),
         .reset(sync_reset),
@@ -355,9 +360,12 @@ module topModule#(
         .is_reset_stage(is_reset_stage),
         
         .addr(ui_i),
-        .ui_signal(ui_signal),
-        .is_player_dead(is_player_dead)
+        .healt_bar_signal(healt_bar_signal),
+        .healt_bar_border_signal(healt_bar_border_signal),
+        .character_signal(character_signal),
+        .is_player_dead(is_player_dead),
         
+        .transparent_out_screen_display(transparent_out_screen_display)
     );
     
     
@@ -375,6 +383,7 @@ module topModule#(
     wire [9:0] game_display_x1;
     wire [9:0] game_display_y1;
     wire game_display_border_signal;
+    wire out_side_display_signal;
     
     game_display_controller #(
         .GAME_DISPLAY_X0(GAME_DISPLAY_X0),
@@ -407,7 +416,8 @@ module topModule#(
        .game_display_x1(game_display_x1),
        .game_display_y1(game_display_y1),
        
-       .render(game_display_border_signal)
+       .render(game_display_border_signal),
+       .out_side_display_signal(out_side_display_signal)
    );
    
     //----------------------------------- Collider Object Runtimes Section  -----------------------------------------
@@ -571,12 +581,17 @@ module topModule#(
         .y(y),
         .blank(blank),
         
+        .transparent_out_screen_display(transparent_out_screen_display),
+        
         .is_trigger_player(is_trigger_player),
         
         .game_display_border_render(game_display_border_signal),
+        .out_side_display_signal(out_side_display_signal),
         .object_colider_signal(object_colider_signal),
         .object_trigger_signal(object_trigger_signal),
-        .ui_signal(ui_signal),
+        .healt_bar_signal(healt_bar_signal),
+        .healt_bar_border_signal(healt_bar_border_signal),
+        .character_signal(character_signal),
         .player_render(player_render_signal),
         
         .RED(RED),
