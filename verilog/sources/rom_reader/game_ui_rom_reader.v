@@ -12,6 +12,7 @@ module game_ui_rom_reader #(
     
     output reg update_ui_time,
     
+    output reg         reset_character,
     output reg [9:0]   character_amount,
     output reg [9:0]   healt_current,
     output reg [9:0]   healt_max,
@@ -41,6 +42,7 @@ module game_ui_rom_reader #(
         end else if(!sync_ui_time) begin
             // Update data sync with game runtime
             if(!update_data) begin
+                reset_character   = rom[addr][83];
                 character_amount  = rom[addr][82:73];
                 healt_current     = rom[addr][72:65] << 2;
                 healt_max         = rom[addr][64:57] << 2;

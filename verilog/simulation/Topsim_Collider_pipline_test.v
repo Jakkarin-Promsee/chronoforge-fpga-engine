@@ -130,9 +130,9 @@ module Topsim_Collider_pipline_test;
     
     wire [9:0] object_pos_y;
     wire sync_object_position;
-    assign object_pos_y = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_pos_y;
-    assign object_free = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_free;
-    assign sync_object_position = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.sync_object_position;
+//    assign object_pos_y = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_pos_y;
+//    assign object_free = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_free;
+//    assign sync_object_position = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.sync_object_position;
     
     // Iterator Log
     localparam integer OBJECT_AMOUNT_T = 80;   
@@ -145,7 +145,6 @@ module Topsim_Collider_pipline_test;
     wire [9:0]   healt_bar_pos_y;
     wire [9:0]   healt_bar_w;
     wire [9:0]   healt_bar_h;
-    wire [9:0]   healt_bar_w_minus;
     wire [6:0]   healt_bar_sensitivity;
     wire [15:0]  wait_time;
     wire [29:0]  next_ui_time;
@@ -163,7 +162,6 @@ module Topsim_Collider_pipline_test;
     assign healt_bar_pos_y = dut.game_ui_runtime_execute.healt_bar_pos_y;
     assign healt_bar_w = dut.game_ui_runtime_execute.healt_bar_w;
     assign healt_bar_h = dut.game_ui_runtime_execute.healt_bar_h;
-    assign healt_bar_w_minus = dut.game_ui_runtime_execute.healt_bar_w_minus;
     assign healt_bar_sensitivity = dut.game_ui_runtime_execute.healt_bar_sensitivity;
     assign wait_time = dut.game_ui_runtime_execute.wait_time;
     assign next_ui_time = dut.game_ui_runtime_execute.next_ui_time;
@@ -176,30 +174,22 @@ module Topsim_Collider_pipline_test;
     assign character_i = dut.game_ui_runtime_execute.character_i;
     assign character_pos_x = dut.game_ui_runtime_execute.character_pos_x;
     
-    wire [9:0]   character_pos_x_i [29:0];
     wire [29:0] character_active_i;
-    
     assign character_active_i = dut.game_ui_runtime_execute.character_active_i;
-    
-    genvar i;
-    generate
-        for (i = 0; i < 30; i = i + 1) begin
-            assign character_pos_x_i[i] =
-                dut.game_ui_runtime_execute.character_pos_x_i[i];
-        end
-    endgenerate
-    
     assign healt_bar_signal = dut.healt_bar_signal;
     assign healt_bar_border_signal = dut.healt_bar_border_signal;
     assign character_signal = dut.character_signal;
     
     wire [8:0] hit_char;
-    
     assign hit_char = dut.game_ui_runtime_execute.hit_char;
     
-//    wire [19:0] font_addr;
-    
-//    assign font_addr = dut.game_ui_runtime_execute.font_addr;
 
+    wire reset_character;
+    wire [9:0]   healt_max;
+    wire [9:0]   healt_current_hires;
+    
+    assign reset_character = dut.game_ui_runtime_execute.reset_character;
+    assign healt_max = dut.game_ui_runtime_execute.healt_max;
+    assign healt_current_hires = dut.game_ui_runtime_execute.healt_current_hires;
 
 endmodule

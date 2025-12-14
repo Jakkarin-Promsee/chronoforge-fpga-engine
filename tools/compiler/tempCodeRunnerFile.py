@@ -1,1 +1,1 @@
-tools_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+json_to_mem_compiler

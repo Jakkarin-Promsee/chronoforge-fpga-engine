@@ -422,7 +422,7 @@ module topModule#(
    
     //----------------------------------- Collider Object Runtimes Section  -----------------------------------------
     
-    localparam MAXIMUM_COLLIDER_OBJECT_AMOUT = 30;
+    localparam MAXIMUM_COLLIDER_OBJECT_AMOUT = 25;
     
     wire object_colider_signal;
     wire [9:0] collider_ground_h_player;
@@ -448,6 +448,8 @@ module topModule#(
         .player_w(player_w),
         .player_h(player_h),
         
+        .is_reset_stage(is_reset_stage),
+       
         .object_movement_direction(platform_movement_direction),
         .object_pos_x(platform_pos_x),
         .object_pos_y(platform_pos_y),
@@ -474,7 +476,7 @@ module topModule#(
     
     //----------------------------------- Trigger Object Runtimes Section -----------------------------------------
     
-    localparam MAXIMUM_TRIGGER_OBJECT_AMOUT = 80;
+    localparam MAXIMUM_TRIGGER_OBJECT_AMOUT = 60;
     
      multi_object_trigger_runtime #(
         .OBJECT_AMOUNT(MAXIMUM_TRIGGER_OBJECT_AMOUT)
@@ -504,6 +506,8 @@ module topModule#(
        .display_pos_y1(display_pos_y1),
        .display_pos_x2(display_pos_x2),
        .display_pos_y2(display_pos_y2),
+       
+       .is_reset_stage(is_reset_stage),
        
        .sync_object_position(sync_attack_position),
        

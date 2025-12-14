@@ -3,7 +3,7 @@
 module game_ui_runtime #(
     parameter integer ADDR_WIDTH = 10,              // 1024 entries
     parameter integer MAXIMUM_TIMES = 30,
-    parameter integer CHARACTER_AMOUNT = 30
+    parameter integer CHARACTER_AMOUNT = 70
  ) (
     input clk_vga,
     input clk_centi_second,
@@ -31,11 +31,11 @@ module game_ui_runtime #(
     reg sync_ui_time;
     wire update_ui_time;
     
+    wire         reset_character;
     wire [9:0]   character_amount;
     wire [9:0]   healt_current;
     reg [9:0]   healt_current_hires;
     wire [9:0]   healt_max;
-    reg [9:0]   healt_max_hires;
 //    wire         transparent_out_screen_display;
     wire         reset_when_dead;
     wire [9:0]   healt_bar_pos_x;
@@ -62,6 +62,7 @@ module game_ui_runtime #(
         
         .update_ui_time(update_ui_time),
         
+        .reset_character(reset_character),
         .character_amount(character_amount),
         .healt_current(healt_current),
         .healt_max(healt_max),
@@ -89,14 +90,23 @@ module game_ui_runtime #(
     
     wire border_size =
         (x >= (healt_bar_pos_x) - BORDER) &&
-        (x <= (healt_bar_pos_x) + (healt_bar_w) + BORDER) &&
+        (x < (healt_bar_pos_x) + (healt_bar_w) + BORDER) &&
         (y >= (healt_bar_pos_y) - BORDER) &&
-        (y <= (healt_bar_pos_y) + (healt_bar_h) + BORDER);
+        (y < (healt_bar_pos_y) + (healt_bar_h) + BORDER);
     
     assign healt_bar_border_signal = border_size && (~normal_size);
     
-    assign  healt_bar_signal = (x >= (healt_bar_pos_x)) && (x < (healt_bar_pos_x) + (healt_bar_w - (healt_bar_w_minus/healt_max)*healt_bar_w)) 
-                            && (y >= (healt_bar_pos_y)) && (y < (healt_bar_pos_y) + (healt_bar_h));
+    
+    wire [9:0] hp_pixels;
+    assign hp_pixels =  (healt_max != 0) ? (healt_current_hires * healt_bar_w) / healt_max : 0;
+    
+    assign healt_bar_signal =
+        (x >= healt_bar_pos_x) &&
+        (x <  healt_bar_pos_x + hp_pixels) &&
+        (y >= healt_bar_pos_y) &&
+        (y <  healt_bar_pos_y + healt_bar_h);
+
+    
     
 
     
@@ -130,6 +140,9 @@ module game_ui_runtime #(
         .character_index(character_index)
     );
     
+    localparam integer MAXIMUM_CHAR_OBJECT = 20;
+    
+    reg [MAXIMUM_CHAR_OBJECT-1: 0]     char_index ;
     reg [CHARACTER_AMOUNT-1: 0]        character_active_i ;
     reg [9:0]   character_pos_x_i [CHARACTER_AMOUNT-1: 0];
     reg [9:0]   character_pos_y_i [CHARACTER_AMOUNT-1: 0];
@@ -147,6 +160,7 @@ module game_ui_runtime #(
             sync_master <= 1;
             character_i <= 0;
             update <= 0;
+            char_index <= 0;
             
             for(i=0; i<CHARACTER_AMOUNT; i=i+1) begin
                 character_active_i <= 0;
@@ -163,14 +177,14 @@ module game_ui_runtime #(
                 sync_master <= 0;
                 update <= 0;
                 
-                healt_current_hires <= healt_current;
-                healt_max_hires <= healt_max;
-                
-                for(i=0; i<CHARACTER_AMOUNT; i=i+1) begin
-                    character_active_i[i] <= 0;
-                    character_pos_x_i[i] <= 0;
-                    character_pos_y_i[i] <= 0;
-                    character_index_i[i] <= 0;
+                if(reset_character) begin
+                    char_index <= 0;
+                    for(i=0; i<CHARACTER_AMOUNT; i=i+1) begin
+                        character_active_i[i] <= 0;
+                        character_pos_x_i[i] <= 0;
+                        character_pos_y_i[i] <= 0;
+                        character_index_i[i] <= 0;
+                    end
                 end
             end
                
@@ -191,15 +205,17 @@ module game_ui_runtime #(
                     character_i <= character_i + 1;
                     sync_character <= 0;
                     
-                    character_active_i[CHARACTER_AMOUNT-1-count_character_i] <= 1;
-                    character_index_i[CHARACTER_AMOUNT-1-count_character_i] <= character_index;
-                    character_pos_x_i[CHARACTER_AMOUNT-1-count_character_i] <= character_pos_x;
-                    character_pos_y_i[CHARACTER_AMOUNT-1-count_character_i] <= character_pos_y;
+                    char_index <= char_index + 1;
+                    
+                    character_active_i[CHARACTER_AMOUNT-1-char_index] <= 1;
+                    character_index_i[CHARACTER_AMOUNT-1-char_index] <= character_index;
+                    character_pos_x_i[CHARACTER_AMOUNT-1-char_index] <= character_pos_x;
+                    character_pos_y_i[CHARACTER_AMOUNT-1-char_index] <= character_pos_y;
                 end
                
             end
             
-            if(is_end || is_reset_stage) begin
+            if(is_end || (is_reset_stage && reset_clk_centi_second)) begin
                 addr <= 0;
                 character_i <= 0;
                 sync_ui_time <= 0;
@@ -252,42 +268,45 @@ module game_ui_runtime #(
     
     
     reg [6:0] current_healt_bar_sensitivity;
-    reg [9:0] healt_bar_w_minus;
+    reg reset_clk_centi_second;
     
     always@(posedge clk_centi_second) begin
         if(reset) begin
             is_player_dead <= 0;
             current_healt_bar_sensitivity <= 127;
-            healt_bar_w_minus <= 0;
             update_master <= 0;
+            healt_current_hires <= (1<<10) - 1;
+            reset_clk_centi_second <= 0;
             
         end else if (!sync_master) begin
             update_master<= 1;
             
-            if(healt_current_hires != 0)
-                healt_bar_w_minus <= healt_max_hires - healt_current_hires;
+            if(!(healt_current == 0))
+                healt_current_hires <= healt_current;
+                reset_clk_centi_second <= 0;
+            
+        end else if(is_reset_stage) begin
+            healt_current_hires <= (1<<10) - 1;
+            is_player_dead <= 0;
+            reset_clk_centi_second <= 1;
             
         end else begin
             update_master <= 0;
-            
-            if(is_reset_stage)
-                healt_bar_w_minus <= 0;
+            reset_clk_centi_second <= 0;
                 
                 
-            if(healt_bar_w_minus < healt_max)
-                is_player_dead <= 0;
+                
+            if (healt_current_hires == 0)
+                is_player_dead <= reset_when_dead;
             
             if(is_trigger_player) begin
                 if(current_healt_bar_sensitivity==0) begin
                     // Reset Sensitivity
                     current_healt_bar_sensitivity <= healt_bar_sensitivity;
                     
-                    if(healt_bar_w_minus < healt_max)
-                        healt_bar_w_minus <= healt_bar_w_minus + 1;
-                    else 
-                        is_player_dead <= 1 && reset_when_dead;
-                    
-                    
+                    if(healt_current_hires > 0)
+                        healt_current_hires <= healt_current_hires - 1;
+
                 end else begin
                     current_healt_bar_sensitivity <= current_healt_bar_sensitivity - 1;
                 end

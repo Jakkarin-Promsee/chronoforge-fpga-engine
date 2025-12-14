@@ -31,6 +31,8 @@ module multi_object_trigger_runtime #(
     
     input sync_object_position,
     
+    input is_reset_stage,
+    
     output reg update_object_position,
     output wire object_signal,
     
@@ -81,7 +83,7 @@ module multi_object_trigger_runtime #(
     
     
     always @(posedge clk_calculation) begin
-        if(reset) begin
+        if(reset||is_reset_stage) begin
             update_object_position <= 0;
             itertor_ready_state <= 0;
             get_itertor_ready_state_state <= 0;
@@ -153,7 +155,7 @@ module multi_object_trigger_runtime #(
                 .clk_centi_second(clk_centi_second),
                 .clk_object_control(clk_object_control),
                 .clk_calculation(clk_calculation),
-                .reset(reset),
+                .reset(reset||is_reset_stage),
                 .movement_direction(object_movement_direction),
                 .object_pos_x(object_pos_x),
                 .object_pos_y(object_pos_y),

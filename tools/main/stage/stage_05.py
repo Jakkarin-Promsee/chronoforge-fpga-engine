@@ -66,7 +66,7 @@ def stage():
             w=374,
             h=20,
             wait_time=0,
-            destroy_time=0,
+            destroy_time=25.5,
             destroy_trigger=2,
         )
     )
@@ -150,29 +150,29 @@ def stage():
     # ------------------------------------------------------------------
     # Platform Placeholder (No Movement)
     # ------------------------------------------------------------------
-    for _ in range(3):
+    for _ in range(5):
         stage.platform_objects.append(
             PlatformObject(
                 movement_direction=2,
-                speed=9,
+                speed=6,
                 pos_x=137 - 62,
                 pos_y=328,
                 w=62,
                 h=8,
-                wait_time=3,
+                wait_time=2,
                 destroy_time=20,
                 destroy_trigger=2,
             )
         )
         stage.platform_objects.append(
             PlatformObject(
-                movement_direction=2,
-                speed=9,
+                movement_direction=6,
+                speed=6,
                 pos_x=508,
                 pos_y=328,
                 w=62,
                 h=8,
-                wait_time=3,
+                wait_time=2,
                 destroy_time=20,
                 destroy_trigger=2,
             )

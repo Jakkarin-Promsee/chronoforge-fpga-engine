@@ -63,7 +63,7 @@
         {
             "stage": 1,
             "attack_amount": 33,
-            "platform_amount": 6,
+            "platform_amount": 10,
             "wait_time": 1,
             "gravity_direction": 3,
             "display_pos_x1": 136,
