@@ -22,9 +22,9 @@ def stage():
     # ------------------------------------------------------------------
     # Common Parameters
     # ------------------------------------------------------------------
-    ATTACK_SPEED = 8
+    ATTACK_SPEED = 11
     BAR_WIDTH = 12
-    THRESHOLD = 24
+    THRESHOLD = 20
 
 
     LEFT_EDGE_X = stage.game_manager.display_pos_x1 - BAR_WIDTH

@@ -24,7 +24,7 @@ def stage():
     # ------------------------------------------------------------------
     ATTACK_SPEED = 12
     BAR_WIDTH = 12
-    GAP_SIZE = 20
+    GAP_SIZE = 22
 
     SMALL_BAR_HEIGHT = 20
     MEDIUM_BAR_HEIGHT = 40

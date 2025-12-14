@@ -119,7 +119,7 @@ module game_runtime#(
                             platform_i <= platform_i + 1;
                                 
                             sync_game_manager <= 0;
-                            next_game_manager_time <= current_time + wait_time;
+                            next_game_manager_time <= current_time + wait_time*10;
                         end else begin
                             // Spawn Next Attack
                             attack_i <= attack_i + 1;

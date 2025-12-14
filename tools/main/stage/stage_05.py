@@ -150,13 +150,13 @@ def stage():
     # ------------------------------------------------------------------
     # Platform Placeholder (No Movement)
     # ------------------------------------------------------------------
-    for _ in range(5):
+    for _ in range(6):
         stage.platform_objects.append(
             PlatformObject(
                 movement_direction=2,
                 speed=6,
                 pos_x=137 - 62,
-                pos_y=328,
+                pos_y=338,
                 w=62,
                 h=8,
                 wait_time=2,
@@ -169,7 +169,7 @@ def stage():
                 movement_direction=6,
                 speed=6,
                 pos_x=508,
-                pos_y=328,
+                pos_y=318,
                 w=62,
                 h=8,
                 wait_time=2,
