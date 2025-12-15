@@ -9,21 +9,22 @@ def stage():
 
     stage.game_ui = GameUI(
         show_healt_text=0,
-        reset_character=1,
+        reset_character=0,
         transparent_out_screen_display=0,
+        reset_when_dead=0,
         healt_current=0,
-        healt_max=96,
-        healt_bar_pos_x=260,
-        healt_bar_pos_y=400,
-        healt_bar_w=120,
-        healt_bar_h=20,
-        healt_bar_sensitivity=0.04,
-        wait_time=18
+        healt_max=0,
+        healt_bar_pos_x=0,
+        healt_bar_pos_y=0,
+        healt_bar_w=0,
+        healt_bar_h=0,
+        healt_bar_sensitivity=0,
+        wait_time=1.5
     )
 
     stage.character_objects.extend([
-        CharacterObject(14 + (center_data.CHARACTER_W + center_data.GAP) * i, 160, ch)
-        for i, ch in enumerate("70 MAXIMUM DYNAMIC ATTACK ON FRAME")
+        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP) * (i + 5), 218, ch)
+        for i, ch in enumerate("IS ")
         if ch != " "
     ])
 

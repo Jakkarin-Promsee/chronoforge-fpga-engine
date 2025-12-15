@@ -12,39 +12,23 @@ def stage():
     stage.game_manager = GameManager(
         stage=1,
         wait_time=1,
-        gravity_direction=3,
-        display_pos_x1=136,
-        display_pos_y1=256,
-        display_pos_x2=508,
-        display_pos_y2=384,
+        gravity_direction=0,
+        display_pos_x1=0,
+        display_pos_y1=0,
+        display_pos_x2=0,
+        display_pos_y2=0,
     )
 
     # ------------------------------------------------------------------
     # Common Parameters
     # ------------------------------------------------------------------
-    ATTACK_SPEED = 12
-    BAR_WIDTH = 12
-    GAP_SIZE = 22
-
-    SMALL_BAR_HEIGHT = 20
-    MEDIUM_BAR_HEIGHT = 40
-    LARGE_BAR_HEIGHT = 60
-
-    LEFT_EDGE_X = stage.game_manager.display_pos_x1 - BAR_WIDTH
-    RIGHT_EDGE_X = stage.game_manager.display_pos_x2
-
-    TOP_EDGE_Y = stage.game_manager.display_pos_y1
-    BOTTOM_EDGE_Y = stage.game_manager.display_pos_y2
-
-    SCREEN_HEIGHT = BOTTOM_EDGE_Y - TOP_EDGE_Y
-
-    LEFT_DELAY = 0
-    RIGHT_DELAY = 1.5
-
-    REPEAT_COUNT = 8
+    ATTACK_SIZE = 20
+    ATTACK_GAP = 30
+    ATTACK_X = 85
+    ATTACK_Y = 140
 
     # ------------------------------------------------------------------
-    # Initial Delay (3 seconds)
+    # Initial Delay (2 seconds)
     # ------------------------------------------------------------------
     stage.attack_objects.append(
         AttackObject(
@@ -56,7 +40,7 @@ def stage():
             pos_y=0,
             w=0,
             h=0,
-            wait_time=3,
+            wait_time=2,
             destroy_time=0,
             destroy_trigger=2,
         )
@@ -65,76 +49,32 @@ def stage():
     # ------------------------------------------------------------------
     # Helper: Create Left / Right Wall Pair with Vertical Gap
     # ------------------------------------------------------------------
-    def add_wall_pair(bar_height, right_delay):
-        lower_y = BOTTOM_EDGE_Y - bar_height
-        upper_h = SCREEN_HEIGHT - bar_height - GAP_SIZE
+    def generate_row(attack_y):
 
         stage.attack_objects.extend([
-            # Left - Lower
-            AttackObject(
-                type=0,
-                colider_type=0,
-                movement_direction=2,
-                speed=ATTACK_SPEED,
-                pos_x=LEFT_EDGE_X,
-                pos_y=lower_y,
-                w=BAR_WIDTH,
-                h=bar_height,
-                wait_time=LEFT_DELAY,
-                destroy_time=20,
-                destroy_trigger=2,
-            ),
-            # Left - Upper
-            AttackObject(
-                type=0,
-                colider_type=0,
-                movement_direction=2,
-                speed=ATTACK_SPEED,
-                pos_x=LEFT_EDGE_X,
-                pos_y=TOP_EDGE_Y,
-                w=BAR_WIDTH,
-                h=upper_h,
-                wait_time=LEFT_DELAY,
-                destroy_time=20,
-                destroy_trigger=2,
-            ),
-            # Right - Lower
-            AttackObject(
-                type=0,
-                colider_type=0,
-                movement_direction=6,
-                speed=ATTACK_SPEED,
-                pos_x=RIGHT_EDGE_X,
-                pos_y=lower_y,
-                w=BAR_WIDTH,
-                h=bar_height,
-                wait_time=LEFT_DELAY,
-                destroy_time=20,
-                destroy_trigger=2,
-            ),
-            # Right - Upper (delayed)
-            AttackObject(
-                type=0,
-                colider_type=0,
-                movement_direction=6,
-                speed=ATTACK_SPEED,
-                pos_x=RIGHT_EDGE_X,
-                pos_y=TOP_EDGE_Y,
-                w=BAR_WIDTH,
-                h=upper_h,
-                wait_time=right_delay,
-                destroy_time=20,
-                destroy_trigger=2,
-            ),
+            
+                 AttackObject(
+                    type=0,
+                    colider_type=0,
+                    movement_direction=0,
+                    speed=0,
+                    pos_x=ATTACK_X + (ATTACK_SIZE+ATTACK_GAP)*i,
+                    pos_y=attack_y,
+                    w=ATTACK_SIZE,
+                    h=ATTACK_SIZE,
+                    wait_time=0,
+                    destroy_time=6,
+                    destroy_trigger=2,
+                ) for i in range(10)
+            
         ])
 
     # ------------------------------------------------------------------
     # Repeating Symmetric Wall Pattern
     # ------------------------------------------------------------------
-    for _ in range(REPEAT_COUNT):
-        add_wall_pair(
-            bar_height=SMALL_BAR_HEIGHT,
-            right_delay=RIGHT_DELAY,
+    for i in range(6):
+        generate_row(
+            ATTACK_Y + (ATTACK_SIZE+ATTACK_GAP)*i
         )
 
     # ------------------------------------------------------------------
@@ -150,7 +90,7 @@ def stage():
             pos_y=0,
             w=0,
             h=0,
-            wait_time=2,
+            wait_time=7,
             destroy_time=0,
             destroy_trigger=2,
         )

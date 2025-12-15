@@ -180,11 +180,14 @@ class EntireGame:
         os.makedirs(export_folder, exist_ok=True)
 
         # Export each stage
+        total_time = 0
+        
         for i, stage in enumerate(self.stages):
             output_path = os.path.join(export_folder, f"stage{i:02}.json")
             with open(output_path, "w") as f:
                 json.dump(stage.to_dict(), f, indent=4)
-            print(f"stage_{i:02}: {stage.get_total_time():.2f}")
+            print(f"stage_ui_{i:02}: total: {total_time:.2f}, time: {stage.get_total_time():.2f}")
+            total_time += stage.get_total_time()
 
         print(f"Exported {len(self.stages)} stages → {export_folder}/")
 
@@ -346,10 +349,14 @@ class EntireGameUI:
     def export(self, export_folder):
         os.makedirs(export_folder, exist_ok=True)
 
+        total_time = 0
+
         for i, stage in enumerate(self.ui_stages):
             output_path = os.path.join(export_folder, f"stage_ui_{i:02}.json")
             with open(output_path, "w") as f:
                 json.dump(stage.to_dict(), f, indent=4)
-            print(f"stage_ui_{i:02}: {stage.get_total_time():.2f}")
+
+            print(f"stage_ui_{i:02}: total: {total_time:.2f}, time: {stage.get_total_time():.2f}")
+            total_time += stage.get_total_time()
 
         print(f"Exported {len(self.ui_stages)} UI stages → {export_folder}/")

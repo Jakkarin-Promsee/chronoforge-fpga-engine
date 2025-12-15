@@ -8,22 +8,23 @@ def stage():
     stage = GameUIStage()
 
     stage.game_ui = GameUI(
-        show_healt_text=1,
+        show_healt_text=0,
         reset_character=0,
         transparent_out_screen_display=0,
+        reset_when_dead=0,
         healt_current=0,
-        healt_max=80,
-        healt_bar_pos_x=190,
-        healt_bar_pos_y=400,
-        healt_bar_w=120,
-        healt_bar_h=20,
-        healt_bar_sensitivity=0.04,
-        wait_time=26
+        healt_max=0,
+        healt_bar_pos_x=0,
+        healt_bar_pos_y=0,
+        healt_bar_w=0,
+        healt_bar_h=0,
+        healt_bar_sensitivity=0,
+        wait_time=0.5
     )
 
     stage.character_objects.extend([
-        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP) * (i + 15), 160, ch)
-        for i, ch in enumerate("FORGE")
+        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP)*(i+4), 245, ch)
+        for i, ch in enumerate("FPGA ")
         if ch != " "
     ])
 

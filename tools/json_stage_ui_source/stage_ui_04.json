@@ -1,50 +1,45 @@
 {
     "game_ui": {
         "free(unused)": 0,
-        "show_healt_text": 1,
+        "show_healt_text": 0,
         "reset_character": 0,
-        "character_amount": 6,
-        "healt_current": 80,
-        "healt_max": 96,
+        "character_amount": 5,
+        "healt_current": 0,
+        "healt_max": 0,
         "transparent_out_screen_display": 0,
         "reset_when_dead": 0,
-        "healt_bar_pos_x": 190,
-        "healt_bar_pos_y": 400,
-        "healt_bar_w": 120,
-        "healt_bar_h": 20,
-        "healt_bar_sensitivity": 0.04,
-        "wait_time": 16
+        "healt_bar_pos_x": 0,
+        "healt_bar_pos_y": 0,
+        "healt_bar_w": 0,
+        "healt_bar_h": 0,
+        "healt_bar_sensitivity": 0,
+        "wait_time": 1.5
     },
     "character_object": [
         {
-            "character_pos_x": 284,
-            "character_pos_y": 160,
-            "character_index": 2
+            "character_pos_x": 410,
+            "character_pos_y": 218,
+            "character_index": 5
         },
         {
-            "character_pos_x": 302,
-            "character_pos_y": 160,
-            "character_index": 7
+            "character_pos_x": 428,
+            "character_pos_y": 218,
+            "character_index": 14
         },
         {
-            "character_pos_x": 320,
-            "character_pos_y": 160,
+            "character_pos_x": 446,
+            "character_pos_y": 218,
             "character_index": 17
         },
         {
-            "character_pos_x": 338,
-            "character_pos_y": 160,
-            "character_index": 14
+            "character_pos_x": 464,
+            "character_pos_y": 218,
+            "character_index": 6
         },
         {
-            "character_pos_x": 356,
-            "character_pos_y": 160,
-            "character_index": 13
-        },
-        {
-            "character_pos_x": 374,
-            "character_pos_y": 160,
-            "character_index": 14
+            "character_pos_x": 482,
+            "character_pos_y": 218,
+            "character_index": 4
         }
     ]
 }

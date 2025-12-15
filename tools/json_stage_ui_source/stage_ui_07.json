@@ -1,0 +1,40 @@
+{
+    "game_ui": {
+        "free(unused)": 0,
+        "show_healt_text": 0,
+        "reset_character": 0,
+        "character_amount": 4,
+        "healt_current": 0,
+        "healt_max": 0,
+        "transparent_out_screen_display": 0,
+        "reset_when_dead": 0,
+        "healt_bar_pos_x": 0,
+        "healt_bar_pos_y": 0,
+        "healt_bar_w": 0,
+        "healt_bar_h": 0,
+        "healt_bar_sensitivity": 0,
+        "wait_time": 0.5
+    },
+    "character_object": [
+        {
+            "character_pos_x": 302,
+            "character_pos_y": 245,
+            "character_index": 6
+        },
+        {
+            "character_pos_x": 320,
+            "character_pos_y": 245,
+            "character_index": 0
+        },
+        {
+            "character_pos_x": 338,
+            "character_pos_y": 245,
+            "character_index": 12
+        },
+        {
+            "character_pos_x": 356,
+            "character_pos_y": 245,
+            "character_index": 4
+        }
+    ]
+}
