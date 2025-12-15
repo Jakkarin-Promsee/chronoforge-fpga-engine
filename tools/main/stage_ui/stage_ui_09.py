@@ -23,7 +23,7 @@ def stage():
 
     stage.character_objects.extend([
         CharacterObject(95 + (center_data.CHARACTER_W + center_data.GAP) * i, 74, ch)
-        for i, ch in enumerate("SUPPORT 60 DYNAMIC ATTACK")
+        for i, ch in enumerate("SUPPORT 55 DYNAMIC ATTACK")
         if ch != " "            
     ])
 

@@ -21,10 +21,11 @@ def stage():
         wait_time=4
     )
 
-    stage.character_objects.extend([
-        CharacterObject(46 + (center_data.CHARACTER_W + center_data.GAP) * i, 240+69, ch)
-        for i, ch in enumerate("SUPPORT 25000 OBJECT OVERALL DATA")
-        if ch != " "            
-    ])
+    # Register Character out of space
+    # stage.character_objects.extend([
+    #     CharacterObject(46 + (center_data.CHARACTER_W + center_data.GAP) * i, 240+69, ch)
+    #     for i, ch in enumerate("SUPPORT 25000 OBJECT OVERALL DATA")
+    #     if ch != " "            
+    # ])
 
     return stage

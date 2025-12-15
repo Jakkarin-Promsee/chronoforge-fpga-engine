@@ -875,7 +875,7 @@
             "pos_y": 0,
             "w": 0,
             "h": 0,
-            "wait_time": 25,
+            "wait_time": 15,
             "destroy_time": 0,
             "destroy_trigger": 2,
             "free(unused)": 0

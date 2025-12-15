@@ -476,7 +476,7 @@ module topModule#(
     
     //----------------------------------- Trigger Object Runtimes Section -----------------------------------------
     
-    localparam MAXIMUM_TRIGGER_OBJECT_AMOUT = 60;
+    localparam MAXIMUM_TRIGGER_OBJECT_AMOUT = 56;
     
      multi_object_trigger_runtime #(
         .OBJECT_AMOUNT(MAXIMUM_TRIGGER_OBJECT_AMOUT)

@@ -494,7 +494,7 @@
             "healt_bar_w": 120,
             "healt_bar_h": 20,
             "healt_bar_sensitivity": 0.04,
-            "wait_time": 8
+            "wait_time": 0
         },
         {
             "free(unused)": 0,
@@ -510,7 +510,7 @@
             "healt_bar_w": 120,
             "healt_bar_h": 20,
             "healt_bar_sensitivity": 0.04,
-            "wait_time": 2
+            "wait_time": 0
         },
         {
             "free(unused)": 0,
@@ -580,7 +580,7 @@
             "free(unused)": 0,
             "show_healt_text": 0,
             "reset_character": 0,
-            "character_amount": 29,
+            "character_amount": 0,
             "healt_current": 0,
             "healt_max": 0,
             "transparent_out_screen_display": 1,
@@ -607,6 +607,22 @@
             "healt_bar_h": 0,
             "healt_bar_sensitivity": 0.04,
             "wait_time": 2
+        },
+        {
+            "free(unused)": 0,
+            "show_healt_text": 0,
+            "reset_character": 1,
+            "character_amount": 16,
+            "healt_current": 0,
+            "healt_max": 0,
+            "transparent_out_screen_display": 1,
+            "reset_when_dead": 0,
+            "healt_bar_pos_x": 0,
+            "healt_bar_pos_y": 0,
+            "healt_bar_w": 0,
+            "healt_bar_h": 0,
+            "healt_bar_sensitivity": 0.04,
+            "wait_time": 1000
         }
     ]
 }
