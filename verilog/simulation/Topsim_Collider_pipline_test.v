@@ -128,8 +128,8 @@ module Topsim_Collider_pipline_test;
     wire [7:0] destroy_time;
     assign destroy_time = dut.attack_object_reader.destroy_time;
     
-    wire [9:0] object_pos_y;
-    wire sync_object_position;
+//    wire [9:0] object_pos_y;
+//    wire sync_object_position;
 //    assign object_pos_y = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_pos_y;
 //    assign object_free = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.object_free;
 //    assign sync_object_position = dut.muti_object_trigger_runtime_execute.OBJECTS[79].object_collider_position_control.sync_object_position;
@@ -139,8 +139,6 @@ module Topsim_Collider_pipline_test;
     wire [OBJECT_AMOUNT_T-1: 0] object_ready_state_T;
     
     wire [10-1:0] ui_addr;
-    wire ui_signal;
-    wire reset_healt_status;
     wire [9:0]   healt_bar_pos_x;
     wire [9:0]   healt_bar_pos_y;
     wire [9:0]   healt_bar_w;

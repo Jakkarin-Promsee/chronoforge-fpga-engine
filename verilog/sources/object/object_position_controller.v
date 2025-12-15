@@ -77,7 +77,7 @@ module object_position_controller (
         end else begin
             update_master <= 0;
         
-            if(centi_second == 10) begin
+            if(centi_second == 100) begin
                 centi_second <= 0;
                 
                 if(object_destroy_time_count > 0)

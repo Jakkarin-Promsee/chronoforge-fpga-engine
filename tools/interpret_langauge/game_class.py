@@ -275,8 +275,8 @@ class CharacterObject:
 
         ch = character_index.upper()
 
-        # ---- A–X : 0–23 ----
-        if "A" <= ch <= "X":
+        # ---- A–Z : 0–25 ----
+        if "A" <= ch <= "Z":
             self.character_index = ord(ch) - ord("A")
 
         # ---- 0–9 : 26–35 ----

@@ -1,0 +1,2 @@
+CHARACTER_W = 17
+GAP = 1

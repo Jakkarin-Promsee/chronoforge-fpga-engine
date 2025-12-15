@@ -8,28 +8,22 @@ def stage():
     stage = GameUIStage()
 
     stage.game_ui = GameUI(
-        show_healt_text=1,
+        show_healt_text=0,
         reset_character=1,
         transparent_out_screen_display=0,
-        healt_current=96,
+        healt_current=0,
         healt_max=96,
-        healt_bar_pos_x=190,
+        healt_bar_pos_x=260,
         healt_bar_pos_y=400,
         healt_bar_w=120,
         healt_bar_h=20,
         healt_bar_sensitivity=0.04,
-        wait_time=12.8
+        wait_time=18
     )
 
     stage.character_objects.extend([
-        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP) * i, 160, ch)
-        for i, ch in enumerate("THIS IS CHRONO FORGE")
-        if ch != " "
-    ])
-
-    stage.character_objects.extend([
-        CharacterObject(184 + (center_data.CHARACTER_W + center_data.GAP) * i, 184, ch)
-        for i, ch in enumerate("THE FPGA ENGINE")
+        CharacterObject(14 + (center_data.CHARACTER_W + center_data.GAP) * i, 160, ch)
+        for i, ch in enumerate("70 MAXIMUM DYNAMIC ATTACK ON FRAME")
         if ch != " "
     ])
 
