@@ -22,25 +22,25 @@ def stage():
     )
 
     stage.character_objects.extend([
-        CharacterObject(113 + (center_data.CHARACTER_W + center_data.GAP) * i, 218, ch)
+        CharacterObject(113 + (center_data.CHARACTER_W + center_data.GAP) * i, 74, ch)
         for i, ch in enumerate("SUPPORT 79 DYNAMIC TEXT")
         if ch != " "            
     ])
 
     stage.character_objects.extend([
-        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP) * i, 245, ch)
+        CharacterObject(140 + (center_data.CHARACTER_W + center_data.GAP) * i, 102, ch)
         for i, ch in enumerate("MAXIMUM IN ONE FRAME")
         if ch != " "
     ])
 
     stage.character_objects.extend([
-        CharacterObject(6 + (center_data.CHARACTER_W + center_data.GAP) * i, 280, ch)
+        CharacterObject(86 + (center_data.CHARACTER_W + center_data.GAP) * i, 200, ch)
         for i, ch in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         if ch != " "
     ])
 
     stage.character_objects.extend([
-        CharacterObject(141 + (center_data.CHARACTER_W + center_data.GAP) * i, 300, ch)
+        CharacterObject(221 + (center_data.CHARACTER_W + center_data.GAP) * i, 220, ch)
         for i, ch in enumerate("0123456789/")
         if ch != " "
     ])

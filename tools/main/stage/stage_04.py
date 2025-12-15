@@ -42,7 +42,7 @@ def stage():
             pos_y=0,
             w=0,
             h=0,
-            wait_time=0.2,
+            wait_time=1,
             destroy_time=0,
             destroy_trigger=2,
         )
@@ -59,7 +59,7 @@ def stage():
             pos_y=0,
             w=0,
             h=0,
-            wait_time=0.2,
+            wait_time=1,
             destroy_time=0,
             destroy_trigger=2,
         )
@@ -79,8 +79,8 @@ def stage():
                     pos_y=ATTACK_Y,
                     w=ATTACK_SIZE,
                     h=ATTACK_SIZE,
-                    wait_time=1,
-                    destroy_time=4,
+                    wait_time=0.2,
+                    destroy_time=4- i*0.2,
                     destroy_trigger=2,
                 ) for i in range(8)
             
@@ -95,8 +95,8 @@ def stage():
                     pos_y=PLATFORM_Y,
                     w=ATTACK_SIZE,
                     h=ATTACK_SIZE,
-                    wait_time=1,
-                    destroy_time=4,
+                    wait_time=0.2,
+                    destroy_time=4 - i*0.2,
                     destroy_trigger=2,
                 ) for i in range(8)
             

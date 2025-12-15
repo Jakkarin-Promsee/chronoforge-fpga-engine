@@ -18,7 +18,7 @@ def stage():
         healt_bar_w=120,
         healt_bar_h=20,
         healt_bar_sensitivity=0.04,
-        wait_time=8
+        wait_time=4
     )
 
     return stage
